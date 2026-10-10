@@ -1,0 +1,629 @@
+{
+ "versione": "0.1 — 10 ottobre 2026",
+ "estensione": [
+  10.8,
+  45.48,
+  11.34,
+  45.84
+ ],
+ "vista_iniziale": [
+  10.935,
+  45.605,
+  11.105,
+  45.735
+ ],
+ "gruppi": [
+  {
+   "id": "01",
+   "titolo": "Territorio fisico"
+  },
+  {
+   "id": "02",
+   "titolo": "Confini amministrativi e di tutela"
+  },
+  {
+   "id": "03",
+   "titolo": "Sistema degli alpeggi"
+  },
+  {
+   "id": "04",
+   "titolo": "Presenza del lupo"
+  },
+  {
+   "id": "05",
+   "titolo": "Conflitti documentati"
+  },
+  {
+   "id": "06",
+   "titolo": "Attività e infrastrutture umane"
+  }
+ ],
+ "livelli": [
+  {
+   "id": "rilievo",
+   "gruppo": "01",
+   "titolo": "Rilievo (ombreggiatura)",
+   "tipo": "raster",
+   "file": "data/dem_hillshade_3857.jpg",
+   "fonti": [
+    "TINITALY"
+   ],
+   "stato": "verificato",
+   "periodo": "DTM 2023 (v1.1)",
+   "visibile": true,
+   "legenda": {
+    "forma": "raster",
+    "testo": "Ombreggiatura da DTM 10 m, luce da NO"
+   }
+  },
+  {
+   "id": "curve",
+   "gruppo": "01",
+   "titolo": "Curve di livello · 50 m",
+   "tipo": "geojson",
+   "file": "data/dem_curve_livello_50m.geojson",
+   "fonti": [
+    "TINITALY"
+   ],
+   "stato": "verificato",
+   "periodo": "DTM 2023 (v1.1)",
+   "visibile": true,
+   "legenda": {
+    "forma": "linea",
+    "colore": "#A8957C",
+    "spessore": 1,
+    "testo": "Equidistanza 50 m; direttrici ogni 250 m"
+   }
+  },
+  {
+   "id": "boschi",
+   "gruppo": "01",
+   "titolo": "Boschi",
+   "tipo": "geojson",
+   "file": "data/osm_boschi.geojson",
+   "fonti": [
+    "OSM"
+   ],
+   "stato": "verificato",
+   "periodo": "OSM, ottobre 2026",
+   "visibile": true,
+   "legenda": {
+    "forma": "area",
+    "colore": "#D5E0CE"
+   }
+  },
+  {
+   "id": "aperto",
+   "gruppo": "01",
+   "titolo": "Praterie, prati-pascoli e altre coperture",
+   "tipo": "geojson",
+   "file": "data/osm_copertura_aperta.geojson",
+   "fonti": [
+    "OSM"
+   ],
+   "stato": "verificato",
+   "periodo": "OSM, ottobre 2026",
+   "visibile": true,
+   "interattivo": true,
+   "legenda": {
+    "forma": "categorie",
+    "voci": [
+     [
+      "prateria / prato-pascolo",
+      "#EEE7C8"
+     ],
+     [
+      "arbusteto / brughiera",
+      "#DDE2C6"
+     ],
+     [
+      "roccia / ghiaione",
+      "#E3E1DC"
+     ],
+     [
+      "abitato",
+      "#E2DEDA"
+     ]
+    ]
+   },
+   "nota": "Copertura del suolo OSM (coltivi di pianura esclusi). Non coincide con le superfici di pascolo assegnate alle singole malghe."
+  },
+  {
+   "id": "idro",
+   "gruppo": "01",
+   "titolo": "Idrografia",
+   "tipo": "geojson",
+   "file": "data/osm_idrografia_linee.geojson",
+   "fonti": [
+    "OSM"
+   ],
+   "stato": "verificato",
+   "periodo": "OSM, ottobre 2026",
+   "visibile": true,
+   "interattivo": true,
+   "legenda": {
+    "forma": "linea",
+    "colore": "#5C8DAF",
+    "spessore": 1.2,
+    "testo": "Corsi d'acqua; tratteggio = intermittente"
+   }
+  },
+  {
+   "id": "idro_aree",
+   "gruppo": "01",
+   "titolo": "Specchi d'acqua e pozze d'alpeggio",
+   "tipo": "geojson",
+   "file": "data/osm_idrografia_aree.geojson",
+   "fonti": [
+    "OSM"
+   ],
+   "stato": "verificato",
+   "periodo": "OSM, ottobre 2026",
+   "visibile": true,
+   "interattivo": true,
+   "legenda": {
+    "forma": "area",
+    "colore": "#A9C7DC"
+   }
+  },
+  {
+   "id": "sorgenti",
+   "gruppo": "01",
+   "titolo": "Sorgenti",
+   "tipo": "geojson",
+   "file": "data/osm_sorgenti.geojson",
+   "fonti": [
+    "OSM"
+   ],
+   "stato": "verificato",
+   "periodo": "OSM, ottobre 2026",
+   "visibile": false,
+   "interattivo": true,
+   "legenda": {
+    "forma": "punto",
+    "colore": "#5C8DAF"
+   }
+  },
+  {
+   "id": "comuni",
+   "gruppo": "02",
+   "titolo": "Confini comunali",
+   "tipo": "geojson",
+   "file": "data/confini_comuni.geojson",
+   "fonti": [
+    "ISTAT2026"
+   ],
+   "stato": "verificato",
+   "periodo": "1° gennaio 2026",
+   "visibile": true,
+   "interattivo": true,
+   "legenda": {
+    "forma": "linea",
+    "colore": "#6E7479",
+    "spessore": 0.8,
+    "tratteggio": "3 2"
+   }
+  },
+  {
+   "id": "province",
+   "gruppo": "02",
+   "titolo": "Confini provinciali",
+   "tipo": "geojson",
+   "file": "data/confini_province.geojson",
+   "fonti": [
+    "ISTAT2026"
+   ],
+   "stato": "verificato",
+   "periodo": "1° gennaio 2026",
+   "visibile": true,
+   "legenda": {
+    "forma": "linea",
+    "colore": "#3B4045",
+    "spessore": 1.2,
+    "tratteggio": "6 2 1 2"
+   }
+  },
+  {
+   "id": "regioni",
+   "gruppo": "02",
+   "titolo": "Confine Veneto / Trentino-Alto Adige",
+   "tipo": "geojson",
+   "file": "data/confine_veneto_trentino.geojson",
+   "fonti": [
+    "ISTAT2026"
+   ],
+   "stato": "verificato",
+   "periodo": "1° gennaio 2026",
+   "visibile": true,
+   "interattivo": true,
+   "legenda": {
+    "forma": "linea",
+    "colore": "#1D2226",
+    "spessore": 2.4,
+    "tratteggio": "8 2 1 2 1 2"
+   }
+  },
+  {
+   "id": "parco",
+   "gruppo": "02",
+   "titolo": "Parco Naturale Regionale della Lessinia",
+   "tipo": "geojson",
+   "file": "data/aree_protette_natda.geojson",
+   "filtro": [
+    "==",
+    [
+     "get",
+     "codice_euap"
+    ],
+    "EUAP0241"
+   ],
+   "fonti": [
+    "EEA_NATDA",
+    "VENETO_PARCO"
+   ],
+   "stato": "verificato",
+   "periodo": "EEA NatDA v24 (2024)",
+   "visibile": true,
+   "interattivo": true,
+   "legenda": {
+    "forma": "bordo",
+    "colore": "#2C7A57",
+    "testo": "Perimetro del Parco (non coincide con la Lessinia geografica)"
+   }
+  },
+  {
+   "id": "riserve",
+   "gruppo": "02",
+   "titolo": "Altre aree protette (riserve)",
+   "tipo": "geojson",
+   "file": "data/aree_protette_natda.geojson",
+   "filtro": [
+    "!=",
+    [
+     "get",
+     "codice_euap"
+    ],
+    "EUAP0241"
+   ],
+   "fonti": [
+    "EEA_NATDA"
+   ],
+   "stato": "verificato",
+   "periodo": "EEA NatDA v24 (2024)",
+   "visibile": false,
+   "interattivo": true,
+   "legenda": {
+    "forma": "bordo",
+    "colore": "#5E8F74",
+    "tratteggio": "2 2"
+   }
+  },
+  {
+   "id": "n2000_zsc",
+   "gruppo": "02",
+   "titolo": "Natura 2000 · SIC/ZSC (Habitat)",
+   "tipo": "geojson",
+   "file": "data/natura2000.geojson",
+   "filtro": [
+    "in",
+    [
+     "get",
+     "SITETYPE"
+    ],
+    [
+     "literal",
+     [
+      "B",
+      "C"
+     ]
+    ]
+   ],
+   "fonti": [
+    "EEA_N2000"
+   ],
+   "stato": "verificato",
+   "periodo": "End 2024",
+   "visibile": false,
+   "interattivo": true,
+   "legenda": {
+    "forma": "tratteggio",
+    "colore": "#7A8F2E",
+    "testo": "Tratteggio /; tipo C = coincidente con ZPS"
+   }
+  },
+  {
+   "id": "n2000_zps",
+   "gruppo": "02",
+   "titolo": "Natura 2000 · ZPS (Uccelli)",
+   "tipo": "geojson",
+   "file": "data/natura2000.geojson",
+   "filtro": [
+    "in",
+    [
+     "get",
+     "SITETYPE"
+    ],
+    [
+     "literal",
+     [
+      "A",
+      "C"
+     ]
+    ]
+   ],
+   "fonti": [
+    "EEA_N2000"
+   ],
+   "stato": "verificato",
+   "periodo": "End 2024",
+   "visibile": false,
+   "interattivo": true,
+   "legenda": {
+    "forma": "tratteggio2",
+    "colore": "#9A7A2A",
+    "testo": "Tratteggio \\"
+   }
+  },
+  {
+   "id": "pascoli",
+   "gruppo": "03",
+   "titolo": "Prati-pascoli (copertura OSM)",
+   "tipo": "alias",
+   "di": "aperto",
+   "fonti": [
+    "OSM"
+   ],
+   "stato": "verificato",
+   "periodo": "OSM, ottobre 2026",
+   "nota": "Mostrati nel livello 01. Perimetri delle superfici di pascolo delle singole malghe: dato non reperito."
+  },
+  {
+   "id": "malghe",
+   "gruppo": "03",
+   "titolo": "Malghe e casere",
+   "tipo": "geojson",
+   "file": "data/osm_malghe.geojson",
+   "fonti": [
+    "OSM"
+   ],
+   "stato": "verificato",
+   "periodo": "OSM, ottobre 2026",
+   "visibile": true,
+   "interattivo": true,
+   "legenda": {
+    "forma": "quadrato",
+    "colore": "#1D2226",
+    "testo": "Pieno = edificio mappato · vuoto = solo toponimo"
+   }
+  },
+  {
+   "id": "lupo_eventi",
+   "gruppo": "04",
+   "titolo": "Osservazioni storiche documentate (2012)",
+   "tipo": "geojson",
+   "file": "data/tema_lupo_eventi_storici.geojson",
+   "fonti": [
+    "MENINI2015",
+    "PAT2022"
+   ],
+   "stato": "osservazione",
+   "periodo": "gennaio–dicembre 2012",
+   "temporale": "anno",
+   "visibile": true,
+   "interattivo": true,
+   "legenda": {
+    "forma": "rombo",
+    "colore": "#54479A",
+    "testo": "Localizzate al toponimo citato dalla fonte"
+   }
+  },
+  {
+   "id": "lupo_branchi",
+   "gruppo": "04",
+   "titolo": "Comuni interessati dai branchi (2022)",
+   "tipo": "branchi",
+   "file": "data/tema_lupo_branchi_comuni_2022.json",
+   "fonti": [
+    "PARCO2023"
+   ],
+   "stato": "verificato",
+   "periodo": "2022",
+   "anno": 2022,
+   "visibile": false,
+   "interattivo": true,
+   "legenda": {
+    "forma": "categorie",
+    "voci": [
+     [
+      "1 branco",
+      "#E4E0F0"
+     ],
+     [
+      "2 branchi",
+      "#C7BFE2"
+     ],
+     [
+      "3 branchi",
+      "#A397CF"
+     ]
+    ],
+    "testo": "Dato per comune, non perimetro dei territori"
+   }
+  },
+  {
+   "id": "conflitti",
+   "gruppo": "05",
+   "titolo": "Eventi di predazione per malga",
+   "tipo": "conflitti",
+   "file": "data/tema_conflitti_malghe.geojson",
+   "fonti": [
+    "MUSE2023"
+   ],
+   "stato": "verificato",
+   "periodo": "2013–2022",
+   "visibile": true,
+   "interattivo": true,
+   "legenda": {
+    "forma": "cerchi",
+    "colore": "#B4432C",
+    "testo": "Area ∝ numero di eventi nell'intervallo scelto (non numero di capi)"
+   }
+  },
+  {
+   "id": "pred_comuni",
+   "gruppo": "05",
+   "titolo": "Eventi di predazione per comune (2022)",
+   "tipo": "pred_comuni",
+   "file": "data/tema_predazioni_aggregate.json",
+   "fonti": [
+    "PARCO2023"
+   ],
+   "stato": "verificato",
+   "periodo": "2022",
+   "anno": 2022,
+   "visibile": false,
+   "interattivo": true,
+   "legenda": {
+    "forma": "categorie",
+    "voci": [
+     [
+      "17 eventi",
+      "#F2D9CF"
+     ],
+     [
+      "28 eventi",
+      "#E3A994"
+     ],
+     [
+      "53 eventi",
+      "#C9644A"
+     ]
+    ],
+    "testo": "Solo i 3 comuni dettagliati dalla fonte"
+   }
+  },
+  {
+   "id": "strade",
+   "gruppo": "06",
+   "titolo": "Strade",
+   "tipo": "geojson",
+   "file": "data/osm_viabilita.geojson",
+   "fonti": [
+    "OSM"
+   ],
+   "stato": "verificato",
+   "periodo": "OSM, ottobre 2026",
+   "visibile": true,
+   "interattivo": true,
+   "legenda": {
+    "forma": "categorie_linea",
+    "voci": [
+     [
+      "Strada principale",
+      "#8C7F73",
+      2.4
+     ],
+     [
+      "Strada locale",
+      "#9A938C",
+      1.2
+     ]
+    ]
+   }
+  },
+  {
+   "id": "piste",
+   "gruppo": "06",
+   "titolo": "Piste e sentieri non segnati",
+   "tipo": "geojson",
+   "file": "data/osm_piste_sentieri.geojson",
+   "fonti": [
+    "OSM"
+   ],
+   "stato": "verificato",
+   "periodo": "OSM, ottobre 2026",
+   "visibile": true,
+   "interattivo": true,
+   "legenda": {
+    "forma": "categorie_linea",
+    "voci": [
+     [
+      "Pista / carrareccia",
+      "#9A938C",
+      0.9
+     ],
+     [
+      "Sentiero",
+      "#9A938C",
+      0.6
+     ]
+    ]
+   },
+   "nota": "Visibili da scala 1:70.000 circa (zoom 12)."
+  },
+  {
+   "id": "sentieri",
+   "gruppo": "06",
+   "titolo": "Sentieri escursionistici",
+   "tipo": "geojson",
+   "file": "data/osm_sentieri.geojson",
+   "fonti": [
+    "OSM",
+    "VISITLESSINIA250"
+   ],
+   "stato": "verificato",
+   "periodo": "OSM, ottobre 2026",
+   "visibile": true,
+   "interattivo": true,
+   "legenda": {
+    "forma": "categorie_linea",
+    "voci": [
+     [
+      "CAI 250 · Dorsale Alta della Lessinia",
+      "#C23B22",
+      2.2
+     ],
+     [
+      "Altri itinerari segnati",
+      "#B0603F",
+      1
+     ]
+    ]
+   }
+  },
+  {
+   "id": "toponimi",
+   "gruppo": "06",
+   "titolo": "Centri abitati, vette e valichi",
+   "tipo": "geojson",
+   "file": "data/osm_toponimi_punti.geojson",
+   "fonti": [
+    "OSM"
+   ],
+   "stato": "verificato",
+   "periodo": "OSM, ottobre 2026",
+   "visibile": true,
+   "interattivo": true,
+   "legenda": {
+    "forma": "testo",
+    "testo": "Etichette da OSM: abitati, vette con quota, valichi"
+   }
+  },
+  {
+   "id": "luoghi",
+   "gruppo": "L",
+   "titolo": "Luoghi di interesse A–H",
+   "tipo": "luoghi",
+   "file": "data/tema_luoghi_interesse.geojson",
+   "fonti": [],
+   "stato": "verificato",
+   "periodo": "vari",
+   "visibile": true,
+   "interattivo": true,
+   "legenda": {
+    "forma": "lettera",
+    "testo": "Luoghi del progetto, schede nel pannello Luoghi"
+   }
+  }
+ ]
+}

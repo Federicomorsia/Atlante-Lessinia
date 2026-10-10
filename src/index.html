@@ -1,0 +1,206 @@
+<title>Atlante della Lessinia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Archivo+Narrow:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/*__MAPLIBRE_CSS__*/
+/* Layout: split-screen atlas — a fixed reading column on the left (index, legend, records) and the map sheet on the right, with a record card that docks over the map's right edge. */
+:root{
+  /* Deliberately single-theme: the sheet reads as a printed survey map in every viewer theme. */
+  color-scheme: light;
+  --paper:#F3F4F0;      /* map ground: cool, slightly green survey paper */
+  --sheet:#FBFBF8;      /* panels */
+  --ink:#1D2226;        /* text, regional boundary */
+  --ink-2:#4B5359;      /* secondary text */
+  --ink-3:#7C858B;      /* captions */
+  --rule:#D6D9D2;       /* hairlines */
+  --rule-2:#E7E9E3;
+  --ui:#264A6B;         /* interface accent: survey blue */
+  --ui-soft:#E3EAF1;
+  --conflict:#B4432C;   /* predation data */
+  --wolf:#54479A;       /* wolf observations */
+  --park:#2C7A57;       /* Parco boundary */
+  --cai:#C23B22;        /* CAI waymark red */
+  --verified:#2C7A57; --observed:#54479A; --interp:#A16A12; --hypo:#8A3B6E;
+  --f-ui:"Archivo", "Helvetica Neue", Arial, sans-serif;
+  --f-narrow:"Archivo Narrow", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  --f-mono:"IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+  --s-1:11px; --s-2:12px; --s-3:13px; --s-4:15px; --s-5:19px; --s-6:24px;
+}
+[hidden]{display:none!important}
+html,body{height:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 var(--s-3)/1.45 var(--f-ui);overflow:hidden}
+*{box-sizing:border-box}
+button,input,select{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:2px solid var(--ui);outline-offset:2px}
+a{color:var(--ui)}
+.app{display:grid;grid-template-columns:minmax(320px,372px) 1fr;height:100%}
+/* ---------- side column */
+.side{background:var(--sheet);border-right:1px solid var(--rule);display:flex;flex-direction:column;min-width:0;min-height:0}
+.masthead{padding:18px 20px 14px;border-bottom:1px solid var(--rule)}
+.masthead .series{font:500 var(--s-1)/1 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
+.masthead h1{margin:8px 0 4px;font:600 var(--s-6)/1.1 var(--f-ui);letter-spacing:-.01em;text-wrap:balance}
+.masthead p{margin:0;color:var(--ink-2);font-size:var(--s-2);max-width:40ch}
+.tabs{display:flex;border-bottom:1px solid var(--rule);padding:0 12px}
+.tabs button{flex:1;background:none;border:0;border-bottom:2px solid transparent;padding:10px 4px 9px;font:500 var(--s-2)/1 var(--f-ui);color:var(--ink-2);letter-spacing:.02em}
+.tabs button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--ink)}
+.pane{flex:1;overflow:auto;padding:4px 0 24px;min-height:0}
+.pane[hidden]{display:none}
+.sect{padding:14px 20px 6px}
+.sect h2{display:flex;gap:10px;align-items:baseline;margin:0 0 8px;font:600 var(--s-2)/1.2 var(--f-ui);letter-spacing:.04em;text-transform:uppercase}
+.sect h2 .n{font:500 var(--s-1)/1 var(--f-mono);color:var(--ink-3);letter-spacing:0}
+.sect + .sect{border-top:1px solid var(--rule-2)}
+.note{font-size:var(--s-1);color:var(--ink-3);line-height:1.4;margin:4px 0 8px}
+.lyr{display:grid;grid-template-columns:18px 26px 1fr auto;align-items:center;gap:8px;padding:5px 0}
+.lyr input{margin:0;accent-color:var(--ink)}
+.lyr label{cursor:pointer;font-size:var(--s-3);line-height:1.25}
+.lyr .sw{width:26px;height:14px;display:block}
+.lyr .meta{font:400 10px/1 var(--f-mono);color:var(--ink-3);white-space:nowrap}
+.lyr .sub{grid-column:3/5;font-size:var(--s-1);color:var(--ink-3);margin-top:-3px}
+.badge{display:inline-flex;align-items:center;gap:5px;font:500 10px/1 var(--f-mono);letter-spacing:.02em;text-transform:uppercase;padding:3px 6px;border:1px solid currentColor;border-radius:2px;white-space:nowrap}
+.badge.verificato{color:var(--verified)} .badge.osservazione{color:var(--observed)} .badge.interpretazione{color:var(--interp)} .badge.ipotesi{color:var(--hypo)} .badge.secondaria{color:var(--interp)}
+/* time filter */
+.time{padding:12px 20px 14px;border-bottom:1px solid var(--rule);background:var(--sheet)}
+.time .row{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.time .lab{font:600 var(--s-1)/1 var(--f-ui);letter-spacing:.06em;text-transform:uppercase}
+.time output{font:500 var(--s-3)/1 var(--f-mono)}
+.range2{position:relative;height:26px;margin-top:6px}
+.range2 input{position:absolute;inset:0;width:100%;pointer-events:none;-webkit-appearance:none;appearance:none;background:none;margin:0}
+.range2 input::-webkit-slider-thumb{pointer-events:auto;-webkit-appearance:none;width:12px;height:18px;background:var(--sheet);border:1.5px solid var(--ink);border-radius:2px;cursor:pointer}
+.range2 input::-moz-range-thumb{pointer-events:auto;width:10px;height:16px;background:var(--sheet);border:1.5px solid var(--ink);border-radius:2px;cursor:pointer}
+.range2 .track{position:absolute;left:0;right:0;top:12px;height:2px;background:var(--rule)}
+.range2 .fill{position:absolute;top:12px;height:2px;background:var(--ink)}
+.ticks{display:flex;justify-content:space-between;font:400 10px/1 var(--f-mono);color:var(--ink-3);margin-top:2px}
+.time .cov{font-size:var(--s-1);color:var(--ink-3);margin-top:8px;line-height:1.4}
+/* places */
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:2px 0 10px}
+.chip{border:1px solid var(--rule);background:var(--sheet);padding:4px 8px;border-radius:2px;font:500 var(--s-1)/1 var(--f-ui);color:var(--ink-2)}
+.chip[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--sheet)}
+.place{display:grid;grid-template-columns:30px 1fr;gap:10px;width:100%;text-align:left;background:none;border:0;border-top:1px solid var(--rule-2);padding:10px 0}
+.place:hover .pn{text-decoration:underline}
+.place .lt{font:600 var(--s-3)/1 var(--f-mono);border:1.5px solid var(--ink);height:24px;display:grid;place-items:center;background:var(--sheet)}
+.place .pn{font:600 var(--s-3)/1.25 var(--f-ui)}
+.place .pm{font-size:var(--s-1);color:var(--ink-3);margin-top:2px}
+.search{width:100%;padding:7px 9px;border:1px solid var(--rule);background:#fff;border-radius:2px;font-size:var(--s-2)}
+.mlist{list-style:none;margin:8px 0 0;padding:0;max-height:300px;overflow:auto;border-top:1px solid var(--rule-2)}
+.mlist button{width:100%;display:flex;justify-content:space-between;gap:8px;background:none;border:0;border-bottom:1px solid var(--rule-2);padding:6px 0;text-align:left;font-size:var(--s-2)}
+.mlist .q{font:400 var(--s-1)/1.4 var(--f-mono);color:var(--ink-3);white-space:nowrap}
+/* data pane */
+table.t{width:100%;border-collapse:collapse;font-size:var(--s-1);font-variant-numeric:tabular-nums}
+table.t th{font:600 10px/1.2 var(--f-ui);letter-spacing:.05em;text-transform:uppercase;color:var(--ink-3);text-align:left;padding:6px 6px 6px 0;border-bottom:1px solid var(--ink)}
+table.t td{padding:6px 6px 6px 0;border-bottom:1px solid var(--rule-2);vertical-align:top}
+table.t td.num{text-align:right;font-family:var(--f-mono)} table.t th.num{text-align:right}
+.tl{list-style:none;margin:0;padding:0}
+.tl li{display:grid;grid-template-columns:78px 1fr;gap:10px;padding:6px 0;border-bottom:1px solid var(--rule-2);font-size:var(--s-2)}
+.tl time{font:500 var(--s-1)/1.5 var(--f-mono);color:var(--ink-2)}
+.chart{width:100%;height:auto;display:block}
+/* sources */
+.src{padding:10px 0;border-top:1px solid var(--rule-2);font-size:var(--s-2)}
+.src .id{font:500 10px/1 var(--f-mono);color:var(--ink-3)}
+.src b{font-weight:600}
+.src .lic{font-size:var(--s-1);color:var(--ink-3)}
+.avail td:first-child{font-weight:500}
+.st-ok{color:var(--verified);font:600 10px/1 var(--f-mono)} .st-no{color:var(--conflict);font:600 10px/1 var(--f-mono)} .st-part{color:var(--interp);font:600 10px/1 var(--f-mono)}
+/* ---------- map */
+.mapwrap{position:relative;min-width:0}
+#map{position:absolute;inset:0;background:var(--paper)}
+.maplibregl-ctrl-attrib{font:400 10px/1.3 var(--f-ui)!important;background:rgba(251,251,248,.88)!important}
+.maplibregl-ctrl-scale{border-color:var(--ink)!important;color:var(--ink)!important;background:rgba(251,251,248,.85)!important;font:500 10px/1.2 var(--f-mono)!important}
+.maplibregl-ctrl-group{border-radius:2px!important;box-shadow:none!important;border:1px solid var(--rule)!important}
+.north{position:absolute;left:14px;top:14px;width:34px;background:rgba(251,251,248,.9);border:1px solid var(--rule);padding:5px 0 3px;text-align:center;pointer-events:none}
+.north svg{display:block;margin:0 auto}
+.north span{font:600 10px/1 var(--f-mono)}
+.readout{position:absolute;left:14px;bottom:34px;background:rgba(251,251,248,.92);border:1px solid var(--rule);padding:5px 8px;font:400 var(--s-1)/1.35 var(--f-mono);color:var(--ink-2);pointer-events:none;font-variant-numeric:tabular-nums}
+.legend{position:absolute;right:12px;bottom:30px;width:248px;max-height:calc(100% - 140px);overflow:auto;background:rgba(251,251,248,.95);border:1px solid var(--rule);padding:10px 12px 8px}
+.legend h3{margin:0 0 6px;font:600 var(--s-1)/1 var(--f-ui);letter-spacing:.08em;text-transform:uppercase;display:flex;justify-content:space-between;align-items:center}
+.legend h3 button{background:none;border:0;font:500 10px/1 var(--f-mono);color:var(--ink-3);padding:2px}
+.legend .g{font:500 10px/1 var(--f-mono);color:var(--ink-3);margin:8px 0 3px;text-transform:uppercase;letter-spacing:.04em}
+.legend .it{display:grid;grid-template-columns:26px 1fr;gap:7px;align-items:center;font-size:var(--s-1);line-height:1.25;padding:2px 0}
+.legend .it small{display:block;color:var(--ink-3)}
+.legend.min .body{display:none}
+.toolbar{position:absolute;top:12px;right:56px;display:flex;gap:6px}
+.toolbar button{background:var(--sheet);border:1px solid var(--rule);padding:6px 10px;font:500 var(--s-1)/1 var(--f-ui);border-radius:2px}
+.toolbar button:hover{border-color:var(--ink)}
+/* record card */
+.card{position:absolute;top:12px;right:56px;margin-top:38px;width:360px;max-height:calc(100% - 70px);overflow:auto;background:var(--sheet);border:1px solid var(--ink);padding:0}
+.card header{padding:14px 16px 10px;border-bottom:1px solid var(--rule);position:sticky;top:0;background:var(--sheet)}
+.card .kicker{padding-right:30px;font:500 10px/1.2 var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.card h4{margin:6px 30px 0 0;font:600 var(--s-5)/1.15 var(--f-ui);text-wrap:balance}
+.card .close{position:absolute;top:10px;right:10px;background:none;border:1px solid var(--rule);width:24px;height:24px;line-height:1;font-size:15px}
+.card .body{padding:10px 16px 16px;font-size:var(--s-2)}
+.card dl{display:grid;grid-template-columns:96px 1fr;gap:5px 10px;margin:0 0 10px}
+.card dt{font:500 10px/1.5 var(--f-mono);text-transform:uppercase;letter-spacing:.03em;color:var(--ink-3)}
+.card dd{margin:0;min-width:0;overflow-wrap:anywhere}
+.card p{margin:0 0 10px;max-width:60ch}
+.card .h{font:600 10px/1 var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);margin:14px 0 6px;padding-top:10px;border-top:1px solid var(--rule-2)}
+.card ol.fonti{margin:0;padding-left:18px;font-size:var(--s-1);color:var(--ink-2)}
+.card ol.fonti li{margin-bottom:5px}
+.card .upd{border-left:2px solid var(--interp);padding:2px 0 2px 9px;margin:6px 0;font-size:var(--s-1)}
+.bars{display:grid;grid-template-columns:repeat(10,1fr);gap:3px;align-items:end;height:64px;margin:4px 0 2px}
+.bars div{background:var(--conflict);min-height:1px;position:relative}
+.bars div.off{background:var(--rule)}
+.bars div span{position:absolute;top:-13px;left:0;right:0;text-align:center;font:500 9px/1 var(--f-mono);color:var(--ink-2)}
+.bars-x{display:grid;grid-template-columns:repeat(10,1fr);gap:3px;font:400 9px/1 var(--f-mono);color:var(--ink-3);text-align:center}
+.statusline{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 10px}
+.toast{position:absolute;left:50%;bottom:40px;transform:translateX(-50%);background:var(--ink);color:var(--sheet);padding:7px 12px;font-size:var(--s-2);border-radius:2px}
+.loading{position:absolute;inset:0;display:grid;place-items:center;font:500 var(--s-2)/1 var(--f-mono);color:var(--ink-3);pointer-events:none}
+@media (max-width:860px){
+  body{overflow:auto}
+  .app{grid-template-columns:1fr;grid-template-rows:62vh auto;height:auto}
+  .mapwrap{order:-1;height:62vh}
+  .side{border-right:0;border-top:1px solid var(--rule)}
+  .pane{overflow:visible}
+  .card{left:12px;right:12px;width:auto;margin-top:38px}
+  .legend{display:none}
+  .toolbar{left:56px;right:52px;flex-wrap:wrap}
+  .toolbar button{padding:5px 7px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<div class="app">
+  <aside class="side" aria-label="Indice dell'atlante">
+    <div class="masthead">
+      <div class="series">Diplomazia Multispecie della Lessinia · Atlante 0.1</div>
+      <h1>Atlante della Lessinia</h1>
+      <p>Lupo, alpeggi e confini tra Veneto e Trentino. Ogni elemento riporta fonte, periodo e grado di verifica.</p>
+    </div>
+    <div class="time" id="time">
+      <div class="row"><span class="lab">Intervallo dei dati tematici</span><output id="yrOut">2012 – 2025</output></div>
+      <div class="range2"><div class="track"></div><div class="fill" id="yrFill"></div>
+        <input type="range" id="yr0" min="2012" max="2025" value="2012" step="1" aria-label="Anno iniziale">
+        <input type="range" id="yr1" min="2012" max="2025" value="2025" step="1" aria-label="Anno finale">
+      </div>
+      <div class="ticks"><span>2012</span><span>2015</span><span>2018</span><span>2021</span><span>2025</span></div>
+      <div class="cov" id="yrCov"></div>
+    </div>
+    <nav class="tabs" role="tablist">
+      <button role="tab" aria-selected="true" data-tab="livelli" id="tab-livelli">Livelli</button>
+      <button role="tab" aria-selected="false" data-tab="luoghi" id="tab-luoghi">Luoghi</button>
+      <button role="tab" aria-selected="false" data-tab="dati" id="tab-dati">Dati</button>
+      <button role="tab" aria-selected="false" data-tab="fonti" id="tab-fonti">Fonti</button>
+    </nav>
+    <section class="pane" id="pane-livelli" role="tabpanel"></section>
+    <section class="pane" id="pane-luoghi" role="tabpanel" hidden></section>
+    <section class="pane" id="pane-dati" role="tabpanel" hidden></section>
+    <section class="pane" id="pane-fonti" role="tabpanel" hidden></section>
+  </aside>
+  <main class="mapwrap">
+    <div id="map" aria-label="Mappa della Lessinia"></div>
+    <div class="loading" id="loading">Caricamento dei livelli…</div>
+    <div class="north" aria-hidden="true"><svg width="14" height="22" viewBox="0 0 14 22"><path d="M7 0 L13 20 L7 15 L1 20 Z" fill="#1D2226"/><path d="M7 0 L7 15 L1 20 Z" fill="#FBFBF8" stroke="#1D2226" stroke-width="1"/></svg><span>N</span></div>
+    <div class="toolbar">
+      <button id="btnHome" type="button">Alta Lessinia</button>
+      <button id="btnAll" type="button">Estensione</button>
+      <button id="btnPng" type="button">Esporta PNG</button>
+    </div>
+    <div class="readout" id="readout">—</div>
+    <div class="legend" id="legend"><h3>Legenda <button type="button" id="legToggle">riduci</button></h3><div class="body" id="legBody"></div></div>
+    <article class="card" id="card" hidden aria-live="polite"></article>
+    <div class="toast" id="toast" hidden></div>
+  </main>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/maplibre-gl/4.7.1/maplibre-gl.js"></script>
+<script>
+/*__APP_JS__*/
+</script>

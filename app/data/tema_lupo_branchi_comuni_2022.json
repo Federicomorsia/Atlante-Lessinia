@@ -1,0 +1,44 @@
+{
+ "nota": "Comuni indicati dal Parco come interessati dal territorio di ciascun branco nel 2022. Non è un perimetro di territorio: il dato è aggregato per comune.",
+ "fonti": [
+  "PARCO2023"
+ ],
+ "branchi": [
+  {
+   "nome": "Branco Lessinia",
+   "individui": 11,
+   "dettaglio": "6 adulti, 5 giovani",
+   "comuni": [
+    "Bosco Chiesanuova",
+    "Erbezzo",
+    "Grezzana",
+    "Cerro Veronese",
+    "Sant'Anna d'Alfaedo",
+    "Ala",
+    "Avio"
+   ]
+  },
+  {
+   "nome": "Branco Lessinia Orientale",
+   "individui": 11,
+   "dettaglio": "5 adulti, 6 giovani; formato nel 2020",
+   "comuni": [
+    "Bosco Chiesanuova",
+    "Roverè Veronese",
+    "Velo Veronese",
+    "Selva di Progno",
+    "Badia Calavena"
+   ]
+  },
+  {
+   "nome": "Branco Foresta di Giazza",
+   "individui": 9,
+   "dettaglio": "nuovo nel 2022",
+   "comuni": [
+    "Selva di Progno",
+    "Ala",
+    "Crespadoro"
+   ]
+  }
+ ]
+}

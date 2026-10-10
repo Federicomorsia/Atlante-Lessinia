@@ -1,0 +1,277 @@
+{
+ "type": "FeatureCollection",
+ "features": [
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     10.97467,
+     45.68641
+    ]
+   },
+   "properties": {
+    "id": "boldera",
+    "nome": "Malga Boldera",
+    "comune": "Ala",
+    "provincia": "TN",
+    "tipologia": "Malga (alpeggio bovino)",
+    "quota_m": 1402,
+    "descrizione": "Malga di proprietà del Comune di Ala, gestita dalla Società allevatori di Ala, a nord del Passo delle Fittanze. Alpeggio di bovini, in prevalenza manze e vitelli.",
+    "rilevanza": "Una delle quattro malghe di Ala classificate \"a impatto cronico\" (≥5 eventi 2013–2022). Recinzione elettrificata multifilo dal 2018; abbattimento di un lupo nel settembre 2025 su decreto provinciale.",
+    "periodo": "2015–2025",
+    "stato": "verificato",
+    "categoria": "conflitto",
+    "osm": "way/140264909",
+    "precisione": "Edificio principale (OSM)",
+    "fonti": [
+     "MUSE2023",
+     "ILDOLOMITI2023",
+     "ILDOLOMITI2025",
+     "CDS2026",
+     "OSM"
+    ],
+    "lettera": "A"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     11.03211,
+     45.71291
+    ]
+   },
+   "properties": {
+    "id": "scortigara",
+    "nome": "Malghe Scortigara (Fondo, Mezzo, Cima)",
+    "comune": "Ala",
+    "provincia": "TN",
+    "tipologia": "Sistema di tre malghe",
+    "quota_m": 1572,
+    "descrizione": "Tre alpeggi bovini in sequenza altimetrica lungo il versante trentino, tra 1.520 e 1.590 m, immediatamente a nord del confine regionale. Il punto indica Scortigara di Mezzo.",
+    "rilevanza": "Concentrano 77 dei 576 eventi di predazione registrati in provincia di Trento nel 2013–2022 (13%). Nessuna misura di prevenzione registrata nel 2021.",
+    "periodo": "2013–2022",
+    "stato": "verificato",
+    "categoria": "conflitto",
+    "osm": "way/121203030",
+    "precisione": "Edificio di Scortigara di Mezzo (OSM)",
+    "fonti": [
+     "MUSE2023",
+     "OSM"
+    ],
+    "lettera": "B"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     10.99727,
+     45.71148
+    ]
+   },
+   "properties": {
+    "id": "revoltel",
+    "nome": "Malga Revoltel",
+    "comune": "Ala",
+    "provincia": "TN",
+    "tipologia": "Malga · luogo di osservazione storica",
+    "quota_m": 1550,
+    "descrizione": "Malga sulla dorsale tra Sega di Ala e Castelberto, attraversata dal sentiero CAI 250. Sul colle sono presenti trincee della Prima guerra mondiale.",
+    "rilevanza": "Il 30 ottobre 2012 vi furono raccolti i campioni organici che diedero la prima conferma genetica della coppia Slavc–Giulietta; il 4 dicembre 2012 la prima fotografia della coppia (fototrappola). È un episodio datato: non indica una presenza stabile del lupo in questo punto.",
+    "periodo": "Ottobre–dicembre 2012",
+    "stato": "osservazione",
+    "categoria": "lupo",
+    "osm": "way/152088705",
+    "precisione": "Edificio della malga (OSM); la località è citata come \"loc. Revoltel\"",
+    "fonti": [
+     "PAT2022",
+     "OSM"
+    ],
+    "lettera": "C"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     10.97912,
+     45.68389
+    ]
+   },
+   "properties": {
+    "id": "fittanze",
+    "nome": "Passo delle Fittanze della Sega",
+    "comune": "Erbezzo",
+    "provincia": "VR",
+    "tipologia": "Valico",
+    "quota_m": 1399,
+    "descrizione": "Valico stradale tra la Sega di Ala e l'altopiano veronese. Secondo i confini ISTAT il punto del valico ricade in comune di Erbezzo, circa 180 m a sud del confine regionale. Da qui la dorsale sale verso Castelberto.",
+    "rilevanza": "Punto in cui il confine amministrativo attuale, il confine storico veneto-austriaco (1753) e la continuità fisica dei pascoli d'altopiano si sovrappongono.",
+    "periodo": "Attuale",
+    "stato": "verificato",
+    "categoria": "confine",
+    "osm": "node/1536873702",
+    "precisione": "Nodo \"saddle\" OSM",
+    "fonti": [
+     "OSM",
+     "ISTAT2026",
+     "VENETO_CONFINE"
+    ],
+    "lettera": "D1"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     11.01696,
+     45.71894
+    ]
+   },
+   "properties": {
+    "id": "castelberto",
+    "nome": "Monte Castelberto",
+    "comune": "Erbezzo",
+    "provincia": "VR",
+    "tipologia": "Vetta",
+    "quota_m": 1765,
+    "descrizione": "Culmine della dorsale nord-occidentale dell'altopiano. La vetta OSM dista circa 30 m dal confine regionale ISTAT, sul lato veronese. Il sentiero CAI 250 ne percorre la cresta.",
+    "rilevanza": "Lungo la cresta il confine regionale ricalca la linea fissata dal Trattato di Rovereto (1753) con cippi posati dal 1754; il pascolo prosegue senza interruzione su entrambi i versanti.",
+    "periodo": "Attuale; confine storico dal 1753",
+    "stato": "verificato",
+    "categoria": "confine",
+    "osm": "node/2411534673",
+    "precisione": "Nodo \"peak\" OSM",
+    "fonti": [
+     "OSM",
+     "ISTAT2026",
+     "VENETO_CONFINE"
+    ],
+    "lettera": "D2"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     11.03,
+     45.672
+    ]
+   },
+   "properties": {
+    "id": "folignani",
+    "nome": "Foresta dei Folignani",
+    "comune": "Bosco Chiesanuova / Erbezzo",
+    "provincia": "VR",
+    "tipologia": "Area forestale",
+    "descrizione": "Formazione di conifere di origine antropica (rimboschimento) sull'altopiano centrale, tra le malghe Folignano e il Branchetto. In OSM è mappata come multipoligono (relation 3253604).",
+    "rilevanza": "Area forestale di interesse ambientale. Le fonti consultate non documentano un ruolo specifico per il lupo: la mappa non gliene attribuisce.",
+    "periodo": "Attuale (copertura OSM)",
+    "stato": "verificato",
+    "categoria": "ambiente",
+    "osm": "relation/3253604",
+    "precisione": "Punto interno al poligono forestale OSM",
+    "fonti": [
+     "OSM"
+    ],
+    "lettera": "E"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     11.02952,
+     45.6221
+    ]
+   },
+   "properties": {
+    "id": "bosco",
+    "nome": "Bosco Chiesanuova",
+    "comune": "Bosco Chiesanuova",
+    "provincia": "VR",
+    "tipologia": "Centro abitato · sede del Parco",
+    "descrizione": "Capoluogo della Lessinia centrale. In Piazza Borgo 52 ha sede l'Ente Parco Naturale Regionale della Lessinia, istituito con L.R. Veneto 12/1990.",
+    "rilevanza": "Riferimento istituzionale del progetto: sede dell'ente che gestisce il Parco e coordina il monitoraggio del lupo nella Lessinia veronese.",
+    "periodo": "Attuale",
+    "stato": "verificato",
+    "categoria": "istituzione",
+    "osm": "node/64778814",
+    "precisione": "Nodo del centro abitato (OSM); la sede non è geocodificata separatamente",
+    "fonti": [
+     "VENETO_PARCO",
+     "OSM"
+    ],
+    "lettera": "F"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     11.04703,
+     45.70093
+    ]
+   },
+   "properties": {
+    "id": "podestaria",
+    "nome": "Podestaria (rifugio e malga)",
+    "comune": "Bosco Chiesanuova",
+    "provincia": "VR",
+    "tipologia": "Rifugio / malga",
+    "quota_m": 1655,
+    "descrizione": "Rifugio sulla dorsale alta, all'interno del Parco, punto di passaggio del sentiero CAI 250.",
+    "rilevanza": "Il 27 agosto 2012 il radiocollare GPS di Slavc si sganciò nei pressi di Podestaria dopo 407 giorni di tracciamento.",
+    "periodo": "Agosto 2012",
+    "stato": "osservazione",
+    "categoria": "lupo",
+    "osm": "way/143205782",
+    "precisione": "Edificio del rifugio (OSM); la fonte indica \"nei pressi\"",
+    "fonti": [
+     "MENINI2015",
+     "OSM"
+    ],
+    "lettera": "G"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     10.97504,
+     45.69475
+    ]
+   },
+   "properties": {
+    "id": "sega",
+    "nome": "Sega di Ala",
+    "comune": "Ala",
+    "provincia": "TN",
+    "tipologia": "Località",
+    "quota_m": 1224,
+    "descrizione": "Località d'alpeggio sul versante trentino, accesso da Ala lungo la SP 211.",
+    "rilevanza": "Porta trentina della dorsale; tappa del sentiero CAI 250.",
+    "periodo": "Attuale",
+    "stato": "verificato",
+    "categoria": "territorio",
+    "osm": "node/2477526670",
+    "precisione": "Nodo \"hamlet\" OSM",
+    "fonti": [
+     "OSM",
+     "VISITLESSINIA250"
+    ],
+    "lettera": "H"
+   }
+  }
+ ]
+}

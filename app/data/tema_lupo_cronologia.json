@@ -1,0 +1,61 @@
+{
+ "cronologia": [
+  {
+   "data": "2011-07-17",
+   "evento": "Slavc riceve un collare GPS-GSM in Slovenia (Università di Lubiana, progetto SloWolf).",
+   "fonti": [
+    "MENINI2015"
+   ]
+  },
+  {
+   "data": "2011-12",
+   "evento": "Slavc lascia la Slovenia. La dispersione dura 98 giorni e 1.176 km.",
+   "fonti": [
+    "RAZEN2016",
+    "MENINI2015"
+   ]
+  },
+  {
+   "data": "2012-03-06",
+   "evento": "Slavc raggiunge la Lessinia.",
+   "fonti": [
+    "MENINI2015",
+    "RAZEN2016"
+   ]
+  },
+  {
+   "data": "2013-08-07",
+   "evento": "Video di 2 cuccioli: prima riproduzione documentata. Il luogo non è indicato in mappa.",
+   "fonti": [
+    "MENINI2015",
+    "PAT2022"
+   ]
+  },
+  {
+   "data": "2013–2021",
+   "evento": "Almeno 42 cuccioli accertati per il branco di Slavc e Giulietta (2, 7, 7, 6, 5, 2, 1, 7, 5).",
+   "fonti": [
+    "PAT2022"
+   ]
+  },
+  {
+   "data": "2022",
+   "evento": "Nella Lessinia veronese tre branchi, 31 lupi: Lessinia (11), Lessinia Orientale (11), Foresta di Giazza (9).",
+   "fonti": [
+    "PARCO2023"
+   ]
+  }
+ ],
+ "cuccioli_minimi": {
+  "2013": 2,
+  "2014": 7,
+  "2015": 7,
+  "2016": 6,
+  "2017": 5,
+  "2018": 2,
+  "2019": 1,
+  "2020": 7,
+  "2021": 5
+ },
+ "fonte_cuccioli": "PAT2022"
+}

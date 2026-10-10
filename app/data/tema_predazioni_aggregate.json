@@ -1,0 +1,107 @@
+{
+ "nota": "Statistiche per area: non esistono coordinate pubbliche dei singoli eventi. Non sommare righe di aree o periodi diversi.",
+ "righe": [
+  {
+   "area": "Lessinia veronese",
+   "periodo": "2022",
+   "eventi": 134,
+   "capi": 185,
+   "dettaglio": "135 bovini, 39 ovini, 6 caprini, 4 asini, 1 alpaca; 59 eventi dentro il Parco",
+   "fonti": [
+    "PARCO2023"
+   ],
+   "stato": "verificato"
+  },
+  {
+   "area": "Bosco Chiesanuova (VR)",
+   "periodo": "2022",
+   "eventi": 53,
+   "capi": null,
+   "dettaglio": "Ripartizione per comune parziale: altri comuni non dettagliati",
+   "fonti": [
+    "PARCO2023"
+   ],
+   "stato": "verificato",
+   "istat": "023012"
+  },
+  {
+   "area": "Sant'Anna d'Alfaedo (VR)",
+   "periodo": "2022",
+   "eventi": 28,
+   "capi": null,
+   "dettaglio": "",
+   "fonti": [
+    "PARCO2023"
+   ],
+   "stato": "verificato",
+   "istat": "023077"
+  },
+  {
+   "area": "Erbezzo (VR)",
+   "periodo": "2022",
+   "eventi": 17,
+   "capi": null,
+   "dettaglio": "",
+   "fonti": [
+    "PARCO2023"
+   ],
+   "stato": "verificato",
+   "istat": "023032"
+  },
+  {
+   "area": "Lessinia trentina",
+   "periodo": "2022",
+   "eventi": 21,
+   "capi": 22,
+   "dettaglio": "22 bovini",
+   "fonti": [
+    "PARCO2023"
+   ],
+   "stato": "verificato"
+  },
+  {
+   "area": "Malghe di Ala a impatto cronico (4)",
+   "periodo": "2013–2022",
+   "eventi": 88,
+   "capi": 86,
+   "dettaglio": "Capi uccisi; capi compromessi 99. Boldera + Scortigara Fondo, Mezzo, Cima",
+   "fonti": [
+    "MUSE2023"
+   ],
+   "stato": "verificato"
+  },
+  {
+   "area": "Provincia di Trento",
+   "periodo": "2013–2022",
+   "eventi": 576,
+   "capi": 2256,
+   "dettaglio": "Capi compromessi. Ovicaprini 64% degli eventi, bovini 26%; 81% degli eventi senza prevenzione efficace",
+   "fonti": [
+    "MUSE2023"
+   ],
+   "stato": "verificato"
+  },
+  {
+   "area": "Lessinia trentina",
+   "periodo": "2013–2025",
+   "eventi": 136,
+   "capi": 143,
+   "dettaglio": "Capi uccisi (132 bovini, 10 equini, 1 ovino) + 31 feriti; 45% dei danni in agosto–settembre",
+   "fonti": [
+    "ILDOLOMITI2025"
+   ],
+   "stato": "fonte secondaria (parere ISPRA riportato)"
+  },
+  {
+   "area": "Veneto",
+   "periodo": "2019",
+   "eventi": 198,
+   "capi": 425,
+   "dettaglio": "Capi uccisi; 55 feriti, 302 dispersi",
+   "fonti": [
+    "VENETO2020"
+   ],
+   "stato": "verificato"
+  }
+ ]
+}

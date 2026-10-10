@@ -1,0 +1,37 @@
+{
+ "bounds_lonlat": [
+  10.8,
+  45.48,
+  11.34,
+  45.84
+ ],
+ "coordinates": [
+  [
+   10.8,
+   45.84
+  ],
+  [
+   11.34,
+   45.84
+  ],
+  [
+   11.34,
+   45.48
+  ],
+  [
+   10.8,
+   45.48
+  ]
+ ],
+ "hillshade_px_m": 15.0,
+ "quote_px_m": 45.0,
+ "size_hillshade": [
+  4007,
+  3822
+ ],
+ "size_quote": [
+  1336,
+  1274
+ ],
+ "source": "TINITALY 1.1 (INGV), DOI 10.13127/tinitaly/1.1, CC BY 4.0"
+}

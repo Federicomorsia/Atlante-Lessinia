@@ -1,0 +1,192 @@
+[
+ {
+  "id": "ISTAT2026",
+  "titolo": "Confini delle unità amministrative a fini statistici al 1° gennaio 2026 (versione non generalizzata)",
+  "autore": "ISTAT",
+  "anno": 2026,
+  "tipo": "Dataset ufficiale",
+  "url": "https://www.istat.it/notizia/confini-delle-unita-amministrative-a-fini-statistici-al-1-gennaio-2018-2/",
+  "licenza": "CC BY 3.0 IT",
+  "note": "Shapefile EPSG:32632. Geometrie semplificate a 2 m per il web (tolleranza Douglas-Peucker)."
+ },
+ {
+  "id": "EEA_N2000",
+  "titolo": "Natura 2000 – End 2024 (servizio ArcGIS ProtectedSites/Natura2000Sites)",
+  "autore": "European Environment Agency",
+  "anno": 2024,
+  "tipo": "Dataset ufficiale",
+  "url": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/Natura2000Sites/MapServer",
+  "licenza": "Riutilizzo EEA (attribuzione)",
+  "note": "Perimetri trasmessi dagli Stati membri. Semplificati a 2 m."
+ },
+ {
+  "id": "EEA_NATDA",
+  "titolo": "Nationally designated areas (NatDA/CDDA) v24, layer large scale",
+  "autore": "European Environment Agency (dati comunicati da MASE, Elenco Ufficiale Aree Protette)",
+  "anno": 2024,
+  "tipo": "Dataset ufficiale",
+  "url": "https://bio.discomap.eea.europa.eu/arcgis/rest/services/ProtectedSites/NatDAv24_Dyna_WM/MapServer",
+  "licenza": "Riutilizzo EEA (attribuzione)",
+  "note": "Fonte del perimetro del Parco Naturale Regionale della Lessinia (EUAP0241, 10.333 ha dichiarati). Non è il file di perimetrazione regionale: da confrontare con la cartografia della Regione Veneto."
+ },
+ {
+  "id": "TINITALY",
+  "titolo": "TINITALY, a digital elevation model of Italy with a 10 meters cell size (Version 1.1)",
+  "autore": "Tarquini S., Isola I., Favalli M., Battistini A., Dotta G. – INGV",
+  "anno": 2023,
+  "tipo": "Modello digitale del terreno",
+  "url": "https://doi.org/10.13127/tinitaly/1.1",
+  "licenza": "CC BY 4.0",
+  "note": "DTM 10 m. Curve di livello ricavate su griglia 20 m con lieve smoothing gaussiano: adatte alla lettura del rilievo, non a misure topografiche."
+ },
+ {
+  "id": "OSM",
+  "titolo": "OpenStreetMap, estrazione Overpass API",
+  "autore": "OpenStreetMap contributors",
+  "anno": 2026,
+  "tipo": "Base dati collaborativa",
+  "url": "https://www.openstreetmap.org/copyright",
+  "licenza": "ODbL 1.0",
+  "note": "Idrografia, boschi, praterie, viabilità, sentieri, toponimi, edifici delle malghe. Completezza e accuratezza variabili."
+ },
+ {
+  "id": "MUSE2023",
+  "titolo": "Predazioni da lupo sul bestiame domestico in provincia di Trento: analisi delle dinamiche e delle strategie di prevenzione",
+  "autore": "Bombieri G., Roseo F., Bragalanti N., Zanghellini P., Zeni M., Groff C., Pedrini P. (MUSE – PAT)",
+  "anno": 2023,
+  "tipo": "Relazione tecnica",
+  "url": "https://www.muse.it/contrib/uploads/2023/08/lupo_danni_09_08_2023-1.pdf",
+  "licenza": "—",
+  "note": "Tabelle 4 e 5: eventi di predazione e capi per malga, 2013–2022. Malga \"a impatto cronico\" = almeno 5 eventi nel periodo."
+ },
+ {
+  "id": "PAT2022",
+  "titolo": "Lo status del lupo in provincia di Trento (2020-2021)",
+  "autore": "Bombieri G., Ferraro E., Oberosler V., Pedrini P., Pedrotti L.",
+  "anno": 2022,
+  "tipo": "Relazione tecnica (in Marucco et al. 2022, LIFE WolfAlps EU / ISPRA)",
+  "url": "https://www.lifewolfalps.eu/wp-content/uploads/2022/07/Report-Lupo_PAT_2020_21.pdf",
+  "licenza": "—",
+  "note": "Box 1 p. 6: campioni genetici in loc. Revoltel (30/10/2012) e prima foto della coppia (04/12/2012). Tab. 1: cuccioli minimi accertati 2013–2021."
+ },
+ {
+  "id": "RAZEN2016",
+  "titolo": "Long-distance dispersal connects Dinaric-Balkan and Alpine grey wolf (Canis lupus) populations",
+  "autore": "Ražen N., Brugnoli A., Castagna C., Groff C., Kaczensky P., Kljun F. et al.",
+  "anno": 2016,
+  "tipo": "Articolo scientifico (Eur J Wildl Res 62:137–142)",
+  "url": "https://doi.org/10.1007/s10344-015-0971-z",
+  "licenza": "—",
+  "note": "Dispersione di Slavc: 98 giorni, 1.176 km; insediamento nelle Alpi italiane a marzo 2012; prima cucciolata 2013."
+ },
+ {
+  "id": "MENINI2015",
+  "titolo": "Il ripopolamento naturale del lupo in Lessinia",
+  "autore": "Menini G. (Università di Padova, rel. A. Zanella)",
+  "anno": 2015,
+  "tipo": "Tesi di laurea",
+  "url": "https://thesis.unipd.it/retrieve/b5dc3770-816f-440b-b971-54dfab6e31a0/Menini_Giacomo.pdf",
+  "licenza": "—",
+  "note": "Cronologia 2011–2014 (fototrappole, avvistamenti, rilascio del collare a Podestaria)."
+ },
+ {
+  "id": "PARCO2023",
+  "titolo": "Comunicato stampa: monitoraggio lupi 2022 nella Lessinia veronese",
+  "autore": "Parco Naturale Regionale della Lessinia",
+  "anno": 2023,
+  "tipo": "Comunicato istituzionale",
+  "url": "https://lessiniapark.it/wp-content/uploads/2023/01/COMUNICATO-STAMPA-MONITORAGGIO-LUPI-2022-LESSINIA-VERONESE-25.01.2022.pdf",
+  "licenza": "—",
+  "note": "Tre branchi, 31 lupi; 134 eventi di predazione e 185 capi nella Lessinia veronese nel 2022; ripartizione per comune parziale."
+ },
+ {
+  "id": "TABARELLI2024",
+  "titolo": "Malghe e lupi in Lessinia: mappatura del territorio e conflitti tra conservazione faunistica e allevamento",
+  "autore": "Tabarelli de Fatis K. (Università di Padova, rel. A. A. Pilastro)",
+  "anno": 2024,
+  "tipo": "Tesi di laurea triennale",
+  "url": "https://thesis.unipd.it/handle/20.500.12608/89085",
+  "licenza": "—",
+  "note": "Dataset di eventi di predazione confermati 2012–2024. Testo integrale non consultato: dati non integrati."
+ },
+ {
+  "id": "ILDOLOMITI2025",
+  "titolo": "Lupi, Fugatti firma il decreto per l'abbattimento di due esemplari in Lessinia. Ispra: il prelievo non assicura l'azzeramento del rischio",
+  "autore": "il Dolomiti",
+  "anno": 2025,
+  "tipo": "Stampa (riporta parere ISPRA)",
+  "url": "https://www.ildolomiti.it/cronaca/2025/lupi-fugatti-firma-il-decreto-per-labbattimento-di-due-esemplari-in-lessinia-ispra-il-prelievo-non-assicura-lazzeramento-del-rischio-di-ulteriori-predazioni",
+  "licenza": "—",
+  "note": "Fonte secondaria. Lessinia trentina 2013–2025: 136 eventi, 143 capi uccisi; Malga Boldera 2015–2025: 21 eventi, 27 capi uccisi."
+ },
+ {
+  "id": "ILDOLOMITI2023",
+  "titolo": "Dopo gli orsi Fugatti dà l'ok anche all'abbattimento dei lupi",
+  "autore": "il Dolomiti",
+  "anno": 2023,
+  "tipo": "Stampa",
+  "url": "https://www.ildolomiti.it/cronaca/2023/dopo-gli-orsi-fugatti-da-lok-anche-allabbattimento-dei-lupi-firmato-il-decreto-che-condanna-a-morte-due-esemplari",
+  "licenza": "—",
+  "note": "Fonte secondaria. Malga Boldera: proprietà del Comune di Ala, gestione Società allevatori di Ala; attacchi del 29/6 e 22/7/2023."
+ },
+ {
+  "id": "CDS2026",
+  "titolo": "Lupo abbattuto in Lessinia, il Consiglio di Stato dà ragione alla Provincia",
+  "autore": "il Dolomiti",
+  "anno": 2026,
+  "tipo": "Stampa",
+  "url": "https://www.ildolomiti.it/cronaca/2026/lupo-abbattuto-in-lessinia-il-consiglio-di-stato-da-ragione-alla-provincia-decreto-legittimo",
+  "licenza": "—",
+  "note": "Fonte secondaria. Abbattimento di un lupo a Malga Boldera nella notte 19–20/9/2025."
+ },
+ {
+  "id": "VISITLESSINIA250",
+  "titolo": "Itinerario n. 250 CAI – Dorsale Alta della Lessinia",
+  "autore": "Visit Lessinia",
+  "anno": null,
+  "tipo": "Scheda itinerario",
+  "url": "https://www.visitlessinia.eu/en/itinerario-n-250-cai-dorsale-alta-della-lessinia-820",
+  "licenza": "—",
+  "note": "Giazza – Fosse/Peri, circa 40 km. In OSM: superroute 9333024."
+ },
+ {
+  "id": "VENETO_CONFINE",
+  "titolo": "Cippi di confine del 1753 (Trattato di Rovereto)",
+  "autore": "Regione del Veneto – Veneto Around Me",
+  "anno": null,
+  "tipo": "Scheda istituzionale turistica",
+  "url": "https://venetoaroundme.regione.veneto.it/en/node/104739",
+  "licenza": "—",
+  "note": "Congresso di Rovereto 1750, trattato 1753, cippi posati dal 1754."
+ },
+ {
+  "id": "DEBIASI",
+  "titolo": "Malghe di Ala e Avio",
+  "autore": "Debiasi B., associazione Quei de Fopiano",
+  "anno": null,
+  "tipo": "Ricerca storica locale",
+  "url": "https://www.fondazionemcr.it/UploadDocs/23074_Malghe_di_Ala_e_Avio_di_Barbara_Debiasi_associazione_Quei_de_Fopiam.pdf",
+  "licenza": "—",
+  "note": "Quote e storia delle malghe di Ala."
+ },
+ {
+  "id": "VENETO_PARCO",
+  "titolo": "Parco Naturale Regionale della Lessinia (L.R. 30 gennaio 1990, n. 12)",
+  "autore": "Regione del Veneto",
+  "anno": 1990,
+  "tipo": "Norma / scheda istituzionale",
+  "url": "https://www.regione.veneto.it/parco-lessinia",
+  "licenza": "—",
+  "note": "Sede: Piazza Borgo 52, Bosco Chiesanuova."
+ },
+ {
+  "id": "VENETO2020",
+  "titolo": "Comunicato n. 475 del 30/03/2020: lupi in Veneto, dati 2018–2019",
+  "autore": "Regione del Veneto",
+  "anno": 2020,
+  "tipo": "Comunicato istituzionale",
+  "url": "https://www.regione.veneto.it/article-detail?articleId=4433056",
+  "licenza": "—",
+  "note": "Veneto 2019: 198 eventi, 425 capi uccisi."
+ }
+]

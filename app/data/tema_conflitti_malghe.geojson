@@ -1,0 +1,196 @@
+{
+ "type": "FeatureCollection",
+ "features": [
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     10.97467,
+     45.68641
+    ]
+   },
+   "properties": {
+    "nome": "Malga Boldera",
+    "comune": "Ala",
+    "provincia": "TN",
+    "osm": "way/140264909",
+    "quota_m": 1402,
+    "specie": "Bovini",
+    "eventi_tot": 11,
+    "capi_compromessi": 13,
+    "capi_uccisi": 12,
+    "serie": {
+     "2013": 0,
+     "2014": 0,
+     "2015": 2,
+     "2016": 2,
+     "2017": 1,
+     "2018": 4,
+     "2019": 0,
+     "2020": 0,
+     "2021": 0,
+     "2022": 2
+    },
+    "periodo": "2013–2022",
+    "impatto": "cronico (≥5 eventi 2013–2022)",
+    "prevenzione_2021": "Recinzione elettrificata multifilo sull'intero pascolo (dal 2018); nessun cane da guardiania",
+    "stato": "verificato",
+    "fonti": [
+     "MUSE2023"
+    ],
+    "nota": "Eventi di predazione e capi coinvolti sono grandezze diverse: un evento può coinvolgere più capi.",
+    "aggiornamenti": [
+     {
+      "periodo": "2023",
+      "testo": "Attacchi del 29 giugno e 22 luglio; 16 manze e 2 asini in meno di due mesi. Decreto di rimozione di 2 lupi (24/7/2023), non eseguito.",
+      "fonti": [
+       "ILDOLOMITI2023"
+      ],
+      "stato": "fonte secondaria"
+     },
+     {
+      "periodo": "2015–2025",
+      "testo": "Parere ISPRA citato: 21 eventi su bovine, 27 capi uccisi e 10 feriti; nel 2025 distanza tra i fili 30–35 cm (ottimale 20 cm), installati 3 dissuasori acustici.",
+      "fonti": [
+       "ILDOLOMITI2025"
+      ],
+      "stato": "fonte secondaria"
+     },
+     {
+      "periodo": "Settembre 2025",
+      "testo": "Un lupo abbattuto nella notte tra il 19 e il 20 settembre su decreto provinciale del 4/9/2025; il Consiglio di Stato ha ritenuto legittimo il decreto (31/7/2026).",
+      "fonti": [
+       "CDS2026"
+      ],
+      "stato": "fonte secondaria"
+     }
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     11.02534,
+     45.71246
+    ]
+   },
+   "properties": {
+    "nome": "Malga Scortigara di Fondo",
+    "comune": "Ala",
+    "provincia": "TN",
+    "osm": "way/121202994",
+    "quota_m": 1524,
+    "specie": "Bovini",
+    "eventi_tot": 39,
+    "capi_compromessi": 39,
+    "capi_uccisi": 34,
+    "serie": {
+     "2013": 0,
+     "2014": 4,
+     "2015": 3,
+     "2016": 7,
+     "2017": 5,
+     "2018": 6,
+     "2019": 0,
+     "2020": 2,
+     "2021": 6,
+     "2022": 6
+    },
+    "periodo": "2013–2022",
+    "impatto": "cronico (≥5 eventi 2013–2022)",
+    "prevenzione_2021": "Nessuna misura registrata",
+    "stato": "verificato",
+    "fonti": [
+     "MUSE2023"
+    ],
+    "nota": "Eventi di predazione e capi coinvolti sono grandezze diverse: un evento può coinvolgere più capi."
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     11.03211,
+     45.71291
+    ]
+   },
+   "properties": {
+    "nome": "Malga Scortigara di Mezzo",
+    "comune": "Ala",
+    "provincia": "TN",
+    "osm": "way/121203030",
+    "quota_m": 1572,
+    "specie": "Bovini",
+    "eventi_tot": 20,
+    "capi_compromessi": 26,
+    "capi_uccisi": 24,
+    "serie": {
+     "2013": 2,
+     "2014": 0,
+     "2015": 1,
+     "2016": 2,
+     "2017": 2,
+     "2018": 1,
+     "2019": 1,
+     "2020": 0,
+     "2021": 6,
+     "2022": 5
+    },
+    "periodo": "2013–2022",
+    "impatto": "cronico (≥5 eventi 2013–2022)",
+    "prevenzione_2021": "Nessuna misura registrata",
+    "stato": "verificato",
+    "fonti": [
+     "MUSE2023"
+    ],
+    "nota": "Eventi di predazione e capi coinvolti sono grandezze diverse: un evento può coinvolgere più capi.",
+    "nota_fonte": "Nella Tab. 6 del rapporto (2020–2022) i valori per questa malga non coincidono con la Tab. 5: qui si usa la Tab. 5."
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     11.0452,
+     45.71306
+    ]
+   },
+   "properties": {
+    "nome": "Malga Scortigara di Cima",
+    "comune": "Ala",
+    "provincia": "TN",
+    "osm": "way/143205815",
+    "quota_m": 1573,
+    "specie": "Bovini",
+    "eventi_tot": 18,
+    "capi_compromessi": 21,
+    "capi_uccisi": 16,
+    "serie": {
+     "2013": 0,
+     "2014": 0,
+     "2015": 1,
+     "2016": 1,
+     "2017": 1,
+     "2018": 0,
+     "2019": 1,
+     "2020": 1,
+     "2021": 9,
+     "2022": 4
+    },
+    "periodo": "2013–2022",
+    "impatto": "cronico (≥5 eventi 2013–2022)",
+    "prevenzione_2021": "Nessuna misura registrata",
+    "stato": "verificato",
+    "fonti": [
+     "MUSE2023"
+    ],
+    "nota": "Eventi di predazione e capi coinvolti sono grandezze diverse: un evento può coinvolgere più capi."
+   }
+  }
+ ]
+}

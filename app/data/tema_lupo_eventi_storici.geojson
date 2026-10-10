@@ -1,0 +1,120 @@
+{
+ "type": "FeatureCollection",
+ "features": [
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     11.07019,
+     45.67905
+    ]
+   },
+   "properties": {
+    "data": "2012-01-24",
+    "anno": 2012,
+    "nome": "Branchetto",
+    "comune": "Bosco Chiesanuova",
+    "provincia": "VR",
+    "evento": "Fototrappola registra una femmina di linea italiana, poi chiamata Giulietta.",
+    "stato": "osservazione",
+    "fonti": [
+     "MENINI2015"
+    ],
+    "precisione": "Toponimo (Passo del Branchetto, OSM node/471966828); punto esatto non pubblicato"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     11.10313,
+     45.66198
+    ]
+   },
+   "properties": {
+    "data": "2012-05-04",
+    "anno": 2012,
+    "nome": "Potteghe",
+    "comune": "Roverè Veronese",
+    "provincia": "VR",
+    "evento": "Primo avvistamento diretto della coppia Slavc–Giulietta.",
+    "stato": "osservazione",
+    "fonti": [
+     "MENINI2015"
+    ],
+    "precisione": "Toponimo (Monte Potteghe, OSM node/8234132562)"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     11.04703,
+     45.70093
+    ]
+   },
+   "properties": {
+    "data": "2012-08-27",
+    "anno": 2012,
+    "nome": "Podestaria",
+    "comune": "Bosco Chiesanuova",
+    "provincia": "VR",
+    "evento": "Il radiocollare GPS di Slavc si sgancia dopo 407 giorni di tracciamento.",
+    "stato": "osservazione",
+    "fonti": [
+     "MENINI2015"
+    ],
+    "precisione": "Toponimo (rifugio Podestaria, OSM way/143205782); \"nei pressi\""
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     10.99727,
+     45.71148
+    ]
+   },
+   "properties": {
+    "data": "2012-10-30",
+    "anno": 2012,
+    "nome": "Revoltel",
+    "comune": "Ala",
+    "provincia": "TN",
+    "evento": "Campioni organici: prima conferma genetica della nuova coppia.",
+    "stato": "osservazione",
+    "fonti": [
+     "PAT2022"
+    ],
+    "precisione": "Località (Malga Revoltel, OSM way/152088705)"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     10.99727,
+     45.71148
+    ]
+   },
+   "properties": {
+    "data": "2012-12-04",
+    "anno": 2012,
+    "nome": "Revoltel",
+    "comune": "Ala",
+    "provincia": "TN",
+    "evento": "Prima fotografia della coppia (fototrappola).",
+    "stato": "osservazione",
+    "fonti": [
+     "PAT2022"
+    ],
+    "precisione": "Località (Malga Revoltel, OSM way/152088705)"
+   }
+  }
+ ]
+}
