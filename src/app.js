@@ -15,7 +15,7 @@ if (!window.maplibregl) {               // CDN non raggiungibile: copia locale
 const [CAT, FONTI] = await Promise.all([getJSON('data/catalogo.json'), getJSON('data/fonti.json')]);
 const FON = Object.fromEntries(FONTI.map(f => [f.id, f]));
 const LYR = Object.fromEntries(CAT.livelli.map(l => [l.id, l]));
-const STATE = { yr0: 2012, yr1: 2025, vis: {}, catFilter: 'tutti' };
+const STATE = { yr0: 2012, yr1: 2026, vis: {}, catFilter: 'tutti' };
 CAT.livelli.forEach(l => STATE.vis[l.id] = !!l.visibile);
 try { const v = JSON.parse(localStorage.getItem('atlante-lessinia-vis') || 'null'); if (v) Object.assign(STATE.vis, v); } catch (e) {}
 
@@ -253,11 +253,75 @@ L('conflitti', { id: 'conflitti_lab', type: 'symbol', source: 'conflitti', minzo
   paint: { 'text-color': '#7E2A18', 'text-halo-color': C.sheet, 'text-halo-width': 1.2 } });
 inter('conflitti', 'conflitti');
 
-// ---- 04 lupo eventi
-addGeo('lupo_eventi', await src('data/tema_lupo_eventi_storici.geojson'));
-L('lupo_eventi', { id: 'lupo_eventi', type: 'symbol', source: 'lupo_eventi',
-  layout: { 'icon-image': 'i-wolf', 'icon-allow-overlap': true, 'icon-ignore-placement': true, 'icon-offset': ['case', ['==', ['get', 'data'], '2012-12-04'], ['literal', [11, 0]], ['literal', [0, 0]]] } });
-inter('lupo_eventi', 'lupo_eventi');
+// ---- E · archivio eventi 2012–2026 (clustered, filtrato in JS per categoria, stato, territorio e tempo)
+const EVA = (await src('data/tema_eventi_archivio.json')).eventi;
+const EVID = Object.fromEntries(EVA.map(r => [r.id, r]));
+const EVG = await src('data/tema_eventi.geojson');
+const RELS = await src('data/tema_relazioni.json');
+const EVCAT = {
+  osservazione: { t: 'Osservazioni', c: '#54479A', s: 'rombo' }, riproduzione: { t: 'Riproduzione', c: '#7A6CC0', s: 'cerchio' },
+  mortalita: { t: 'Mortalità', c: '#1D2226', s: 'croce' }, predazione: { t: 'Predazioni', c: '#B4432C', s: 'disco' },
+  interazione: { t: 'Interazioni', c: '#C0661B', s: 'triangolo' }, prevenzione: { t: 'Prevenzione', c: '#2C7A57', s: 'quadro' },
+  decisione: { t: 'Decisioni istituzionali', c: '#264A6B', s: 'quadrato' } };
+const STATI = { accertato: 'Accertato', documentato: 'Documentato', segnalato: 'Segnalato', smentito: 'Smentito' };
+STATE.vis.eventi = true;
+STATE.evStati = { accertato: true, documentato: true, segnalato: true, smentito: true };
+STATE.limitrofi = true; STATE.rel = null; STATE.mode = 'intervallo';
+function drawShape(x, s, k, col, hollow) {
+  const m = s / 2; x.lineWidth = 1.5; x.strokeStyle = col; x.fillStyle = hollow ? '#FBFBF8' : col; x.beginPath();
+  if (k === 'rombo') { x.moveTo(m, 1.5); x.lineTo(s - 1.5, m); x.lineTo(m, s - 1.5); x.lineTo(1.5, m); x.closePath(); }
+  else if (k === 'cerchio' || k === 'disco') { x.arc(m, m, m - 2, 0, 7); }
+  else if (k === 'triangolo') { x.moveTo(m, 1.5); x.lineTo(s - 1.5, s - 2.5); x.lineTo(1.5, s - 2.5); x.closePath(); }
+  else if (k === 'quadro' || k === 'quadrato') { x.rect(2.5, 2.5, s - 5, s - 5); }
+  else if (k === 'croce') { x.lineWidth = 2.6; x.moveTo(3, 3); x.lineTo(s - 3, s - 3); x.moveTo(s - 3, 3); x.lineTo(3, s - 3); x.stroke(); if (hollow) { x.lineWidth = 1; x.strokeStyle = '#FBFBF8'; x.beginPath(); x.moveTo(3, 3); x.lineTo(s - 3, s - 3); x.moveTo(s - 3, 3); x.lineTo(3, s - 3); x.stroke(); } return; }
+  if (k === 'cerchio' && !hollow) { x.fillStyle = '#FBFBF8'; x.fill(); x.stroke(); x.beginPath(); x.arc(m, m, 2.2, 0, 7); x.fillStyle = col; x.fill(); return; }
+  if (k === 'quadro' && !hollow) { x.fillStyle = '#FBFBF8'; x.fill(); x.lineWidth = 2.2; x.stroke(); return; }
+  x.fill(); if (hollow) x.setLineDash(k === 'quadro' ? [2, 1.5] : []); x.stroke(); x.setLineDash([]);
+  if (!hollow) { x.lineWidth = 1; x.strokeStyle = '#FBFBF8'; x.stroke(); }
+}
+for (const [k, v] of Object.entries(EVCAT)) { icon('ev-' + k, 15, (x, s) => drawShape(x, s, v.s, v.c, false)); icon('ev-' + k + '-c', 15, (x, s) => drawShape(x, s, v.s, v.c, true)); }
+function win() { return STATE.mode === 'anno' ? [STATE.yr1, STATE.yr1] : STATE.mode === 'cumulativo' ? [2012, STATE.yr1] : [STATE.yr0, STATE.yr1]; }
+function evVisible(p) {
+  const [a, b] = win(); const cat = 'ev_' + p.categoria;
+  return STATE.vis[cat] && STATE.evStati[p.stato] && (STATE.limitrofi || p.territorio === 'Lessinia') && p.anno <= b && p.anno_fine >= a;
+}
+function evData() { return { type: 'FeatureCollection', features: EVG.features.filter(f => evVisible(f.properties)) }; }
+map.addSource('eventi', { type: 'geojson', data: evData(), cluster: true, clusterMaxZoom: 12, clusterRadius: 34 });
+map.addSource('ev_rel', { type: 'geojson', data: { type: 'FeatureCollection', features: [] } });
+const EVL = ['eventi_cl', 'eventi_cl_n', 'eventi'];
+map.addLayer({ id: 'eventi_cl', type: 'circle', source: 'eventi', filter: ['has', 'point_count'],
+  paint: { 'circle-color': '#FBFBF8', 'circle-stroke-color': C.ink, 'circle-stroke-width': 1.3, 'circle-radius': ['step', ['get', 'point_count'], 10, 5, 13, 12, 16, 25, 19] } });
+map.addLayer({ id: 'eventi_cl_n', type: 'symbol', source: 'eventi', filter: ['has', 'point_count'],
+  layout: { 'text-field': ['get', 'point_count_abbreviated'], 'text-font': F_MED, 'text-size': 10.5, 'text-allow-overlap': true }, paint: { 'text-color': C.ink } });
+map.addLayer({ id: 'eventi', type: 'symbol', source: 'eventi', filter: ['!', ['has', 'point_count']],
+  layout: { 'icon-image': ['concat', 'ev-', ['get', 'categoria'], ['case', ['==', ['get', 'precisione'], 'comune'], '-c', '']],
+    'icon-size': ['case', ['==', ['get', 'territorio'], 'Lessinia'], 1, .8], 'icon-allow-overlap': true, 'icon-ignore-placement': true,
+    'symbol-sort-key': ['get', 'anno'] },
+  paint: { 'icon-opacity': ['case', ['==', ['get', 'territorio'], 'Lessinia'], 1, .7] } });
+map.addLayer({ id: 'ev_rel_ring', type: 'circle', source: 'ev_rel', paint: { 'circle-radius': 11, 'circle-color': 'rgba(0,0,0,0)', 'circle-stroke-color': '#264A6B', 'circle-stroke-width': 2 } });
+map.addLayer({ id: 'ev_rel_n', type: 'symbol', source: 'ev_rel', layout: { 'text-field': ['to-string', ['get', 'n']], 'text-font': F_MED, 'text-size': 10, 'text-offset': [1.1, -1.1], 'text-allow-overlap': true },
+  paint: { 'text-color': '#264A6B', 'text-halo-color': '#FBFBF8', 'text-halo-width': 2 } });
+inter('eventi', 'eventi'); inter('eventi', 'eventi_cl');
+// spread events that share the exact same point so they stay clickable
+(() => { const seen = {}; for (const f of EVG.features) { const k = f.geometry.coordinates.join(','); const n = seen[k] = (seen[k] || 0) + 1;
+  if (n > 1) { const a = n * 2.1, r = 0.00018 * Math.sqrt(n); f.geometry = { type: 'Point', coordinates: [f.geometry.coordinates[0] + r * Math.cos(a) * 1.4, f.geometry.coordinates[1] + r * Math.sin(a)] }; f.properties.spostato = true; } } })();
+map.getSource('eventi').setData(evData());
+
+// ---- D · ambiti diplomatici (interpretazione progettuale, distinta dai dati)
+const AMB = await src('data/tema_ambiti_diplomatici.geojson');
+const AMBT = { osservazione: { c: '#54479A', t: 'Osservazione' }, rappresentanza: { c: '#2F7F86', t: 'Rappresentanza' }, mediazione: { c: '#C0661B', t: 'Mediazione' }, negoziazione: { c: '#8A3B6E', t: 'Negoziazione' } };
+['osservazione', 'rappresentanza', 'mediazione', 'negoziazione'].forEach(t => hatch('h-amb-' + t, AMBT[t].c, t === 'rappresentanza' || t === 'negoziazione' ? -1 : 1));
+map.addSource('ambiti', { type: 'geojson', data: { type: 'FeatureCollection', features: AMB.features.filter(f => f.geometry) } });
+map.addSource('ambiti_lab', { type: 'geojson', data: { type: 'FeatureCollection', features: AMB.features.filter(f => f.geometry).map(f => ({ type: 'Feature', geometry: { type: 'Point', coordinates: [f.properties.label_lon, f.properties.label_lat] }, properties: { codice: f.properties.codice, nome: f.properties.nome, tipo: f.properties.tipo } })) } });
+const ambCol = ['match', ['get', 'tipo'], 'osservazione', AMBT.osservazione.c, 'rappresentanza', AMBT.rappresentanza.c, 'mediazione', AMBT.mediazione.c, AMBT.negoziazione.c];
+for (const t of Object.keys(AMBT)) {
+  const id = 'amb_' + t, flt = ['==', ['get', 'tipo'], t];
+  map.addLayer({ id: id + '_f', type: 'fill', source: 'ambiti', filter: flt, layout: { visibility: STATE.vis[id] ? 'visible' : 'none' }, paint: { 'fill-pattern': 'h-amb-' + t, 'fill-opacity': .35 } }, 'conflitti');
+  map.addLayer({ id: id + '_l', type: 'line', source: 'ambiti', filter: flt, layout: { visibility: STATE.vis[id] ? 'visible' : 'none' }, paint: { 'line-color': ambCol, 'line-width': 1.5, 'line-dasharray': [3, 2] } }, 'conflitti');
+  map.addLayer({ id: id + '_lab', type: 'symbol', source: 'ambiti_lab', filter: flt, minzoom: 10, layout: { visibility: STATE.vis[id] ? 'visible' : 'none', 'text-field': ['concat', ['get', 'codice'], '  ', ['get', 'nome']], 'text-font': F_MED, 'text-size': 10.5, 'text-max-width': 12, 'symbol-placement': 'point' },
+    paint: { 'text-color': ambCol, 'text-halo-color': '#FBFBF8', 'text-halo-width': 2 } });
+  ORDER.push([id + '_f', id], [id + '_l', id], [id + '_lab', id]); inter(id, id + '_f');
+}
 
 // ---- luoghi A–H
 const luoghi = await src('data/tema_luoghi_interesse.geojson');
@@ -282,37 +346,67 @@ $('#loading').hidden = true;
 function setVis(cat, on) {
   STATE.vis[cat] = on;
   ORDER.filter(([, c]) => c === cat).forEach(([id]) => map.setLayoutProperty(id, 'visibility', on ? 'visible' : 'none'));
+  if (cat === 'eventi_tutti') return;
   try { localStorage.setItem('atlante-lessinia-vis', JSON.stringify(STATE.vis)); } catch (e) {}
   renderLegend(); applyTime();
 }
-function inRange(y) { return y >= STATE.yr0 && y <= STATE.yr1; }
+function inRange(y) { const [a, b] = win(); return y >= a && y <= b; }
+let refreshEvents = function () {
+  map.getSource('eventi').setData(evData());
+  if (STATE.rel) showRelation(STATE.rel, false);
+  renderEventList();
+}
 function applyTime() {
   map.getSource('conflitti').setData(confData());
-  map.setFilter('lupo_eventi', ['all', ['>=', ['get', 'anno'], STATE.yr0], ['<=', ['get', 'anno'], STATE.yr1]]);
+  refreshEvents();
   for (const id of ['lupo_branchi', 'pred_comuni']) {
     const ok = inRange(LYR[id].anno);
     map.setLayoutProperty(id, 'visibility', STATE.vis[id] && ok ? 'visible' : 'none');
   }
-  const cov = [];
-  const ce = Math.max(STATE.yr0, 2013), cs = Math.min(STATE.yr1, 2022);
-  cov.push(ce <= cs ? `Predazioni per malga: dati ${ce}–${cs} (serie disponibile 2013–2022).` : 'Predazioni per malga: nessun dato nell\'intervallo (serie 2013–2022).');
-  cov.push(inRange(2012) ? 'Osservazioni storiche del lupo: 2012.' : 'Osservazioni storiche del lupo (2012) escluse.');
+  const [a, b] = win(); const cov = [];
+  const ce = Math.max(a, 2012), cs = Math.min(b, 2024);
+  cov.push(ce <= cs ? `Predazioni per malga: ${ce}–${cs} (serie 2012–2024).` : 'Predazioni per malga: nessun dato (serie 2012–2024).');
+  const n = EVA.filter(r => r.anno <= b && r.anno_fine >= a).length, nm = EVG.features.filter(f => evVisible(f.properties)).length;
+  cov.push(`Eventi nell'intervallo: ${n} in archivio, ${nm} visibili in mappa con i filtri attivi.`);
   if (!inRange(2022)) cov.push('Livelli 2022 (branchi, predazioni per comune) nascosti.');
   $('#yrCov').textContent = cov.join(' ');
-  $('#yrOut').textContent = STATE.yr0 === STATE.yr1 ? String(STATE.yr0) : `${STATE.yr0} – ${STATE.yr1}`;
-  const a = (STATE.yr0 - 2012) / 13 * 100, b = (STATE.yr1 - 2012) / 13 * 100;
-  $('#yrFill').style.left = a + '%'; $('#yrFill').style.width = (b - a) + '%';
+  $('#yrOut').textContent = STATE.mode === 'anno' ? `Solo ${b}` : STATE.mode === 'cumulativo' ? `2012 → ${b}` : (a === b ? String(a) : `${a} – ${b}`);
+  const span = 2026 - 2012, pa = (a - 2012) / span * 100, pb = (b - 2012) / span * 100;
+  $('#yrFill').style.left = (STATE.mode === 'anno' ? pb - .8 : pa) + '%'; $('#yrFill').style.width = (STATE.mode === 'anno' ? 1.6 : pb - pa) + '%';
+  $('#yr0').hidden = STATE.mode !== 'intervallo';
 }
 $('#yr0').addEventListener('input', e => { STATE.yr0 = Math.min(+e.target.value, STATE.yr1); e.target.value = STATE.yr0; applyTime(); });
-$('#yr1').addEventListener('input', e => { STATE.yr1 = Math.max(+e.target.value, STATE.yr0); e.target.value = STATE.yr1; applyTime(); });
+$('#yr1').addEventListener('input', e => { STATE.yr1 = Math.max(+e.target.value, STATE.mode === 'intervallo' ? STATE.yr0 : 2012); e.target.value = STATE.yr1; applyTime(); });
+document.querySelectorAll('#yrMode button').forEach(bt => bt.addEventListener('click', () => {
+  STATE.mode = bt.dataset.mode; document.querySelectorAll('#yrMode button').forEach(x => x.setAttribute('aria-pressed', String(x === bt)));
+  applyTime();
+}));
 
 // ---------------------------------------------------------------- side panes
 function badge(stato) {
   const k = /secondaria/.test(stato) ? 'secondaria' : stato;
-  const t = { verificato: 'Dato verificato', osservazione: 'Osservazione scientifica', interpretazione: 'Interpretazione', ipotesi: 'Ipotesi progettuale', secondaria: 'Fonte secondaria' }[k] || stato;
+  const t = { verificato: 'Dato verificato', osservazione: 'Osservazione scientifica', interpretazione: 'Interpretazione', ipotesi: 'Ipotesi progettuale', secondaria: 'Fonte secondaria',
+    accertato: 'Accertato', documentato: 'Documentato', segnalato: 'Segnalato', smentito: 'Smentito' }[k] || stato;
   return `<span class="badge ${esc(k)}">${esc(t)}</span>`;
 }
+function evSvg(cat, hollow, w = 26) {
+  const v = EVCAT[cat], c = v.c, f = hollow ? '#FBFBF8' : c, m = w / 2;
+  const sh = { rombo: `<path d="M${m} 1.5L${m + 5.5} 7L${m} 12.5L${m - 5.5} 7Z" fill="${f}" stroke="${c}" stroke-width="1.4"/>`,
+    cerchio: `<circle cx="${m}" cy="7" r="5" fill="#FBFBF8" stroke="${c}" stroke-width="1.4"/>${hollow ? '' : `<circle cx="${m}" cy="7" r="1.8" fill="${c}"/>`}`,
+    disco: `<circle cx="${m}" cy="7" r="5" fill="${f}" stroke="${c}" stroke-width="1.4"/>`,
+    triangolo: `<path d="M${m} 1.5L${m + 6} 12L${m - 6} 12Z" fill="${f}" stroke="${c}" stroke-width="1.4"/>`,
+    quadro: `<rect x="${m - 5}" y="2" width="10" height="10" fill="#FBFBF8" stroke="${c}" stroke-width="${hollow ? 1.2 : 2}" stroke-dasharray="${hollow ? '2 1.5' : ''}"/>`,
+    quadrato: `<rect x="${m - 5}" y="2" width="10" height="10" fill="${f}" stroke="${c}" stroke-width="1.4"/>`,
+    croce: `<path d="M${m - 5} 2L${m + 5} 12M${m + 5} 2L${m - 5} 12" stroke="${c}" stroke-width="2.6"/>${hollow ? `<path d="M${m - 5} 2L${m + 5} 12M${m + 5} 2L${m - 5} 12" stroke="#FBFBF8" stroke-width="1"/>` : ''}` };
+  return `<svg class="sw" viewBox="0 0 ${w} 14" width="${w}" height="14">${sh[v.s]}</svg>`;
+}
+function ambSvg(t) {
+  const c = AMBT[t].c;
+  return `<svg class="sw" viewBox="0 0 26 14" width="26" height="14"><defs><pattern id="pa-${t}" width="5" height="5" patternUnits="userSpaceOnUse"><path d="${t === 'rappresentanza' || t === 'negoziazione' ? 'M0 0L5 5' : 'M0 5L5 0'}" stroke="${c}" stroke-opacity=".6"/></pattern></defs><rect x="2" y="2" width="22" height="10" fill="url(#pa-${t})" stroke="${c}" stroke-width="1.6" stroke-dasharray="4 2"/></svg>`;
+}
 function swatch(lg) {
+  if (lg.forma === 'evento') return evSvg(lg.categoria, false);
+  if (lg.forma === 'ambito') return ambSvg(lg.tipo);
   const c = lg.colore || C.ink;
   const s = { linea: `<svg class="sw" viewBox="0 0 26 14"><line x1="1" y1="7" x2="25" y2="7" stroke="${c}" stroke-width="${lg.spessore || 1.2}" stroke-dasharray="${lg.tratteggio || ''}"/></svg>`,
     area: `<svg class="sw" viewBox="0 0 26 14"><rect x="1" y="2" width="24" height="10" fill="${c}" stroke="rgba(0,0,0,.12)"/></svg>`,
@@ -340,16 +434,24 @@ function renderLayers() {
     h += `<div class="sect"><h2><span class="n">${g.id}</span>${esc(g.titolo)}</h2>`;
     for (const l of CAT.livelli.filter(l => l.gruppo === g.id)) {
       if (l.tipo === 'alias') { h += `<p class="note">${esc(l.titolo)}: ${esc(l.nota)}</p>`; continue; }
-      h += `<div class="lyr"><input type="checkbox" id="v-${l.id}" ${STATE.vis[l.id] ? 'checked' : ''}><span>${swatch(l.legenda)}</span><label for="v-${l.id}">${esc(l.titolo)}</label><span class="meta">${esc(l.periodo)}</span>`
-        + (l.nota ? `<span class="sub">${esc(l.nota)}</span>` : '') + `</div>`;
+      const cnt = l.tipo === 'eventi' ? `${EVA.filter(r => r.categoria === l.categoria).length} · ${EVG.features.filter(f => f.properties.categoria === l.categoria).length} in mappa`
+        : l.tipo === 'ambiti' ? `${AMB.features.filter(f => f.properties.tipo === l.id.slice(4)).length} ambiti` : l.periodo;
+      h += `<div class="lyr"><input type="checkbox" id="v-${l.id}" ${STATE.vis[l.id] ? 'checked' : ''}><span>${swatch(l.legenda)}</span><label for="v-${l.id}">${esc(l.titolo)}</label><span class="meta">${esc(cnt)}</span>`
+        + (l.nota || l.sub ? `<span class="sub">${esc(l.nota || l.sub)}</span>` : '') + `</div>`;
     }
     if (g.id === '04') h += `<p class="note">Non sono rappresentati territori dei branchi, corridoi, spostamenti o siti riproduttivi: non esistono dati pubblici verificabili e le localizzazioni sensibili sono escluse per tutela della specie.</p>`;
-    if (g.id === '05') h += `<p class="note">Le coordinate dei singoli eventi non sono pubbliche: i cerchi stanno sull'edificio della malga a cui la fonte attribuisce gli eventi; il resto è aggregato per comune o per area.</p>`;
+    if (g.id === '05') h += `<p class="note">I cerchi stanno sull'edificio della malga a cui la fonte attribuisce gli eventi: le coordinate dei singoli attacchi non sono pubbliche.</p>`;
+    if (g.id === 'E') h += `<div class="evf"><div class="note" style="margin:6px 0 4px">Stato di verifica</div><div class="chips" role="group" aria-label="Filtra per stato di verifica">${Object.entries(STATI).map(([k, t]) => `<button class="chip" type="button" data-stato="${k}" aria-pressed="${STATE.evStati[k]}">${t} · ${EVA.filter(r => r.stato === k).length}</button>`).join('')}</div>
+      <div class="lyr"><input type="checkbox" id="evLim" ${STATE.limitrofi ? 'checked' : ''}><span>${evSvg('mortalita', false, 26).replace('class="sw"', 'class="sw" style="opacity:.6"')}</span><label for="evLim">Includi territori limitrofi</label><span class="meta">fondovalle, Vallarsa, Baldo</span></div></div>
+      <p class="note">Simbolo pieno: località indicata dalla fonte e trovata su OpenStreetMap. Simbolo vuoto: solo il comune è noto (punto rappresentativo del comune). Simbolo piccolo e attenuato: territorio limitrofo. I cerchi numerati raggruppano eventi vicini: avvicinati per separarli. ${EVA.filter(r => !r.in_mappa).length} eventi senza luogo verificabile restano solo nel pannello Eventi.</p>`;
+    if (g.id === 'D') h += `<p class="note"><b>Interpretazione progettuale, non dato territoriale.</b> Ogni ambito deriva da eventi documentati e usa geometrie reali (comuni ISTAT, perimetro del Parco, praterie OSM attorno alle malghe), ma la sua delimitazione è una scelta della Diplomazia, non un confine ecologico.</p>`;
     h += `</div>`;
   }
   h += `<div class="sect"><h2><span class="n">L</span>Luoghi del progetto</h2><div class="lyr"><input type="checkbox" id="v-luoghi" ${STATE.vis.luoghi ? 'checked' : ''}><span>${swatch(LYR.luoghi.legenda)}</span><label for="v-luoghi">Luoghi di interesse A–H</label><span class="meta">vari</span></div></div>`;
   pane.innerHTML = h;
-  pane.querySelectorAll('input[type=checkbox]').forEach(cb => cb.addEventListener('change', e => setVis(e.target.id.slice(2), e.target.checked)));
+  pane.querySelectorAll('input[type=checkbox]:not(#evLim)').forEach(cb => cb.addEventListener('change', e => setVis(e.target.id.slice(2), e.target.checked)));
+  $('#evLim').addEventListener('change', e => { STATE.limitrofi = e.target.checked; applyTime(); });
+  pane.querySelectorAll('[data-stato]').forEach(b => b.addEventListener('click', () => { STATE.evStati[b.dataset.stato] = !STATE.evStati[b.dataset.stato]; b.setAttribute('aria-pressed', String(STATE.evStati[b.dataset.stato])); applyTime(); }));
 }
 function renderLegend() {
   let h = '';
@@ -357,6 +459,8 @@ function renderLegend() {
     const ls = CAT.livelli.filter(l => l.gruppo === g.id && l.tipo !== 'alias' && STATE.vis[l.id]);
     if (!ls.length) continue;
     h += `<div class="g">${g.id} · ${esc(g.titolo)}</div>`;
+    if (g.id === 'E') h += `<div class="it">${evSvg('predazione', true)}<span>Simbolo vuoto<small>posizione nota solo al comune</small></span></div><div class="it"><svg class="sw" viewBox="0 0 26 14"><circle cx="13" cy="7" r="6" fill="#FBFBF8" stroke="#1D2226" stroke-width="1.3"/><text x="13" y="9.5" font-size="7" text-anchor="middle" font-family="Archivo" fill="#1D2226">8</text></svg><span>Gruppo di eventi vicini</span></div>`;
+    if (g.id === 'D') h += `<div class="it"><span></span><span><small>Ipotesi della Diplomazia, non dati</small></span></div>`;
     for (const l of ls) {
       const lg = l.legenda;
       if (lg.forma === 'categorie' || lg.forma === 'categorie_linea') {
@@ -396,6 +500,7 @@ function renderPlaces() {
   fill(''); $('#mSearch').addEventListener('input', e => fill(e.target.value));
 }
 const cron = await src('data/tema_lupo_cronologia.json');
+const CNL = await src('data/tema_conflitti_non_localizzati.json');
 function cubsChart() {
   const e = Object.entries(cron.cuccioli_minimi), W = 320, H = 120, pl = 22, pb = 18, pt = 12, max = 8;
   const bw = (W - pl) / e.length;
@@ -411,23 +516,45 @@ function renderData() {
     <div style="overflow-x:auto"><table class="t"><thead><tr><th>Area</th><th>Periodo</th><th class="num">Eventi</th><th class="num">Capi</th></tr></thead><tbody>
     ${rows.map(r => `<tr><td>${esc(r.area)}<div class="note" style="margin:2px 0 0">${esc(r.dettaglio)} ${r.fonti.map(id => `<a href="${esc(FON[id]?.url)}" target="_blank" rel="noopener">[${esc(id)}]</a>`).join(' ')} ${/secondaria/.test(r.stato) ? badge(r.stato) : ''}</div></td><td style="white-space:nowrap">${esc(r.periodo)}</td><td class="num">${fmt(r.eventi)}</td><td class="num">${fmt(r.capi)}</td></tr>`).join('')}
     </tbody></table></div></div>
-    <div class="sect"><h2><span class="n">05</span>Malghe di Ala a impatto cronico</h2><p class="note">Eventi di predazione per anno, 2013–2022 (MUSE–PAT 2023, Tab. 5).</p>
-    <div style="overflow-x:auto"><table class="t"><thead><tr><th>Malga</th>${[13,14,15,16,17,18,19,20,21,22].map(y => `<th class="num">'${y}</th>`).join('')}<th class="num">Tot.</th></tr></thead><tbody>
-    ${conf.features.map(f => `<tr><td>${esc(f.properties.nome.replace('Malga ', ''))}</td>${Object.values(f.properties.serie).map(v => `<td class="num">${v || '·'}</td>`).join('')}<td class="num"><b>${f.properties.eventi_tot}</b></td></tr>`).join('')}
+    <div class="sect"><h2><span class="n">05</span>Malghe con almeno 10 eventi su bovini, 2012–2024</h2><p class="note">Eventi di predazione per anno (Tabarelli 2025, grafici A1–A13; valori letti dai grafici). Castilverio non è localizzabile su OSM.</p>
+    <div style="overflow-x:auto"><table class="t"><thead><tr><th>Malga</th>${Array.from({ length: 13 }, (_, i) => `<th class="num">'${String(12 + i).padStart(2, '0')}</th>`).join('')}<th class="num">Tot.</th></tr></thead><tbody>
+    ${[...conf.features.map(f => f.properties), ...CNL].map(p => `<tr><td style="white-space:nowrap">${esc(p.nome.replace('Malga ', ''))}</td>${Object.values(p.serie).map(v => `<td class="num">${v || '·'}</td>`).join('')}<td class="num"><b>${p.eventi_tot}</b></td></tr>`).join('')}
     </tbody></table></div></div>
+    <div class="sect"><h2><span class="n">E</span>Archivio eventi per anno e categoria</h2><p class="note">${EVA.length} eventi documentati 2012–2026, ${EVG.features.length} localizzati in mappa. Un evento lungo più anni è contato nell'anno di inizio.</p>${evMatrix()}</div>
+    <div class="sect"><h2><span class="n">E</span>Mortalità documentata per causa</h2>${mortTable()}<p class="note">Le cause non accertate da necroscopia sono indicate come riportate dalle fonti; il secondo abbattimento a Malga Boldera è contestato tra le fonti.</p></div>
+    <div class="sect"><h2><span class="n">D</span>Ambiti diplomatici</h2><p class="note">Ipotesi progettuali derivate dagli eventi. Apri un ambito per vedere eventi, questione e attività proposta.</p><ul class="evmini">${AMB.features.map(a => `<li><button type="button" data-amb="${a.properties.codice}">${ambSvg(a.properties.tipo).replace('class="sw"', 'class="sw" width="20" height="14"')}<span><time>${a.properties.codice}</time> ${esc(a.properties.nome)}<em>${esc(AMBT[a.properties.tipo].t)} · ${a.properties.n_eventi} eventi${a.properties.cartografato ? '' : ' · non cartografato'}</em></span></button></li>`).join('')}</ul></div>
     <div class="sect"><h2><span class="n">04</span>Ritorno del lupo: cronologia</h2><ol class="tl">${cron.cronologia.map(c => `<li><time>${esc(c.data)}</time><span>${esc(c.evento)} <span class="note">[${c.fonti.join(', ')}]</span></span></li>`).join('')}</ol></div>
     <div class="sect"><h2><span class="n">04</span>Cuccioli minimi accertati, branco Slavc–Giulietta</h2>${cubsChart()}<p class="note">Valori minimi, non stime di popolazione. Fonte: ${esc(FON.PAT2022.autore)} (${FON.PAT2022.anno}), Tab. 1.</p></div>
     <div class="sect"><h2><span class="n">04</span>Branchi nella Lessinia veronese, 2022</h2><table class="t"><thead><tr><th>Branco</th><th class="num">Ind.</th><th>Comuni indicati</th></tr></thead><tbody>${branchi.branchi.map(b => `<tr><td>${esc(b.nome)}<div class="note" style="margin:0">${esc(b.dettaglio)}</div></td><td class="num">${b.individui}</td><td>${esc(b.comuni.join(', '))}</td></tr>`).join('')}</tbody></table><p class="note">${esc(branchi.nota)}</p></div>`;
+  $('#pane-dati').querySelectorAll('[data-amb]').forEach(b => b.addEventListener('click', () => showAmbito(b.dataset.amb)));
+}
+function evMatrix() {
+  const ys = Array.from({ length: 15 }, (_, i) => 2012 + i); const cats = Object.keys(EVCAT);
+  const cnt = (c, y) => EVA.filter(r => r.categoria === c && r.anno === y).length; const mx = Math.max(...cats.flatMap(c => ys.map(y => cnt(c, y))));
+  return `<div style="overflow-x:auto"><table class="t mx"><thead><tr><th></th>${ys.map(y => `<th class="num">'${String(y).slice(2)}</th>`).join('')}<th class="num">Tot.</th></tr></thead><tbody>${cats.map(c => `<tr><td style="white-space:nowrap">${evSvg(c, false, 16)} ${esc(EVCAT[c].t)}</td>${ys.map(y => { const n = cnt(c, y); return `<td class="num" style="background:${n ? `color-mix(in srgb, ${EVCAT[c].c} ${Math.round(12 + 60 * n / mx)}%, transparent)` : 'transparent'};color:${n / mx > .55 ? '#fff' : 'inherit'}">${n || ''}</td>`; }).join('')}<td class="num"><b>${EVA.filter(r => r.categoria === c).length}</b></td></tr>`).join('')}</tbody></table></div>`;
+}
+function mortTable() {
+  const m = EVA.filter(r => r.categoria === 'mortalita'); const by = {}; m.forEach(r => (by[r.causa] = by[r.causa] || []).push(r));
+  return `<table class="t"><thead><tr><th>Causa</th><th class="num">Eventi</th><th>Anni</th></tr></thead><tbody>${Object.entries(by).sort((a, b) => b[1].length - a[1].length).map(([k, rs]) => `<tr><td>${esc(k)}</td><td class="num">${rs.length}</td><td>${esc([...new Set(rs.map(r => r.anno))].sort().join(', '))}</td></tr>`).join('')}</tbody></table>`;
 }
 const AVAIL = await src('data/registro_dataset.json');
+const VERIF = await src('data/verifiche_elenco_iniziale.json');
+function srcEditors() {
+  const by = {}; EVA.forEach(r => r.fonti.forEach(f => { const k = (f.editore || 'altro').replace(/\s*\(.*\)\s*$/, '').trim(); (by[k] = by[k] || new Set()).add(f.url); }));
+  return `<table class="t"><thead><tr><th>Editore o ente</th><th class="num">Documenti</th></tr></thead><tbody>${Object.entries(by).sort((a, b) => b[1].size - a[1].size).slice(0, 30).map(([k, v]) => `<tr><td>${esc(k)}</td><td class="num">${v.size}</td></tr>`).join('')}</tbody></table><p class="note">Ogni documento è collegato dalla scheda dell'evento. Elenco limitato ai primi 30 editori.</p>`;
+}
 function renderSources() {
   $('#pane-fonti').innerHTML = `<div class="sect"><h2>Gradi di verifica</h2>
     <div class="statusline">${badge('verificato')}${badge('osservazione')}${badge('interpretazione')}${badge('ipotesi')}${badge('fonte secondaria')}</div>
     <p class="note">Dato verificato: geometria o valore tratto da una fonte ufficiale o scientifica identificata. Osservazione scientifica: evento datato registrato da monitoraggio o studio. Interpretazione e ipotesi progettuale: in questa versione non sono rappresentate come dati geografici.</p></div>
+    <div class="sect"><h2>Stato di verifica degli eventi</h2><div class="statusline">${badge('accertato')}${badge('documentato')}${badge('segnalato')}${badge('smentito')}</div>
+    <p class="note">Accertato: confermato da evidenze o da fonti istituzionali e scientifiche. Documentato: riportato da una fonte identificabile, senza conferma diretta disponibile. Segnalato: non ancora confermato. Smentito: segnalazione poi esclusa. Le dichiarazioni di una parte non valgono come prova dei fatti contestati.</p></div>
+    <div class="sect"><h2>Verifica dell'elenco iniziale · ${VERIF.length} voci</h2><div style="overflow-x:auto"><table class="t"><thead><tr><th>Voce</th><th>Esito</th></tr></thead><tbody>${VERIF.map(v => `<tr><td>${esc(v.voce)}<div class="note" style="margin:2px 0 0">${esc(v.nota)}</div></td><td>${/^non/.test(v.esito) ? `<span class="st-no">${esc(v.esito.toUpperCase())}</span>` : `<span class="st-ok">${esc(v.esito.toUpperCase())}</span>`}${v.evento ? `<div><button class="chip" type="button" data-ev="${v.evento}" style="margin-top:4px">${v.evento}</button></div>` : ''}</td></tr>`).join('')}</tbody></table></div></div>
+    <div class="sect"><h2>Fonti degli eventi · ${new Set(EVA.flatMap(r => r.fonti.map(f => f.url))).size} documenti</h2>${srcEditors()}</div>
     <div class="sect"><h2>Registro dei dataset</h2><div style="overflow-x:auto"><table class="t avail"><thead><tr><th>Dataset</th><th>Stato</th><th>Formato / anno</th></tr></thead><tbody>
     ${AVAIL.map(d => `<tr><td>${esc(d.dataset)}<div class="note" style="margin:2px 0 0">${esc(d.note)}</div></td><td><span class="${d.stato === 'integrato' ? 'st-ok' : d.stato === 'parziale' ? 'st-part' : 'st-no'}">${esc(d.stato.toUpperCase())}</span></td><td>${esc(d.formato)}<div class="note" style="margin:0">${esc(d.anno)}</div></td></tr>`).join('')}
     </tbody></table></div></div>
-    <div class="sect"><h2>Fonti citate · consultazione 10/10/2026</h2>${FONTI.map(f => `<div class="src"><div class="id">${esc(f.id)}</div><b>${esc(f.titolo)}</b><div>${esc(f.autore)}${f.anno ? ', ' + f.anno : ''} · ${esc(f.tipo)}</div><div class="lic">Licenza: ${esc(f.licenza)} · <a href="${esc(f.url)}" target="_blank" rel="noopener">apri la fonte</a></div><div class="note" style="margin:3px 0 0">${esc(f.note)}</div></div>`).join('')}</div>`;
+    <div class="sect"><h2>Fonti dei livelli · consultazione 10/10/2026</h2>${FONTI.map(f => `<div class="src"><div class="id">${esc(f.id)}</div><b>${esc(f.titolo)}</b><div>${esc(f.autore)}${f.anno ? ', ' + f.anno : ''} · ${esc(f.tipo)}</div><div class="lic">Licenza: ${esc(f.licenza)} · <a href="${esc(f.url)}" target="_blank" rel="noopener">apri la fonte</a></div><div class="note" style="margin:3px 0 0">${esc(f.note)}</div></div>`).join('')}</div>`;
 }
 
 // ---------------------------------------------------------------- card
@@ -435,6 +562,54 @@ function srcList(ids) { return `<ol class="fonti">${[...new Set(ids)].map(id => 
 function coord(f) { const c = f.geometry.type === 'Point' ? f.geometry.coordinates : null; return c ? `${c[1].toFixed(5)} N, ${c[0].toFixed(5)} E` : null; }
 function osmLink(id) { return id ? `<a href="https://www.openstreetmap.org/${esc(id)}" target="_blank" rel="noopener">${esc(id)}</a>` : '—'; }
 function dl(pairs) { return '<dl>' + pairs.filter(p => p[1] != null && p[1] !== '').map(([k, v]) => `<dt>${esc(k)}</dt><dd>${v}</dd>`).join('') + '</dl>'; }
+function dist(a, b) { const dx = (a[0] - b[0]) * 78700, dy = (a[1] - b[1]) * 111200; return Math.hypot(dx, dy); }
+const fmtDate = d => { if (!d) return ''; const p = String(d).split('-'); const M = ['gen', 'feb', 'mar', 'apr', 'mag', 'giu', 'lug', 'ago', 'set', 'ott', 'nov', 'dic'];
+  return p.length === 3 ? `${+p[2]} ${M[+p[1] - 1]} ${p[0]}` : p.length === 2 ? `${M[+p[1] - 1]} ${p[0]}` : p[0]; };
+const evDate = r => fmtDate(r.data_evento) + (r.data_fine && r.data_fine !== r.data_evento ? ' – ' + fmtDate(r.data_fine) : '');
+function evMini(list) { return `<ul class="evmini">${list.slice().sort((a, b) => a.data_evento.localeCompare(b.data_evento)).map(r => `<li><button type="button" data-ev="${r.id}">${evSvg(r.categoria, r.precisione !== 'località', 18)}<span><time>${esc(evDate(r))}</time> ${esc(r.titolo)}</span></button></li>`).join('')}</ul>`; }
+function wireMini(root) { root.querySelectorAll('[data-ev]').forEach(b => b.addEventListener('click', () => { const r = EVID[b.dataset.ev]; const g = EVG.features.find(x => x.properties.id === r.id); if (g) focus(g, 13.5); showEvent(r.id); })); }
+function openCard(kick, title, st, period, body, fonti) {
+  const card = $('#card');
+  card.innerHTML = `<header><div class="kicker">${kick}</div><h4>${esc(title)}</h4><button class="close" type="button" aria-label="Chiudi scheda">×</button></header>
+    <div class="body"><div class="statusline">${st}<span class="badge" style="color:var(--ink-3)">${esc(period)}</span></div>${body}${fonti}</div>`;
+  card.hidden = false; card.scrollTop = 0;
+  $('.close', card).addEventListener('click', () => { card.hidden = true; map.getSource('sel').setData({ type: 'FeatureCollection', features: [] }); });
+  wireMini(card);
+  card.querySelectorAll('[data-rel]').forEach(b => b.addEventListener('click', () => { showRelation(b.dataset.rel, true); }));
+  card.querySelectorAll('[data-amb]').forEach(b => b.addEventListener('click', () => showAmbito(b.dataset.amb)));
+}
+function evFonti(fs) { return `<div class="h">Fonti consultabili</div><ol class="fonti">${fs.map(f => `<li>${esc(f.editore || '')}${f.data ? ', ' + esc(fmtDate(f.data)) : ''}: <i>${esc(f.titolo)}</i>. <a href="${esc(f.url)}" target="_blank" rel="noopener">Apri la fonte</a></li>`).join('')}</ol>`; }
+const RELNAME = Object.fromEntries([...RELS.tematiche, ...RELS.catene].map(r => [r.id, r.titolo]));
+function showEvent(id) {
+  const r = EVID[id], v = EVCAT[r.categoria];
+  const g = EVG.features.find(x => x.properties.id === id);
+  const same = g ? EVG.features.filter(x => x.properties.id !== id && dist(x.geometry.coordinates, g.geometry.coordinates) < 300).map(x => EVID[x.properties.id]) : [];
+  const chains = (r.catene || []).map(cid => RELS.catene.find(c => c.id === cid));
+  const body = `<p>${esc(r.descrizione)}</p>` + dl([
+      ['Data del fatto', esc(evDate(r))], ['Luogo', esc([r.localita, r.comune && r.comune + (r.provincia ? ' (' + r.provincia + ')' : '')].filter(Boolean).join(', ') || '—')],
+      ['Precisione', esc(r.precisione) + (r.precisione_nota ? ` <span class="note">· ${esc(r.precisione_nota)}</span>` : '')],
+      ['Oggetto OSM', r.osm ? osmLink(r.osm) : null], ['Coordinate', g ? coord(g) + (g.properties.spostato ? ' <span class="note">(spostato di pochi metri per non sovrapporlo)</span>' : '') : 'non in mappa'],
+      ['Evidenza', esc(r.tipo_evidenza)], ['Specie', esc((r.specie || []).join(', '))], ['Causa', r.causa ? esc(r.causa) : null], ['Territorio', esc(r.territorio)], ['ID', esc(r.id)]])
+    + (r.note ? `<p class="note">${esc(r.note)}</p>` : '')
+    + ((r.relazioni || []).length || chains.length ? `<div class="h">Relazioni</div><div class="chips">${(r.relazioni || []).map(x => `<button class="chip" type="button" data-rel="${x}">${esc(RELNAME[x])}</button>`).join('')}${chains.map(c => `<button class="chip" type="button" data-rel="${c.id}">${esc(c.titolo)} · ${esc(c.tipo)}</button>`).join('')}</div>` : '')
+    + (same.length ? `<div class="h">Nello stesso luogo · collegamento geografico</div>${evMini(same)}` : '')
+    + (() => { const am = AMB.features.filter(a => a.properties.eventi.includes(id)); return am.length ? `<div class="h">Ambiti diplomatici collegati</div><div class="chips">${am.map(a => `<button class="chip" type="button" data-amb="${a.properties.codice}">${a.properties.codice} · ${esc(a.properties.nome)}</button>`).join('')}</div>` : ''; })();
+  openCard(`${evSvg(r.categoria, r.precisione !== 'località', 18)} ${esc(v.t)}${r.sottotipo ? ' · ' + esc(r.sottotipo) : ''}`, r.titolo, badge(r.stato), evDate(r), body, evFonti(r.fonti));
+  map.getSource('sel').setData({ type: 'FeatureCollection', features: g ? [{ type: 'Feature', geometry: g.geometry, properties: {} }] : [] });
+}
+function showAmbito(code) {
+  const a = AMB.features.find(x => x.properties.codice === code), p = a.properties, t = AMBT[p.tipo];
+  if (a.geometry && !STATE.vis['amb_' + p.tipo]) { setVis('amb_' + p.tipo, true); const cb = $('#v-amb_' + p.tipo); if (cb) cb.checked = true; }
+  const evs = p.eventi.map(id => EVID[id]).filter(Boolean);
+  const body = `<p class="note" style="color:var(--hypo)"><b>Ipotesi progettuale.</b> L'ambito è un'interpretazione della Diplomazia costruita su eventi documentati; non è un confine ecologico.</p>`
+    + dl([['Codice', esc(p.codice)], ['Tipo', `<span style="color:${t.c};font-weight:600">${esc(t.t)}</span>`], ['Localizzazione', esc(p.localizzazione)], ['Geometria', esc(p.geom_fonte)], ['Periodo eventi', esc(p.anni)]])
+    + `<div class="h">Problematica principale</div><p>${esc(p.problematica)}</p><div class="h">Specie e soggetti coinvolti</div><p>${esc(p.soggetti)}</p>`
+    + `<div class="h">Questione diplomatica</div><p>${esc(p.questione)}</p><div class="h">Attività proposta</div><p>${esc(p.attivita)}</p>`
+    + `<div class="h">Eventi associati · ${evs.length}</div>${evMini(evs)}`;
+  openCard(`${ambSvg(p.tipo)} Ambito diplomatico · ${esc(t.t)}`, `${p.codice} · ${p.nome}`, badge('ipotesi'), p.anni, body, evFonti(p.fonti) + (p.n_fonti > p.fonti.length ? `<p class="note">Altre ${p.n_fonti - p.fonti.length} fonti nelle schede degli eventi.</p>` : ''));
+  if (a.geometry) { const bb = turfBBox(a.geometry); map.fitBounds(bb, { padding: 60, maxZoom: 13.5, duration: 800 }); }
+}
+function turfBBox(g) { let b = [180, 90, -180, -90]; const walk = c => { if (typeof c[0] === 'number') { b = [Math.min(b[0], c[0]), Math.min(b[1], c[1]), Math.max(b[2], c[0]), Math.max(b[3], c[1])]; } else c.forEach(walk); }; walk(g.coordinates); return b; }
 function showCard(cat, f) {
   const p = f.properties, l = LYR[cat] || {};
   let kick = `${l.gruppo && l.gruppo !== 'L' ? l.gruppo + ' · ' : ''}${esc(l.titolo || '')}`, title = p.nome || p.name || p.comune || p.SITENAME || '—', body = '', st = l.stato || 'verificato', fon = l.fonti || [];
@@ -443,20 +618,25 @@ function showCard(cat, f) {
     body = dl([['Comune', esc(p.comune) + ' (' + esc(p.provincia) + ')'], ['Coordinate', coord(f) + ' <span class="note">WGS84</span>'], ['Quota', p.quota_m ? p.quota_m + ' m' : null], ['Precisione', esc(p.precisione)], ['Oggetto OSM', osmLink(p.osm)], ['Periodo dati', esc(p.periodo)]])
       + `<p>${esc(p.descrizione)}</p><div class="h">Rilevanza per il progetto</div><p>${esc(p.rilevanza)}</p>`;
     const c = conf.features.find(x => x.properties.osm === p.osm) || (p.id === 'scortigara' ? 'multi' : null);
-    if (c === 'multi') { const sc = conf.features.filter(x => /Scortigara/.test(x.properties.nome)); body += `<div class="h">Eventi di predazione 2013–2022</div><p>${sc.map(x => x.properties.nome.replace('Malga Scortigara ', '') + ' ' + x.properties.eventi_tot).join(' · ')} eventi, tutti su bovini (MUSE–PAT 2023). Le serie annuali sono nelle schede dei cerchi rossi.</p>`; }
-    else if (c) body += `<div class="h">Eventi di predazione 2013–2022</div><p><b>${c.properties.eventi_tot}</b> eventi, ${c.properties.capi_uccisi} capi uccisi (MUSE–PAT 2023). Serie annuale e aggiornamenti nella scheda del cerchio rosso.</p>`;
+    if (c === 'multi') { const sc = conf.features.filter(x => /Scortigara/.test(x.properties.nome)); body += `<div class="h">Eventi di predazione su bovini 2012–2024</div><p>${sc.map(x => x.properties.nome.replace('Malga Scortigara ', '') + ' ' + x.properties.eventi_tot).join(' · ')} eventi (Tabarelli 2025). Le serie annuali sono nelle schede dei cerchi rossi.</p>`; }
+    else if (c) body += `<div class="h">Eventi di predazione su bovini 2012–2024</div><p><b>${c.properties.eventi_tot}</b> eventi (Tabarelli 2025)${c.properties.capi_uccisi ? `; ${c.properties.capi_uccisi} capi uccisi nel 2013–2022 (MUSE–PAT 2023)` : ''}. Serie annuale nella scheda del cerchio rosso.</p>`;
+    const near = EVA.filter(r => r.in_mappa && EVG.features.some(g => g.properties.id === r.id && dist(g.geometry.coordinates, f.geometry.coordinates) < 400));
+    if (near.length) body += `<div class="h">Eventi d'archivio in questo luogo · ${near.length}</div>${evMini(near)}`;
   } else if (cat === 'conflitti') {
     title = p.nome; kick = `05 · Conflitto documentato · ${esc(p.comune)} (${esc(p.provincia)})`; st = p.stato; fon = p.fonti.concat((p.aggiornamenti || []).flatMap(a => a.fonti));
-    const ys = Object.entries(p.serie), mx = Math.max(...ys.map(v => v[1]), 1);
-    body = `<div class="bars">${ys.map(([y, v]) => `<div class="${inRange(+y) ? '' : 'off'}" style="height:${v / mx * 100}%">${v ? `<span>${v}</span>` : ''}</div>`).join('')}</div><div class="bars-x">${ys.map(([y]) => `<span>'${y.slice(2)}</span>`).join('')}</div>
-      <p class="note">Eventi di predazione per anno; grigio = fuori dall'intervallo selezionato.</p>`
-      + dl([['Eventi', `<b>${p.eventi_tot}</b> (2013–2022)`], ['Capi compromessi', p.capi_compromessi], ['Capi uccisi', p.capi_uccisi], ['Specie', esc(p.specie)], ['Impatto', esc(p.impatto)], ['Prevenzione 2021', esc(p.prevenzione_2021)], ['Coordinate', coord(f) + ' · edificio ' + osmLink(p.osm)]])
-      + `<p class="note">${esc(p.nota)}${p.nota_fonte ? ' ' + esc(p.nota_fonte) : ''}</p>`
+    const bars = (ser, lab) => { const ys = Object.entries(ser), mx = Math.max(...ys.map(v => v[1]), 1);
+      return `<div class="bars" style="grid-template-columns:repeat(${ys.length},1fr)">${ys.map(([y, v]) => `<div class="${inRange(+y) ? '' : 'off'}" style="height:${v / mx * 100}%">${v ? `<span>${v}</span>` : ''}</div>`).join('')}</div><div class="bars-x" style="grid-template-columns:repeat(${ys.length},1fr)">${ys.map(([y]) => `<span>'${y.slice(2)}</span>`).join('')}</div><p class="note">${lab}; grigio = fuori dall'intervallo selezionato.</p>`; };
+    body = bars(p.serie, 'Eventi di predazione su bovini per anno, 2012–2024 (Tabarelli 2025)')
+      + dl([['Eventi', `<b>${p.eventi_tot}</b> (2012–2024)`], ['Specie', esc(p.specie)], ['Posizione', esc(p.precisione) + ' · ' + osmLink(p.osm)], ['Coordinate', coord(f)]])
+      + (p.serie_muse ? `<div class="h">Confronto · MUSE–PAT 2023, 2013–2022</div>` + bars(p.serie_muse, 'Serie del rapporto MUSE–PAT (Tab. 5)') + dl([['Eventi', p.eventi_muse], ['Capi compromessi', p.capi_compromessi], ['Capi uccisi', p.capi_uccisi], ['Impatto', esc(p.impatto)], ['Prevenzione 2021', esc(p.prevenzione_2021)]]) : '')
+      + `<p class="note">${esc(p.nota)}${p.nota_fonte ? ' ' + esc(p.nota_fonte) : ''} ${p.serie_muse ? 'Le due serie provengono da elaborazioni diverse e non coincidono in alcuni anni.' : ''}</p>`
       + (p.aggiornamenti ? `<div class="h">Dopo il 2022 · fonti secondarie</div>` + p.aggiornamenti.map(a => `<div class="upd"><b>${esc(a.periodo)}</b> — ${esc(a.testo)}</div>`).join('') : '');
-  } else if (cat === 'lupo_eventi') {
-    title = `${p.nome}, ${new Date(p.data).toLocaleDateString('it-IT', { day: 'numeric', month: 'long', year: 'numeric' })}`; st = p.stato; fon = p.fonti;
-    body = `<p>${esc(p.evento)}</p>` + dl([['Comune', esc(p.comune) + ' (' + esc(p.provincia) + ')'], ['Localizzazione', esc(p.precisione)], ['Coordinate', coord(f)]])
-      + `<p class="note">Evento storico datato. Non indica una presenza attuale o costante del lupo in questo luogo.</p>`;
+    const near = EVA.filter(r => EVG.features.some(g => g.properties.id === r.id && dist(g.geometry.coordinates, f.geometry.coordinates) < 400));
+    if (near.length) body += `<div class="h">Eventi d'archivio in questa malga · ${near.length}</div>${evMini(near)}`;
+  } else if (cat === 'eventi') {
+    return showEvent(p.id);
+  } else if (cat.startsWith('amb_')) {
+    return showAmbito(p.codice);
   } else if (cat === 'malghe') {
     body = dl([['Tipo oggetto', p.tipo_oggetto === 'edificio' ? 'Edificio mappato' : 'Solo toponimo / località'], ['Comune', esc(p.comune || '—')], ['Quota', p.quota_m ? p.quota_m + ' m (OSM)' : '—'], ['Coordinate', coord(f)], ['Oggetto OSM', osmLink(p.osm_id)]])
       + `<p class="note">Posizione dell'edificio o del toponimo. La superficie di pascolo della malga non è disponibile e non viene disegnata.</p>`;
@@ -495,7 +675,7 @@ function showCard(cat, f) {
 function focus(f, z) { if (f.geometry.type === 'Point') map.flyTo({ center: f.geometry.coordinates, zoom: Math.max(map.getZoom(), z), duration: matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 900 }); }
 
 // click priority: point layers first
-const PRI = ['luoghi', 'conflitti', 'lupo_eventi', 'malghe', 'sorgenti', 'toponimi', 'sentieri', 'regioni', 'strade', 'piste', 'idro', 'idro_aree', 'pred_comuni', 'lupo_branchi', 'n2000_zps', 'n2000_zsc', 'parco', 'riserve', 'aperto', 'comuni'];
+const PRI = ['luoghi', 'eventi', 'conflitti', 'malghe', 'sorgenti', 'toponimi', 'sentieri', 'regioni', 'strade', 'piste', 'idro', 'idro_aree', 'pred_comuni', 'lupo_branchi', 'n2000_zps', 'n2000_zsc', 'parco', 'riserve', 'amb_negoziazione', 'amb_mediazione', 'amb_rappresentanza', 'amb_osservazione', 'aperto', 'comuni'];
 function hit(pt) {
   for (const cat of PRI) {
     if (!STATE.vis[cat] || !INTER[cat]) continue;
@@ -515,7 +695,7 @@ map.on('click', e => {
   ['serie'].forEach(k => { if (typeof full.properties[k] === 'string') try { full.properties[k] = JSON.parse(full.properties[k]); } catch (x) {} });
   if (cat === 'conflitti') { const o = conf.features.find(x => x.properties.osm === f.properties.osm); if (o) Object.assign(full.properties, o.properties); }
   if (cat === 'luoghi') { const o = luoghi.features.find(x => x.properties.id === f.properties.id); if (o) Object.assign(full, o); }
-  if (cat === 'lupo_eventi') { full.properties.fonti = JSON.parse(f.properties.fonti || '[]'); }
+  if (cat === 'eventi' && f.properties.cluster) { map.getSource('eventi').getClusterExpansionZoom(f.properties.cluster_id).then(z => map.easeTo({ center: f.geometry.coordinates, zoom: z + .3 })); return; }
   showCard(cat, full);
 });
 map.on('mousemove', e => { map.getCanvas().style.cursor = hit(e.point) ? 'pointer' : ''; readout(e.lngLat); });
@@ -537,6 +717,78 @@ function readout(ll) {
     const i = (py * Z.w + px) * 4; const v = Z.d[i] * 256 + Z.d[i + 1] - 32768; if (v > 0) q = ` · ${v} m s.l.m.`;
   }
   $('#readout').textContent = `${ll.lat.toFixed(5)} N  ${ll.lng.toFixed(5)} E${q}`;
+}
+
+
+// ---------------------------------------------------------------- pannello Eventi e relazioni
+STATE.q = ''; STATE.soloMappa = false;
+function evPass(r) { const [a, b] = win(); return STATE.vis['ev_' + r.categoria] && STATE.evStati[r.stato] && (STATE.limitrofi || r.territorio === 'Lessinia') && r.anno <= b && r.anno_fine >= a; }
+function relById(id) { return RELS.tematiche.find(r => r.id === id) || RELS.catene.find(r => r.id === id); }
+function showRelation(id, go) {
+  STATE.rel = id || null;
+  const sel = $('#relSel'); if (sel) sel.value = id || '';
+  if (!id) {
+    map.getSource('ev_rel').setData({ type: 'FeatureCollection', features: [] });
+    map.setPaintProperty('eventi', 'icon-opacity', ['case', ['==', ['get', 'territorio'], 'Lessinia'], 1, .7]);
+    ['eventi_cl', 'eventi_cl_n'].forEach(l => map.setLayoutProperty(l, 'visibility', 'visible'));
+    if (map.getLayer('ev_flat')) map.setLayoutProperty('ev_flat', 'visibility', 'none');
+    map.getSource('eventi').setData(evData());
+    renderEventList(); return;
+  }
+  const rel = relById(id), ids = rel.eventi.filter(e => evPass(EVID[e]));
+  const feats = ids.map(e => EVG.features.find(f => f.properties.id === e)).filter(Boolean).sort((x, y) => x.properties.data_evento.localeCompare(y.properties.data_evento));
+  map.getSource('ev_rel').setData({ type: 'FeatureCollection', features: feats.map((f, i) => ({ type: 'Feature', geometry: f.geometry, properties: { n: i + 1, id: f.properties.id } })) });
+  map.setPaintProperty('eventi', 'icon-opacity', ['case', ['in', ['get', 'id'], ['literal', ids]], 1, .15]);
+  ['eventi_cl', 'eventi_cl_n'].forEach(l => map.setLayoutProperty(l, 'visibility', 'none'));
+  // unclustered while a relation is shown
+  map.getSource('eventi').setData({ type: 'FeatureCollection', features: [] });
+  if (!map.getSource('ev_flat')) {
+    map.addSource('ev_flat', { type: 'geojson', data: { type: 'FeatureCollection', features: [] } });
+    map.addLayer({ id: 'ev_flat', type: 'symbol', source: 'ev_flat', layout: map.getStyle().layers.find(l => l.id === 'eventi').layout, paint: { 'icon-opacity': ['case', ['get', 'inrel'], 1, .15] } }, 'ev_rel_ring');
+    inter('eventi', 'ev_flat');
+  }
+  map.getSource('ev_flat').setData({ type: 'FeatureCollection', features: EVG.features.filter(f => evVisible(f.properties)).map(f => ({ ...f, properties: { ...f.properties, inrel: ids.includes(f.properties.id) } })) });
+  map.setLayoutProperty('ev_flat', 'visibility', 'visible');
+  if (go && feats.length) { const b = turfBBox({ coordinates: feats.map(f => f.geometry.coordinates) }); map.fitBounds(b, { padding: 80, maxZoom: 13, duration: 800 }); }
+  if (go) document.getElementById('tab-eventi').click();
+  renderEventList();
+}
+const _refresh = refreshEvents;
+refreshEvents = function () {
+  if (map.getLayer('ev_flat') && !STATE.rel) { map.setLayoutProperty('ev_flat', 'visibility', 'none'); }
+  if (!STATE.rel) map.getSource('eventi').setData(evData());
+  if (STATE.rel) showRelation(STATE.rel, false); else renderEventList();
+};
+function renderEventList() {
+  const pane = $('#pane-eventi'); if (!pane) return;
+  const [a, b] = win();
+  if (!$('#relSel')) {
+    pane.innerHTML = `<div class="sect"><h2>Relazioni tra eventi</h2>
+      <p class="note">${esc(RELS.nota)} I numeri sulla mappa seguono l'ordine cronologico.</p>
+      <select id="relSel" class="search" aria-label="Scegli una relazione"><option value="">Nessuna relazione evidenziata</option>
+        <optgroup label="Relazioni tematiche">${RELS.tematiche.map(r => `<option value="${r.id}">${esc(r.titolo)} · ${r.eventi.length} eventi</option>`).join('')}</optgroup>
+        <optgroup label="Collegamenti documentati">${RELS.catene.map(r => `<option value="${r.id}">${esc(r.titolo)} · ${esc(r.tipo)}</option>`).join('')}</optgroup></select>
+      <div id="relInfo"></div></div>
+      <div class="sect"><h2>Archivio eventi <span class="n" id="evCount"></span></h2>
+      <input id="evQ" class="search" type="search" placeholder="Cerca per luogo, parola, fonte" aria-label="Cerca negli eventi">
+      <div class="lyr" style="grid-template-columns:18px 1fr"><input type="checkbox" id="evMap"><label for="evMap">Solo eventi presenti in mappa</label></div>
+      <div id="evList"></div></div>`;
+    $('#relSel').addEventListener('change', e => showRelation(e.target.value, true));
+    $('#evQ').addEventListener('input', e => { STATE.q = e.target.value; renderEventList(); });
+    $('#evMap').addEventListener('change', e => { STATE.soloMappa = e.target.checked; renderEventList(); });
+  }
+  const rel = STATE.rel ? relById(STATE.rel) : null;
+  $('#relInfo').innerHTML = rel ? `<p style="margin:8px 0 4px">${esc(rel.descrizione || '')} <span class="badge" style="color:var(--ui)">collegamento ${esc(rel.tipo)}</span></p><button class="chip" type="button" id="relClear">Togli evidenziazione</button>` : '';
+  if (rel) $('#relClear').addEventListener('click', () => showRelation(null));
+  const q = norm(STATE.q);
+  let list = EVA.filter(r => evPass(r) && (!STATE.soloMappa || r.in_mappa) && (!rel || rel.eventi.includes(r.id)));
+  if (q) list = list.filter(r => norm([r.titolo, r.descrizione, r.localita, r.comune, r.fonti.map(f => f.editore + ' ' + f.titolo).join(' ')].join(' ')).includes(q));
+  list.sort((x, y) => x.data_evento.localeCompare(y.data_evento));
+  $('#evCount').textContent = `${list.length} eventi · ${STATE.mode === 'anno' ? b : a + '–' + b}`;
+  const byY = {}; list.forEach(r => (byY[r.anno] = byY[r.anno] || []).push(r));
+  $('#evList').innerHTML = Object.keys(byY).length ? Object.entries(byY).map(([y, rs]) => `<div class="evy"><div class="evy-h">${y} <span>${rs.length}</span></div><ul class="evmini">${rs.map(r => `<li><button type="button" data-ev="${r.id}">${evSvg(r.categoria, r.precisione !== 'località', 18)}<span><time>${esc(evDate(r))}</time> ${esc(r.titolo)}<em>${esc([r.localita || r.comune, STATI[r.stato]].filter(Boolean).join(' · '))}${r.in_mappa ? '' : ' · non in mappa'}</em></span></button></li>`).join('')}</ul></div>`).join('')
+    : '<p class="note">Nessun evento con i filtri attuali. Allarga l\'intervallo o riattiva le categorie nel pannello Livelli.</p>';
+  wireMini($('#evList'));
 }
 
 // ---------------------------------------------------------------- toolbar
@@ -575,6 +827,7 @@ document.querySelectorAll('.tabs button').forEach(b => b.addEventListener('click
   document.querySelectorAll('.pane').forEach(p => p.hidden = p.id !== 'pane-' + b.dataset.tab);
 }));
 
-renderLayers(); renderLegend(); renderPlaces(); renderData(); renderSources(); applyTime();
+renderLayers(); renderLegend(); renderPlaces(); renderData(); renderSources(); renderEventList(); applyTime();
+wireMini($('#pane-fonti'));
 window.__atlante = { map, STATE };
 })().catch(err => { console.error(err); const l = document.getElementById('loading'); if (l) { l.hidden = false; l.textContent = 'Errore nel caricamento: ' + err.message; } });

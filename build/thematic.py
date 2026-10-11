@@ -22,7 +22,7 @@ FONTI = [
  dict(id='RAZEN2016', titolo='Long-distance dispersal connects Dinaric-Balkan and Alpine grey wolf (Canis lupus) populations', autore='Ražen N., Brugnoli A., Castagna C., Groff C., Kaczensky P., Kljun F. et al.', anno=2016, tipo='Articolo scientifico (Eur J Wildl Res 62:137–142)', url='https://doi.org/10.1007/s10344-015-0971-z', licenza='—', note='Dispersione di Slavc: 98 giorni, 1.176 km; insediamento nelle Alpi italiane a marzo 2012; prima cucciolata 2013.'),
  dict(id='MENINI2015', titolo='Il ripopolamento naturale del lupo in Lessinia', autore='Menini G. (Università di Padova, rel. A. Zanella)', anno=2015, tipo='Tesi di laurea', url='https://thesis.unipd.it/retrieve/b5dc3770-816f-440b-b971-54dfab6e31a0/Menini_Giacomo.pdf', licenza='—', note='Cronologia 2011–2014 (fototrappole, avvistamenti, rilascio del collare a Podestaria).'),
  dict(id='PARCO2023', titolo='Comunicato stampa: monitoraggio lupi 2022 nella Lessinia veronese', autore='Parco Naturale Regionale della Lessinia', anno=2023, tipo='Comunicato istituzionale', url='https://lessiniapark.it/wp-content/uploads/2023/01/COMUNICATO-STAMPA-MONITORAGGIO-LUPI-2022-LESSINIA-VERONESE-25.01.2022.pdf', licenza='—', note='Tre branchi, 31 lupi; 134 eventi di predazione e 185 capi nella Lessinia veronese nel 2022; ripartizione per comune parziale.'),
- dict(id='TABARELLI2024', titolo='Malghe e lupi in Lessinia: mappatura del territorio e conflitti tra conservazione faunistica e allevamento', autore='Tabarelli de Fatis K. (Università di Padova, rel. A. A. Pilastro)', anno=2024, tipo='Tesi di laurea triennale', url='https://thesis.unipd.it/handle/20.500.12608/89085', licenza='—', note='Dataset di eventi di predazione confermati 2012–2024. Testo integrale non consultato: dati non integrati.'),
+ dict(id='TABARELLI2024', titolo='Malghe e lupi in Lessinia: mappatura del territorio e conflitti tra conservazione faunistica e allevamento', autore='Tabarelli de Fatis K. (Università di Padova, rel. A. A. Pilastro)', anno=2025, tipo='Tesi di laurea triennale', url='https://thesis.unipd.it/handle/20.500.12608/89085', licenza='—', note='94 malghe con predazioni 2012–2024 (82 VR, 12 TN). Serie annuali per le 13 malghe con almeno 10 eventi lette dai grafici A1–A13 (pp. 34–40). Disponibile il 22/07/2025.'),
  dict(id='ILDOLOMITI2025', titolo='Lupi, Fugatti firma il decreto per l\'abbattimento di due esemplari in Lessinia. Ispra: il prelievo non assicura l\'azzeramento del rischio', autore='il Dolomiti', anno=2025, tipo='Stampa (riporta parere ISPRA)', url='https://www.ildolomiti.it/cronaca/2025/lupi-fugatti-firma-il-decreto-per-labbattimento-di-due-esemplari-in-lessinia-ispra-il-prelievo-non-assicura-lazzeramento-del-rischio-di-ulteriori-predazioni', licenza='—', note='Fonte secondaria. Lessinia trentina 2013–2025: 136 eventi, 143 capi uccisi; Malga Boldera 2015–2025: 21 eventi, 27 capi uccisi.'),
  dict(id='ILDOLOMITI2023', titolo='Dopo gli orsi Fugatti dà l\'ok anche all\'abbattimento dei lupi', autore='il Dolomiti', anno=2023, tipo='Stampa', url='https://www.ildolomiti.it/cronaca/2023/dopo-gli-orsi-fugatti-da-lok-anche-allabbattimento-dei-lupi-firmato-il-decreto-che-condanna-a-morte-due-esemplari', licenza='—', note='Fonte secondaria. Malga Boldera: proprietà del Comune di Ala, gestione Società allevatori di Ala; attacchi del 29/6 e 22/7/2023.'),
  dict(id='CDS2026', titolo='Lupo abbattuto in Lessinia, il Consiglio di Stato dà ragione alla Provincia', autore='il Dolomiti', anno=2026, tipo='Stampa', url='https://www.ildolomiti.it/cronaca/2026/lupo-abbattuto-in-lessinia-il-consiglio-di-stato-da-ragione-alla-provincia-decreto-legittimo', licenza='—', note='Fonte secondaria. Abbattimento di un lupo a Malga Boldera nella notte 19–20/9/2025.'),
@@ -86,28 +86,48 @@ luoghi = [
 ]
 
 # ------------------------------------------------------------------ CONFLITTI (malghe con dati per malga)
-def conf(lon, lat, nome, osm, quota, anni, eventi, capi_comp, capi_ucc, prev, extra=None):
-    p = dict(nome=nome, comune='Ala', provincia='TN', osm=osm, quota_m=quota, specie='Bovini',
-             eventi_tot=eventi, capi_compromessi=capi_comp, capi_uccisi=capi_ucc,
-             serie=anni, periodo='2013–2022', impatto='cronico (≥5 eventi 2013–2022)',
-             prevenzione_2021=prev, stato='verificato', fonti=['MUSE2023'],
-             nota='Eventi di predazione e capi coinvolti sono grandezze diverse: un evento può coinvolgere più capi.')
+# Serie principale: eventi di predazione su bovini per anno 2012–2024, Tabarelli de Fatis (2025), grafici A1–A13
+# (dataset MUSE–PAT–Parco–Regione Veneto; valori interi letti dai grafici). Per le quattro malghe di Ala si conserva
+# come confronto la serie 2013–2022 del rapporto MUSE–PAT 2023 (Tab. 5) con capi compromessi/uccisi.
+YT = list(range(2012, 2025))
+def st(vals): return {str(y): v for y, v in zip(YT, vals)}
+YM = list(range(2013, 2023))
+def sm(vals): return {str(y): v for y, v in zip(YM, vals)}
+def conf(lon, lat, nome, osm, comune, prov, serie_t, precisione, muse=None, extra=None):
+    p = dict(nome=nome, comune=comune, provincia=prov, osm=osm, specie='Bovini', serie=serie_t, eventi_tot=sum(serie_t.values()),
+             periodo='2012–2024', fonte_serie='Tabarelli de Fatis 2025, grafici A1–A13 (dataset MUSE–PAT–Parco–Regione Veneto)',
+             precisione=precisione, stato='verificato', fonti=['TABARELLI2024'],
+             nota='Eventi di predazione su bovini; un evento può coinvolgere più capi. Valori letti dai grafici della tesi.')
+    if muse:
+        p.update(serie_muse=muse['serie'], eventi_muse=muse['ev'], capi_compromessi=muse['comp'], capi_uccisi=muse['ucc'],
+                 prevenzione_2021=muse['prev'], impatto='cronico (≥5 eventi 2013–2022, MUSE–PAT)'); p['fonti'] = ['TABARELLI2024', 'MUSE2023']
     if extra: p.update(extra)
     return F(lon, lat, **p)
-Y = list(range(2013, 2023))
-def serie(vals): return {str(y): v for y, v in zip(Y, vals)}
+NO = 'Nessuna misura registrata'
 conflitti = [
- conf(10.97467, 45.68641, 'Malga Boldera', 'way/140264909', 1402, serie([0,0,2,2,1,4,0,0,0,2]), 11, 13, 12,
-      'Recinzione elettrificata multifilo sull\'intero pascolo (dal 2018); nessun cane da guardiania',
+ conf(11.04703, 45.70093, 'Malga Podesteria', 'way/143205782', 'Bosco Chiesanuova', 'VR', st([0,2,3,4,2,5,4,3,4,0,7,3,3]), 'edificio del rifugio-malga Podestaria (OSM)'),
+ conf(11.02534, 45.71246, 'Malga Scortigara di Fondo', 'way/121202994', 'Ala', 'TN', st([0,0,4,3,5,5,6,0,2,4,6,2,2]), 'edificio (OSM)',
+      dict(serie=sm([0,4,3,7,5,6,0,2,6,6]), ev=39, comp=39, ucc=34, prev=NO)),
+ conf(11.02207, 45.69408, 'Malga Lago Boaro', 'node/6603106015', 'Bosco Chiesanuova', 'VR', st([1,2,2,1,1,2,2,1,1,4,7,5,6]), 'toponimo "Casere Lago Boaro" (OSM)'),
+ conf(11.04520, 45.71306, 'Malga Scortigara di Cima', 'way/143205815', 'Ala', 'TN', st([0,0,0,1,1,1,1,1,1,9,4,4,5]), 'edificio (OSM)',
+      dict(serie=sm([0,0,1,1,1,0,1,1,9,4]), ev=18, comp=21, ucc=16, prev=NO)),
+ conf(11.03211, 45.71291, 'Malga Scortigara di Mezzo', 'way/121203030', 'Ala', 'TN', st([0,2,0,1,2,2,1,1,0,6,4,0,1]), 'edificio (OSM)',
+      dict(serie=sm([2,0,1,2,2,1,1,0,6,5]), ev=20, comp=26, ucc=24, prev=NO), dict(nota_fonte='Nella Tab. 6 del rapporto MUSE (2020–2022) i valori per questa malga non coincidono con la Tab. 5: qui si usa la Tab. 5.')),
+ conf(11.03444, 45.67388, 'Malga Camporotondo', 'way/154498006', 'Bosco Chiesanuova', 'VR', st([0,0,0,2,0,2,0,0,7,6,1,0,0]), 'approssimata: Vaio Camporotondo (OSM); l\'edificio della malga non è mappato'),
+ conf(10.96255, 45.67787, 'Malga Pealda Bassa', 'way/294925343', 'Erbezzo', 'VR', st([0,0,0,0,1,0,0,0,1,2,10,3,1]), 'edificio "Pealda bassa" (OSM)'),
+ conf(10.97467, 45.68641, 'Malga Boldera', 'way/140264909', 'Ala', 'TN', st([0,0,0,1,2,1,4,0,0,0,2,5,1]), 'edificio (OSM)',
+      dict(serie=sm([0,0,2,2,1,4,0,0,0,2]), ev=11, comp=13, ucc=12, prev='Recinzione elettrificata multifilo sull\'intero pascolo (dal 2018); nessun cane da guardiania'),
       dict(aggiornamenti=[
         dict(periodo='2023', testo='Attacchi del 29 giugno e 22 luglio; 16 manze e 2 asini in meno di due mesi. Decreto di rimozione di 2 lupi (24/7/2023), non eseguito.', fonti=['ILDOLOMITI2023'], stato='fonte secondaria'),
         dict(periodo='2015–2025', testo='Parere ISPRA citato: 21 eventi su bovine, 27 capi uccisi e 10 feriti; nel 2025 distanza tra i fili 30–35 cm (ottimale 20 cm), installati 3 dissuasori acustici.', fonti=['ILDOLOMITI2025'], stato='fonte secondaria'),
         dict(periodo='Settembre 2025', testo='Un lupo abbattuto nella notte tra il 19 e il 20 settembre su decreto provinciale del 4/9/2025; il Consiglio di Stato ha ritenuto legittimo il decreto (31/7/2026).', fonti=['CDS2026'], stato='fonte secondaria')])),
- conf(11.02534, 45.71246, 'Malga Scortigara di Fondo', 'way/121202994', 1524, serie([0,4,3,7,5,6,0,2,6,6]), 39, 39, 34, 'Nessuna misura registrata'),
- conf(11.03211, 45.71291, 'Malga Scortigara di Mezzo', 'way/121203030', 1572, serie([2,0,1,2,2,1,1,0,6,5]), 20, 26, 24, 'Nessuna misura registrata',
-      dict(nota_fonte='Nella Tab. 6 del rapporto (2020–2022) i valori per questa malga non coincidono con la Tab. 5: qui si usa la Tab. 5.')),
- conf(11.04520, 45.71306, 'Malga Scortigara di Cima', 'way/143205815', 1573, serie([0,0,1,1,1,0,1,1,9,4]), 18, 21, 16, 'Nessuna misura registrata'),
+ conf(11.06991, 45.68736, 'Malga Campolevà di Sopra', 'node/10034101794', 'Bosco Chiesanuova', 'VR', st([0,1,1,0,0,2,1,0,2,2,0,2,1]), 'toponimo (OSM)'),
+ conf(11.02795, 45.69932, 'Malga Costeggioli di Sotto', 'way/215646839', 'Bosco Chiesanuova', 'VR', st([0,2,1,3,1,0,0,0,1,1,3,0,0]), 'edificio (OSM)'),
+ conf(11.07787, 45.68551, 'Malga Campolevà di Sotto', 'node/5860887607', 'Bosco Chiesanuova', 'VR', st([0,0,0,0,0,4,4,1,0,1,1,0,0]), 'toponimo dell\'agriturismo (OSM)'),
+ conf(11.08526, 45.68609, 'Malga San Giorgio', 'node/1165500591', 'Bosco Chiesanuova', 'VR', st([0,0,1,1,0,3,0,0,0,1,0,0,4]), 'approssimata: frazione San Giorgio (OSM); l\'edificio della malga non è identificato'),
 ]
+# malghe con serie nota ma non localizzabili su OSM (restano nella tabella dei dati)
+conflitti_non_localizzati = [dict(nome='Malga Castilverio', serie=st([0,0,2,0,2,2,0,0,2,2,1,0,0]), eventi_tot=11, nota='Toponimo non trovato in OpenStreetMap: non in mappa.', fonti=['TABARELLI2024'])]
 
 # ------------------------------------------------------------------ STATISTICHE AGGREGATE PER AREA (non puntuali)
 aggregati = {
@@ -173,6 +193,7 @@ for f in luoghi: f['properties']['lettera'] = LETTERE[f['properties']['id']]
 luoghi.sort(key=lambda f: f['properties']['lettera'])
 dump(fc(luoghi), 'tema_luoghi_interesse.geojson')
 dump(fc(conflitti), 'tema_conflitti_malghe.geojson')
+dump(conflitti_non_localizzati, 'tema_conflitti_non_localizzati.json')
 dump(aggregati, 'tema_predazioni_aggregate.json')
 dump(fc(lupo), 'tema_lupo_eventi_storici.geojson')
 dump({'cronologia': cronologia, 'cuccioli_minimi': cuccioli, 'fonte_cuccioli': 'PAT2022'}, 'tema_lupo_cronologia.json')

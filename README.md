@@ -1,4 +1,4 @@
-# Atlante della Lessinia — versione 0.1 (10 ottobre 2026)
+# Atlante della Lessinia — versione 0.2 (10 ottobre 2026)
 
 Prototipo di atlante cartografico per il progetto *Diplomazia Multispecie della Lessinia* (Communication Design, Politecnico di Milano).
 
@@ -35,6 +35,17 @@ Atlante-Lessinia/
 4. Per uno stile cartografico specifico aggiungi il layer MapLibre in `src/app.js` e riassembla con `build/make.py`.
 
 I dati non sono mai scritti dentro l'interfaccia: coordinate e numeri stanno solo nei file di `data/`.
+
+## Novità della versione 0.2
+
+- **Archivio eventi 2012–2026** (`app/data/tema_eventi_archivio.json`, `tema_eventi.geojson`): 186 eventi in sette categorie (osservazioni, riproduzione, mortalità, predazioni, interazioni, prevenzione, decisioni istituzionali), 93 localizzati in mappa al toponimo OSM o al comune. Ogni evento ha data del fatto, luogo, precisione, tipo di evidenza, stato di verifica e fonti con URL.
+- **Stati di verifica degli eventi**: accertato, documentato, segnalato, smentito.
+- **Predazioni per malga 2012–2024**: 12 malghe localizzate (più Castilverio, non localizzabile) dalla tesi Tabarelli de Fatis (2025), con la serie MUSE–PAT 2013–2022 come confronto per le malghe di Ala.
+- **Relazioni tra eventi** (`tema_relazioni.json`): cinque relazioni tematiche e undici collegamenti documentati (storici, geografici, istituzionali). Non rappresentano percorsi di animali.
+- **Ambiti diplomatici** (`tema_ambiti_diplomatici.geojson`): dodici ipotesi progettuali (osservazione, rappresentanza, mediazione, negoziazione) costruite sugli eventi e su geometrie reali.
+- **Tempo**: modalità Intervallo, Anno singolo e Cumulativo, fino al 2026.
+- **Pannello Eventi**: archivio completo con ricerca, anche per gli eventi non localizzabili.
+- `research/`: le schede grezze delle quattro ricerche documentali; `build/eventi.py` e `build/ambiti.py` le trasformano nei file dell'atlante.
 
 ## Gradi di verifica
 

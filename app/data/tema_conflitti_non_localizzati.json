@@ -1,0 +1,25 @@
+[
+ {
+  "nome": "Malga Castilverio",
+  "serie": {
+   "2012": 0,
+   "2013": 0,
+   "2014": 2,
+   "2015": 0,
+   "2016": 2,
+   "2017": 2,
+   "2018": 0,
+   "2019": 0,
+   "2020": 2,
+   "2021": 2,
+   "2022": 1,
+   "2023": 0,
+   "2024": 0
+  },
+  "eventi_tot": 11,
+  "nota": "Toponimo non trovato in OpenStreetMap: non in mappa.",
+  "fonti": [
+   "TABARELLI2024"
+  ]
+ }
+]

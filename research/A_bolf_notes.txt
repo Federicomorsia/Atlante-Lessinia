@@ -1,0 +1,37 @@
+I found and checked 78 separate events for 2012–2026. Most fall in 2012–2022, from the Lessinia Bolf yearly pages. The 2023–2026 events come from Io non ho paura del lupo (INHPL), the associations and the press quoting them. The JSON is at the end, in the FORMAT.md schema.
+
+YOUR KNOWN ITEMS
+Confirmed:
+- Malera, 12 Apr 2012: tracks of two wolves.
+- Malga Vallina di Sopra, early Apr 2014: photo of an adult wolf.
+- Fosse, 12 Aug 2012: dead she-wolf. Lessinia Bolf says pesticide bait; no lab report cited.
+- Fosse, 5 Apr 2024: wolf shot. Carcass recovery confirmed by IZSVe; cause still unofficial.
+- Lessinia orientale reproduction 2024: at least 6 pups.
+- New central-southern pack: formed 2023, at least 4 pups in 2024.
+Not confirmed:
+- Malga Rambalda, Sept 2023 poisoning: what I found is a calf carcass with dead ravens in an unnamed malga inside the park, published 12 Sep 2023. No source names Rambalda. Rambalda (Erbezzo) does appear in Sept 2025, as the malga cited in the first cull requests to Regione Veneto.
+- Corno d'Aquilio, June 2025: no source found. The only lead is an L'Arena article on predations at Sant'Anna d'Alfaedo, which I could not open.
+- Passo delle Fittanze, March 2018 (dog, not wolf): I only saw an Il Gazzettino headline ("Non è un lupo ma un cane l'animale catturato, nel Parco della Lessinia"). Not opened, so not in the JSON.
+
+CONTRADICTIONS BETWEEN SOURCES (also in the "note" fields)
+- Second wolf at Malga Boldera, 2025: Il Dolomiti (31 Jul 2026) quotes Fugatti saying a second wolf was culled on 29 Sep 2025. LAV says the second wolf was saved.
+- Boldera decree date: 4 Sep 2025 (Vita Trentina, Il Dolomiti) or 5 Sep (LAV).
+- San Rocco di Piegara shooting, 2018: found 24 Sep (Lessinia Bolf) or 25 Sep (Corriere delle Alpi).
+- Pups in 2018–2019: the Trento provincial report has 2 and 1; Lessinia Bolf has 1 and none surviving.
+- Totals that don't add up: the 2017 species breakdown gives 167, not 166. The 2020 breakdown gives 173, not 125.
+
+SOURCES CONSULTED
+- Lessinia Bolf: sitemaps, the yearly pages 2012–2022, and the pages on predatory impact, coexistence and "l'umano lupo".
+- INHPL: homepage, the 2021, 2022 and 2024 reports, and press releases of 26 Jul 2023, 12 Sep 2023 and 25 Jun 2026.
+- LIFE WolfAlps: the Trento province report 2020–21, and a Piedmont prevention report (Lessinia appears only as a workshop venue).
+- Lessinia park: the 2022 monitoring press release.
+- Associations: WWF Italia, WWF Veronese, LAV, Legambiente (headline only), Coldiretti Verona.
+- Andrea Zanoni's press release of 23 Dec 2013; Ruralpini.
+- Press: Il Dolomiti, L'Adige, Vita Trentina, Fanpage, Verona Oggi, VeronaSera (one 2023 article), Prima Verona, Corriere delle Alpi.
+
+SOURCES I COULD NOT OPEN
+- Rate limit (HTTP 429): the INHPL page "Lupo ucciso a fucilate in Lessinia veneta". I covered that case from press articles.
+- Robots-blocked: larena.it, ilgazzettino.it, the Trento province press office.
+- Fetch errors: veronasera.it (2016 and 2024 articles), daily.veronanetwork.it, mountcity.it, two L'Adige articles, the Alpi Cozie page (404).
+- LIFE WolfAlps EU: I found no page listing fences or guardian dogs given to Lessinia farms, or Wolf Prevention Intervention Units working there.
+

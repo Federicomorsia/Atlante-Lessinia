@@ -1,0 +1,39 @@
+## Report: wolves in Veronese Lessinia, 2012–2026 (Veneto press and institutions)
+
+I compiled **71 events** spread across every year from 2012 to 2026. All have a source I actually opened, except a few labelled in `note` as "title only", where I saw only the search-result title and URL. Most of the core targets checked out. Five did not, and the details are below.
+
+### Requested items: verification outcome
+- **San Rocco di Piegara (Roverè Veronese), Sept 2018 – confirmed.** The wolf was found on 25/09/2018 and killed with pellet shot. IZSVe in Verona did the necropsy and the Procura di Verona is investigating. Sources disagree on weight (40 kg vs 36.5 kg with 28 pellets) and on whether the shooting was on 24 September.
+- **Dolcè, May 2021 – confirmed, but the place name is not.** An adult male was hit on the night of 17–18/05/2021 on the SS12 between Dolcè and Peri. **"Val Vergnana" does not appear in any source**, so I did not use it.
+- **Contrada Vazzo (Velo Veronese) – confirmed.** The wolf was hit at a bus stop on the SP15 on 06/02/2025.
+- **Ponte Florio (Montorio, Verona), 25/01/2023 – confirmed.** The young male rescued there was radio-collared, named "Vento" and released in Lessinia. He was found dead on 08/02/2023, and IZSVe gave canine distemper (cimurro) as the cause.
+- **Fosse (Sant'Anna d'Alfaedo), April 2024 – confirmed, and it is the same event as "the wolf shot near Sant'Anna".** The carcass was recovered on 05/04/2024 by the Carabinieri forestali of Bosco Chiesanuova and sent to IZSVe. The gunshot cause comes from the association and from L'Arena; no official result was published.
+- **Fosse, Aug 2012 – confirmed through a secondary source only.** A she-wolf was found at Fosse/Semalo and died of pesticide poisoning (necropsy by IZS Grosseto). The date is either 12 or 14 August. US DNA analysis showed she was **not** Giulietta.
+- **Malga Rambalda – partly confirmed.** It is in Erbezzo and is the case behind the culling-exemption requests filed on 23/09/2025. **I found no source linking Rambalda to the suspected poisoning of Sept 2023.** That case (a calf carcass with dead ravens around it, Carabinieri anti-poison dog unit on site) has no malga named.
+- **Corno d'Aquilio, June 2025 – not confirmed.** I found only a heifer killed among houses in Sant'Anna d'Alfaedo (before 01/07/2025) and Coldiretti's requests.
+- **Malga Podesteria – only one item.** It is the "festa senza bestiame" protest, seen as an L'Arena title only, with the date inferred.
+- **Malga Lago Boaro – no predation found.** It is only named, as "Lago Boar", in a 2017 farmer's letter.
+- **Corazzari, May 2025 – confirmed.** Regione press release no. 788 of 12/05/2025. I also have DGR 1450 and 1451 of 2024 (the "Heimat" project) and DGR 348 of 2025 (genetic monitoring).
+- **Regional rejection of the Lessinia culling request – unconfirmed date.** It comes only from the July 2026 interrogazione article, and the year of "February" (likely 2026) is inferred.
+
+### Sources
+- **Read in full:** il Dolomiti, L'Adige (Trento), ANSA, AGI, Sky TG24, Kodami/Fanpage, greenMe, montagna.tv, VeronaOggi, L'Adige di Verona (giornaleadige.it), Cronaca di Verona, Corriere delle Alpi, Il Gazzettino, Il Messaggero, italiaambiente, greenreport, cacciapassione, Regione Veneto press releases (regione.veneto.it) and the DGR PDFs, Parco della Lessinia press releases (lessiniapark.it), Coldiretti Verona, the "Io non ho paura del lupo" association (party source), ruralpini.it (party source, farmers' side), veja.it / laveja blog, Studi Veronesi (veronastoria.it), La Voce del Nordest, Renovatio21 (which quotes Il Giornale di Vicenza).
+- **Blocked or failing, so I saw titles and URLs only:**
+  - L'Arena, Telearena and Il Giornale di Vicenza: blocked by robots.
+  - Polesine24 and LaPiazzaWeb: blocked by robots.
+  - VeronaSera and Daily Verona Network: fetch errors.
+  - L'Adige pages using the old dated URLs: errors.
+- **Not reached:** Corriere del Veneto (searches returned nothing), Verona-in, TgVerona, AVEPA, the BUR search pages.
+
+### Leads I could not open (L'Arena titles, no date)
+- An earlier Val d'Adige roadkill ("Un altro lupo investito e ucciso in val d'Adige").
+- Malga San Giorgio (17 predations in the park since May).
+- Two red deer killed near houses at Giazza.
+- Wolves driven out of a contrada with stones.
+- Malghe being emptied in 2025.
+- Brogna sheep breeders giving up.
+
+### Outside your area or criteria
+- **Trentino side of Lessinia:** I included only the Malga Boldera cull of Sept 2025, as context for the Veronese requests.
+- **Plain and Verona city items:** the A22 Vigasio roadkill and Cadidavid are tagged as outside Lessinia in `note`.
+

@@ -1,0 +1,152 @@
+[
+ {
+  "voce": "Branchetto, gennaio 2012: fototrappola",
+  "esito": "verificato",
+  "evento": "EV003",
+  "nota": "24/01/2012; già presente, ora nel livello eventi."
+ },
+ {
+  "voce": "Malera, aprile 2012: tracce di due lupi",
+  "esito": "verificato con discrepanza di luogo",
+  "evento": "EV007",
+  "nota": "12/04/2012. Menini colloca le tracce a Tracchi / Bocca di Selva."
+ },
+ {
+  "voce": "Potteghe, maggio 2012: due lupi",
+  "esito": "verificato",
+  "evento": "EV008",
+  "nota": "04/05/2012."
+ },
+ {
+  "voce": "Malga Revoltel, ottobre–dicembre 2012",
+  "esito": "verificato",
+  "evento": "EV013",
+  "nota": "30/10/2012 genetica, 04/12/2012 foto (eventi separati)."
+ },
+ {
+  "voce": "Malga Vallina di Sopra, aprile 2014",
+  "esito": "verificato",
+  "evento": "EV022",
+  "nota": "Inizio aprile 2014, fonte Lessinia Bolf."
+ },
+ {
+  "voce": "Lessinia orientale, 2024: riproduzione",
+  "esito": "verificato (fonte associativa)",
+  "evento": "EV130",
+  "nota": "Almeno 6 cuccioli; fonte Io non ho paura del lupo via L'Adige."
+ },
+ {
+  "voce": "Lessinia centro-meridionale, 2023–2024: nuovo branco",
+  "esito": "verificato (fonte associativa)",
+  "evento": "EV117",
+  "nota": "Formato nel 2023, almeno 4 cuccioli nel 2024."
+ },
+ {
+  "voce": "Fosse, agosto 2012: lupa avvelenata",
+  "esito": "verificato (fonti secondarie)",
+  "evento": "EV011",
+  "nota": "12 o 14 agosto 2012; necroscopia IZS; non era Giulietta."
+ },
+ {
+  "voce": "San Rocco di Piegara, settembre 2018",
+  "esito": "verificato",
+  "evento": "EV073",
+  "nota": "Trovato il 24 o 25/09/2018, ucciso a pallettoni; indagine della Procura."
+ },
+ {
+  "voce": "Val Vergnana, Dolcè, maggio 2021",
+  "esito": "verificato, toponimo non confermato",
+  "evento": "EV098",
+  "nota": "SS12 tra Dolcè e Peri, notte 17–18/05/2021. \"Val Vergnana\" non compare in nessuna fonte."
+ },
+ {
+  "voce": "Fosse, aprile 2024: lupo ucciso con arma da fuoco",
+  "esito": "documentato",
+  "evento": "EV134",
+  "nota": "Carcassa recuperata il 05/04/2024; causa riportata da associazione e stampa, esito ufficiale non pubblicato."
+ },
+ {
+  "voce": "Contrada Vazzo, Velo Veronese, febbraio 2025",
+  "esito": "verificato",
+  "evento": "EV146",
+  "nota": "06/02/2025, SP15."
+ },
+ {
+  "voce": "Avio, marzo 2025: lupo investito",
+  "esito": "verificato",
+  "evento": "EV149",
+  "nota": "04/03/2025, aggiornamento mensile PAT."
+ },
+ {
+  "voce": "Malga Boldera, settembre 2025: abbattimento",
+  "esito": "verificato",
+  "evento": "EV162",
+  "nota": "Notte 19–20/09/2025. Una fonte del 2026 indica il 29/09: probabile refuso (evento a parte, stato \"segnalato\")."
+ },
+ {
+  "voce": "Avio, febbraio 2026: giovane lupa investita da un treno",
+  "esito": "verificato",
+  "evento": "EV176",
+  "nota": "04/02/2026; un'altra lupa investita da un treno a Masi d'Avio il 16/01/2026."
+ },
+ {
+  "voce": "Malghe Scortigara: predazioni ricorrenti",
+  "esito": "verificato",
+  "evento": "EV002",
+  "nota": "Serie 2012–2024 (Tabarelli) e 2013–2022 (MUSE)."
+ },
+ {
+  "voce": "Malga Posta: predazioni",
+  "esito": "verificato, fuori dall'altopiano",
+  "evento": "EV083",
+  "nota": "Malga Posta è nel gruppo Carega–Piccole Dolomiti (Ala); 15 eventi 2015–2022, soprattutto ovicaprini (MUSE)."
+ },
+ {
+  "voce": "Malga Podesteria: predazioni",
+  "esito": "verificato",
+  "evento": "EV002",
+  "nota": "40 eventi su bovini 2012–2024: prima malga per numero di eventi (Tabarelli)."
+ },
+ {
+  "voce": "Malga Lago Boaro: predazioni",
+  "esito": "verificato",
+  "evento": "EV002",
+  "nota": "35 eventi su bovini 2012–2024 (Tabarelli)."
+ },
+ {
+  "voce": "Malga Boldera: predazioni e prevenzione",
+  "esito": "verificato",
+  "evento": "EV071",
+  "nota": "Recinzione dal 2018; predazioni 2015–2025; decreti 2023 e 2025."
+ },
+ {
+  "voce": "Avio, marzo 2025: interazioni con cani",
+  "esito": "verificato",
+  "evento": "EV148",
+  "nota": "04/03/2025 cane aggredito a Vò Sinistro; 28/03/2025 tentata predazione su due cani da caccia."
+ },
+ {
+  "voce": "Malga Rambalda, settembre 2023: sospetto avvelenamento",
+  "esito": "non verificato",
+  "evento": "EV128",
+  "nota": "Esiste un sospetto avvelenamento nel Parco (12/09/2023) senza malga indicata. Rambalda compare nel 2025 per le richieste di deroga."
+ },
+ {
+  "voce": "Corno d'Aquilio, giugno 2025: predazioni",
+  "esito": "non trovato",
+  "evento": "EV154",
+  "nota": "Trovata solo una manza uccisa tra le case a Sant'Anna d'Alfaedo (giugno 2025). L'Arena non era consultabile."
+ },
+ {
+  "voce": "Passo delle Fittanze, marzo 2018: canide risultato cane",
+  "esito": "non verificato",
+  "evento": "",
+  "nota": "Visto solo il titolo di un articolo del Gazzettino, non aperto: non inserito."
+ },
+ {
+  "voce": "Ponte Florio, Verona, gennaio 2023: recupero",
+  "esito": "verificato",
+  "evento": "EV120",
+  "nota": "25/01/2023; il lupo \"Vento\" è stato rilasciato con collare e trovato morto di cimurro l'08/02/2023."
+ }
+]

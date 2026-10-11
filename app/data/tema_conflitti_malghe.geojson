@@ -6,6 +6,348 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
+     11.04703,
+     45.70093
+    ]
+   },
+   "properties": {
+    "nome": "Malga Podesteria",
+    "comune": "Bosco Chiesanuova",
+    "provincia": "VR",
+    "osm": "way/143205782",
+    "specie": "Bovini",
+    "serie": {
+     "2012": 0,
+     "2013": 2,
+     "2014": 3,
+     "2015": 4,
+     "2016": 2,
+     "2017": 5,
+     "2018": 4,
+     "2019": 3,
+     "2020": 4,
+     "2021": 0,
+     "2022": 7,
+     "2023": 3,
+     "2024": 3
+    },
+    "eventi_tot": 40,
+    "periodo": "2012–2024",
+    "fonte_serie": "Tabarelli de Fatis 2025, grafici A1–A13 (dataset MUSE–PAT–Parco–Regione Veneto)",
+    "precisione": "edificio del rifugio-malga Podestaria (OSM)",
+    "stato": "verificato",
+    "fonti": [
+     "TABARELLI2024"
+    ],
+    "nota": "Eventi di predazione su bovini; un evento può coinvolgere più capi. Valori letti dai grafici della tesi."
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     11.02534,
+     45.71246
+    ]
+   },
+   "properties": {
+    "nome": "Malga Scortigara di Fondo",
+    "comune": "Ala",
+    "provincia": "TN",
+    "osm": "way/121202994",
+    "specie": "Bovini",
+    "serie": {
+     "2012": 0,
+     "2013": 0,
+     "2014": 4,
+     "2015": 3,
+     "2016": 5,
+     "2017": 5,
+     "2018": 6,
+     "2019": 0,
+     "2020": 2,
+     "2021": 4,
+     "2022": 6,
+     "2023": 2,
+     "2024": 2
+    },
+    "eventi_tot": 39,
+    "periodo": "2012–2024",
+    "fonte_serie": "Tabarelli de Fatis 2025, grafici A1–A13 (dataset MUSE–PAT–Parco–Regione Veneto)",
+    "precisione": "edificio (OSM)",
+    "stato": "verificato",
+    "fonti": [
+     "TABARELLI2024",
+     "MUSE2023"
+    ],
+    "nota": "Eventi di predazione su bovini; un evento può coinvolgere più capi. Valori letti dai grafici della tesi.",
+    "serie_muse": {
+     "2013": 0,
+     "2014": 4,
+     "2015": 3,
+     "2016": 7,
+     "2017": 5,
+     "2018": 6,
+     "2019": 0,
+     "2020": 2,
+     "2021": 6,
+     "2022": 6
+    },
+    "eventi_muse": 39,
+    "capi_compromessi": 39,
+    "capi_uccisi": 34,
+    "prevenzione_2021": "Nessuna misura registrata",
+    "impatto": "cronico (≥5 eventi 2013–2022, MUSE–PAT)"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     11.02207,
+     45.69408
+    ]
+   },
+   "properties": {
+    "nome": "Malga Lago Boaro",
+    "comune": "Bosco Chiesanuova",
+    "provincia": "VR",
+    "osm": "node/6603106015",
+    "specie": "Bovini",
+    "serie": {
+     "2012": 1,
+     "2013": 2,
+     "2014": 2,
+     "2015": 1,
+     "2016": 1,
+     "2017": 2,
+     "2018": 2,
+     "2019": 1,
+     "2020": 1,
+     "2021": 4,
+     "2022": 7,
+     "2023": 5,
+     "2024": 6
+    },
+    "eventi_tot": 35,
+    "periodo": "2012–2024",
+    "fonte_serie": "Tabarelli de Fatis 2025, grafici A1–A13 (dataset MUSE–PAT–Parco–Regione Veneto)",
+    "precisione": "toponimo \"Casere Lago Boaro\" (OSM)",
+    "stato": "verificato",
+    "fonti": [
+     "TABARELLI2024"
+    ],
+    "nota": "Eventi di predazione su bovini; un evento può coinvolgere più capi. Valori letti dai grafici della tesi."
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     11.0452,
+     45.71306
+    ]
+   },
+   "properties": {
+    "nome": "Malga Scortigara di Cima",
+    "comune": "Ala",
+    "provincia": "TN",
+    "osm": "way/143205815",
+    "specie": "Bovini",
+    "serie": {
+     "2012": 0,
+     "2013": 0,
+     "2014": 0,
+     "2015": 1,
+     "2016": 1,
+     "2017": 1,
+     "2018": 1,
+     "2019": 1,
+     "2020": 1,
+     "2021": 9,
+     "2022": 4,
+     "2023": 4,
+     "2024": 5
+    },
+    "eventi_tot": 28,
+    "periodo": "2012–2024",
+    "fonte_serie": "Tabarelli de Fatis 2025, grafici A1–A13 (dataset MUSE–PAT–Parco–Regione Veneto)",
+    "precisione": "edificio (OSM)",
+    "stato": "verificato",
+    "fonti": [
+     "TABARELLI2024",
+     "MUSE2023"
+    ],
+    "nota": "Eventi di predazione su bovini; un evento può coinvolgere più capi. Valori letti dai grafici della tesi.",
+    "serie_muse": {
+     "2013": 0,
+     "2014": 0,
+     "2015": 1,
+     "2016": 1,
+     "2017": 1,
+     "2018": 0,
+     "2019": 1,
+     "2020": 1,
+     "2021": 9,
+     "2022": 4
+    },
+    "eventi_muse": 18,
+    "capi_compromessi": 21,
+    "capi_uccisi": 16,
+    "prevenzione_2021": "Nessuna misura registrata",
+    "impatto": "cronico (≥5 eventi 2013–2022, MUSE–PAT)"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     11.03211,
+     45.71291
+    ]
+   },
+   "properties": {
+    "nome": "Malga Scortigara di Mezzo",
+    "comune": "Ala",
+    "provincia": "TN",
+    "osm": "way/121203030",
+    "specie": "Bovini",
+    "serie": {
+     "2012": 0,
+     "2013": 2,
+     "2014": 0,
+     "2015": 1,
+     "2016": 2,
+     "2017": 2,
+     "2018": 1,
+     "2019": 1,
+     "2020": 0,
+     "2021": 6,
+     "2022": 4,
+     "2023": 0,
+     "2024": 1
+    },
+    "eventi_tot": 20,
+    "periodo": "2012–2024",
+    "fonte_serie": "Tabarelli de Fatis 2025, grafici A1–A13 (dataset MUSE–PAT–Parco–Regione Veneto)",
+    "precisione": "edificio (OSM)",
+    "stato": "verificato",
+    "fonti": [
+     "TABARELLI2024",
+     "MUSE2023"
+    ],
+    "nota": "Eventi di predazione su bovini; un evento può coinvolgere più capi. Valori letti dai grafici della tesi.",
+    "serie_muse": {
+     "2013": 2,
+     "2014": 0,
+     "2015": 1,
+     "2016": 2,
+     "2017": 2,
+     "2018": 1,
+     "2019": 1,
+     "2020": 0,
+     "2021": 6,
+     "2022": 5
+    },
+    "eventi_muse": 20,
+    "capi_compromessi": 26,
+    "capi_uccisi": 24,
+    "prevenzione_2021": "Nessuna misura registrata",
+    "impatto": "cronico (≥5 eventi 2013–2022, MUSE–PAT)",
+    "nota_fonte": "Nella Tab. 6 del rapporto MUSE (2020–2022) i valori per questa malga non coincidono con la Tab. 5: qui si usa la Tab. 5."
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     11.03444,
+     45.67388
+    ]
+   },
+   "properties": {
+    "nome": "Malga Camporotondo",
+    "comune": "Bosco Chiesanuova",
+    "provincia": "VR",
+    "osm": "way/154498006",
+    "specie": "Bovini",
+    "serie": {
+     "2012": 0,
+     "2013": 0,
+     "2014": 0,
+     "2015": 2,
+     "2016": 0,
+     "2017": 2,
+     "2018": 0,
+     "2019": 0,
+     "2020": 7,
+     "2021": 6,
+     "2022": 1,
+     "2023": 0,
+     "2024": 0
+    },
+    "eventi_tot": 18,
+    "periodo": "2012–2024",
+    "fonte_serie": "Tabarelli de Fatis 2025, grafici A1–A13 (dataset MUSE–PAT–Parco–Regione Veneto)",
+    "precisione": "approssimata: Vaio Camporotondo (OSM); l'edificio della malga non è mappato",
+    "stato": "verificato",
+    "fonti": [
+     "TABARELLI2024"
+    ],
+    "nota": "Eventi di predazione su bovini; un evento può coinvolgere più capi. Valori letti dai grafici della tesi."
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     10.96255,
+     45.67787
+    ]
+   },
+   "properties": {
+    "nome": "Malga Pealda Bassa",
+    "comune": "Erbezzo",
+    "provincia": "VR",
+    "osm": "way/294925343",
+    "specie": "Bovini",
+    "serie": {
+     "2012": 0,
+     "2013": 0,
+     "2014": 0,
+     "2015": 0,
+     "2016": 1,
+     "2017": 0,
+     "2018": 0,
+     "2019": 0,
+     "2020": 1,
+     "2021": 2,
+     "2022": 10,
+     "2023": 3,
+     "2024": 1
+    },
+    "eventi_tot": 18,
+    "periodo": "2012–2024",
+    "fonte_serie": "Tabarelli de Fatis 2025, grafici A1–A13 (dataset MUSE–PAT–Parco–Regione Veneto)",
+    "precisione": "edificio \"Pealda bassa\" (OSM)",
+    "stato": "verificato",
+    "fonti": [
+     "TABARELLI2024"
+    ],
+    "nota": "Eventi di predazione su bovini; un evento può coinvolgere più capi. Valori letti dai grafici della tesi."
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
      10.97467,
      45.68641
     ]
@@ -15,12 +357,33 @@
     "comune": "Ala",
     "provincia": "TN",
     "osm": "way/140264909",
-    "quota_m": 1402,
     "specie": "Bovini",
-    "eventi_tot": 11,
-    "capi_compromessi": 13,
-    "capi_uccisi": 12,
     "serie": {
+     "2012": 0,
+     "2013": 0,
+     "2014": 0,
+     "2015": 1,
+     "2016": 2,
+     "2017": 1,
+     "2018": 4,
+     "2019": 0,
+     "2020": 0,
+     "2021": 0,
+     "2022": 2,
+     "2023": 5,
+     "2024": 1
+    },
+    "eventi_tot": 16,
+    "periodo": "2012–2024",
+    "fonte_serie": "Tabarelli de Fatis 2025, grafici A1–A13 (dataset MUSE–PAT–Parco–Regione Veneto)",
+    "precisione": "edificio (OSM)",
+    "stato": "verificato",
+    "fonti": [
+     "TABARELLI2024",
+     "MUSE2023"
+    ],
+    "nota": "Eventi di predazione su bovini; un evento può coinvolgere più capi. Valori letti dai grafici della tesi.",
+    "serie_muse": {
      "2013": 0,
      "2014": 0,
      "2015": 2,
@@ -32,14 +395,11 @@
      "2021": 0,
      "2022": 2
     },
-    "periodo": "2013–2022",
-    "impatto": "cronico (≥5 eventi 2013–2022)",
+    "eventi_muse": 11,
+    "capi_compromessi": 13,
+    "capi_uccisi": 12,
     "prevenzione_2021": "Recinzione elettrificata multifilo sull'intero pascolo (dal 2018); nessun cane da guardiania",
-    "stato": "verificato",
-    "fonti": [
-     "MUSE2023"
-    ],
-    "nota": "Eventi di predazione e capi coinvolti sono grandezze diverse: un evento può coinvolgere più capi.",
+    "impatto": "cronico (≥5 eventi 2013–2022, MUSE–PAT)",
     "aggiornamenti": [
      {
       "periodo": "2023",
@@ -73,82 +433,40 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     11.02534,
-     45.71246
+     11.06991,
+     45.68736
     ]
    },
    "properties": {
-    "nome": "Malga Scortigara di Fondo",
-    "comune": "Ala",
-    "provincia": "TN",
-    "osm": "way/121202994",
-    "quota_m": 1524,
+    "nome": "Malga Campolevà di Sopra",
+    "comune": "Bosco Chiesanuova",
+    "provincia": "VR",
+    "osm": "node/10034101794",
     "specie": "Bovini",
-    "eventi_tot": 39,
-    "capi_compromessi": 39,
-    "capi_uccisi": 34,
     "serie": {
-     "2013": 0,
-     "2014": 4,
-     "2015": 3,
-     "2016": 7,
-     "2017": 5,
-     "2018": 6,
-     "2019": 0,
-     "2020": 2,
-     "2021": 6,
-     "2022": 6
-    },
-    "periodo": "2013–2022",
-    "impatto": "cronico (≥5 eventi 2013–2022)",
-    "prevenzione_2021": "Nessuna misura registrata",
-    "stato": "verificato",
-    "fonti": [
-     "MUSE2023"
-    ],
-    "nota": "Eventi di predazione e capi coinvolti sono grandezze diverse: un evento può coinvolgere più capi."
-   }
-  },
-  {
-   "type": "Feature",
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     11.03211,
-     45.71291
-    ]
-   },
-   "properties": {
-    "nome": "Malga Scortigara di Mezzo",
-    "comune": "Ala",
-    "provincia": "TN",
-    "osm": "way/121203030",
-    "quota_m": 1572,
-    "specie": "Bovini",
-    "eventi_tot": 20,
-    "capi_compromessi": 26,
-    "capi_uccisi": 24,
-    "serie": {
-     "2013": 2,
-     "2014": 0,
-     "2015": 1,
-     "2016": 2,
+     "2012": 0,
+     "2013": 1,
+     "2014": 1,
+     "2015": 0,
+     "2016": 0,
      "2017": 2,
      "2018": 1,
-     "2019": 1,
-     "2020": 0,
-     "2021": 6,
-     "2022": 5
+     "2019": 0,
+     "2020": 2,
+     "2021": 2,
+     "2022": 0,
+     "2023": 2,
+     "2024": 1
     },
-    "periodo": "2013–2022",
-    "impatto": "cronico (≥5 eventi 2013–2022)",
-    "prevenzione_2021": "Nessuna misura registrata",
+    "eventi_tot": 12,
+    "periodo": "2012–2024",
+    "fonte_serie": "Tabarelli de Fatis 2025, grafici A1–A13 (dataset MUSE–PAT–Parco–Regione Veneto)",
+    "precisione": "toponimo (OSM)",
     "stato": "verificato",
     "fonti": [
-     "MUSE2023"
+     "TABARELLI2024"
     ],
-    "nota": "Eventi di predazione e capi coinvolti sono grandezze diverse: un evento può coinvolgere più capi.",
-    "nota_fonte": "Nella Tab. 6 del rapporto (2020–2022) i valori per questa malga non coincidono con la Tab. 5: qui si usa la Tab. 5."
+    "nota": "Eventi di predazione su bovini; un evento può coinvolgere più capi. Valori letti dai grafici della tesi."
    }
   },
   {
@@ -156,40 +474,122 @@
    "geometry": {
     "type": "Point",
     "coordinates": [
-     11.0452,
-     45.71306
+     11.02795,
+     45.69932
     ]
    },
    "properties": {
-    "nome": "Malga Scortigara di Cima",
-    "comune": "Ala",
-    "provincia": "TN",
-    "osm": "way/143205815",
-    "quota_m": 1573,
+    "nome": "Malga Costeggioli di Sotto",
+    "comune": "Bosco Chiesanuova",
+    "provincia": "VR",
+    "osm": "way/215646839",
     "specie": "Bovini",
-    "eventi_tot": 18,
-    "capi_compromessi": 21,
-    "capi_uccisi": 16,
     "serie": {
-     "2013": 0,
-     "2014": 0,
-     "2015": 1,
+     "2012": 0,
+     "2013": 2,
+     "2014": 1,
+     "2015": 3,
      "2016": 1,
-     "2017": 1,
+     "2017": 0,
      "2018": 0,
-     "2019": 1,
+     "2019": 0,
      "2020": 1,
-     "2021": 9,
-     "2022": 4
+     "2021": 1,
+     "2022": 3,
+     "2023": 0,
+     "2024": 0
     },
-    "periodo": "2013–2022",
-    "impatto": "cronico (≥5 eventi 2013–2022)",
-    "prevenzione_2021": "Nessuna misura registrata",
+    "eventi_tot": 12,
+    "periodo": "2012–2024",
+    "fonte_serie": "Tabarelli de Fatis 2025, grafici A1–A13 (dataset MUSE–PAT–Parco–Regione Veneto)",
+    "precisione": "edificio (OSM)",
     "stato": "verificato",
     "fonti": [
-     "MUSE2023"
+     "TABARELLI2024"
     ],
-    "nota": "Eventi di predazione e capi coinvolti sono grandezze diverse: un evento può coinvolgere più capi."
+    "nota": "Eventi di predazione su bovini; un evento può coinvolgere più capi. Valori letti dai grafici della tesi."
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     11.07787,
+     45.68551
+    ]
+   },
+   "properties": {
+    "nome": "Malga Campolevà di Sotto",
+    "comune": "Bosco Chiesanuova",
+    "provincia": "VR",
+    "osm": "node/5860887607",
+    "specie": "Bovini",
+    "serie": {
+     "2012": 0,
+     "2013": 0,
+     "2014": 0,
+     "2015": 0,
+     "2016": 0,
+     "2017": 4,
+     "2018": 4,
+     "2019": 1,
+     "2020": 0,
+     "2021": 1,
+     "2022": 1,
+     "2023": 0,
+     "2024": 0
+    },
+    "eventi_tot": 11,
+    "periodo": "2012–2024",
+    "fonte_serie": "Tabarelli de Fatis 2025, grafici A1–A13 (dataset MUSE–PAT–Parco–Regione Veneto)",
+    "precisione": "toponimo dell'agriturismo (OSM)",
+    "stato": "verificato",
+    "fonti": [
+     "TABARELLI2024"
+    ],
+    "nota": "Eventi di predazione su bovini; un evento può coinvolgere più capi. Valori letti dai grafici della tesi."
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     11.08526,
+     45.68609
+    ]
+   },
+   "properties": {
+    "nome": "Malga San Giorgio",
+    "comune": "Bosco Chiesanuova",
+    "provincia": "VR",
+    "osm": "node/1165500591",
+    "specie": "Bovini",
+    "serie": {
+     "2012": 0,
+     "2013": 0,
+     "2014": 1,
+     "2015": 1,
+     "2016": 0,
+     "2017": 3,
+     "2018": 0,
+     "2019": 0,
+     "2020": 0,
+     "2021": 1,
+     "2022": 0,
+     "2023": 0,
+     "2024": 4
+    },
+    "eventi_tot": 10,
+    "periodo": "2012–2024",
+    "fonte_serie": "Tabarelli de Fatis 2025, grafici A1–A13 (dataset MUSE–PAT–Parco–Regione Veneto)",
+    "precisione": "approssimata: frazione San Giorgio (OSM); l'edificio della malga non è identificato",
+    "stato": "verificato",
+    "fonti": [
+     "TABARELLI2024"
+    ],
+    "nota": "Eventi di predazione su bovini; un evento può coinvolgere più capi. Valori letti dai grafici della tesi."
    }
   }
  ]

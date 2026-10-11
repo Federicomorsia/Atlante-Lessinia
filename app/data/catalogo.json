@@ -1,5 +1,5 @@
 {
- "versione": "0.1 — 10 ottobre 2026",
+ "versione": "0.2 — 10 ottobre 2026",
  "estensione": [
   10.8,
   45.48,
@@ -36,6 +36,14 @@
   {
    "id": "06",
    "titolo": "Attività e infrastrutture umane"
+  },
+  {
+   "id": "E",
+   "titolo": "Archivio eventi 2012–2026"
+  },
+  {
+   "id": "D",
+   "titolo": "Ambiti diplomatici · ipotesi progettuali"
   }
  ],
  "livelli": [
@@ -397,27 +405,6 @@
    }
   },
   {
-   "id": "lupo_eventi",
-   "gruppo": "04",
-   "titolo": "Osservazioni storiche documentate (2012)",
-   "tipo": "geojson",
-   "file": "data/tema_lupo_eventi_storici.geojson",
-   "fonti": [
-    "MENINI2015",
-    "PAT2022"
-   ],
-   "stato": "osservazione",
-   "periodo": "gennaio–dicembre 2012",
-   "temporale": "anno",
-   "visibile": true,
-   "interattivo": true,
-   "legenda": {
-    "forma": "rombo",
-    "colore": "#54479A",
-    "testo": "Localizzate al toponimo citato dalla fonte"
-   }
-  },
-  {
    "id": "lupo_branchi",
    "gruppo": "04",
    "titolo": "Comuni interessati dai branchi (2022)",
@@ -457,16 +444,17 @@
    "tipo": "conflitti",
    "file": "data/tema_conflitti_malghe.geojson",
    "fonti": [
+    "TABARELLI2024",
     "MUSE2023"
    ],
    "stato": "verificato",
-   "periodo": "2013–2022",
+   "periodo": "2012–2024",
    "visibile": true,
    "interattivo": true,
    "legenda": {
     "forma": "cerchi",
     "colore": "#B4432C",
-    "testo": "Area ∝ numero di eventi nell'intervallo scelto (non numero di capi)"
+    "testo": "Area ∝ eventi su bovini nell'intervallo scelto (non numero di capi). 12 malghe con almeno 10 eventi 2012–2024"
    }
   },
   {
@@ -623,6 +611,189 @@
    "legenda": {
     "forma": "lettera",
     "testo": "Luoghi del progetto, schede nel pannello Luoghi"
+   }
+  },
+  {
+   "id": "ev_osservazione",
+   "gruppo": "E",
+   "titolo": "Osservazioni",
+   "tipo": "eventi",
+   "categoria": "osservazione",
+   "fonti": [],
+   "stato": "vari",
+   "periodo": "2012–2026",
+   "visibile": true,
+   "interattivo": true,
+   "sub": "avvistamenti, fototrappole, tracce, genetica, monitoraggi",
+   "legenda": {
+    "forma": "evento",
+    "categoria": "osservazione"
+   }
+  },
+  {
+   "id": "ev_riproduzione",
+   "gruppo": "E",
+   "titolo": "Riproduzione",
+   "tipo": "eventi",
+   "categoria": "riproduzione",
+   "fonti": [],
+   "stato": "vari",
+   "periodo": "2012–2026",
+   "visibile": true,
+   "interattivo": true,
+   "sub": "cucciolate e nuovi branchi (mai al sito riproduttivo)",
+   "legenda": {
+    "forma": "evento",
+    "categoria": "riproduzione"
+   }
+  },
+  {
+   "id": "ev_mortalita",
+   "gruppo": "E",
+   "titolo": "Mortalità",
+   "tipo": "eventi",
+   "categoria": "mortalita",
+   "fonti": [],
+   "stato": "vari",
+   "periodo": "2012–2026",
+   "visibile": true,
+   "interattivo": true,
+   "sub": "investimenti, bracconaggio, veleni, abbattimenti, malattie",
+   "legenda": {
+    "forma": "evento",
+    "categoria": "mortalita"
+   }
+  },
+  {
+   "id": "ev_predazione",
+   "gruppo": "E",
+   "titolo": "Predazioni",
+   "tipo": "eventi",
+   "categoria": "predazione",
+   "fonti": [],
+   "stato": "vari",
+   "periodo": "2012–2026",
+   "visibile": true,
+   "interattivo": true,
+   "sub": "singoli episodi documentati su bestiame",
+   "legenda": {
+    "forma": "evento",
+    "categoria": "predazione"
+   }
+  },
+  {
+   "id": "ev_interazione",
+   "gruppo": "E",
+   "titolo": "Interazioni",
+   "tipo": "eventi",
+   "categoria": "interazione",
+   "fonti": [],
+   "stato": "vari",
+   "periodo": "2012–2026",
+   "visibile": true,
+   "interattivo": true,
+   "sub": "cani, abitati, escursionisti, conflitti sociali",
+   "legenda": {
+    "forma": "evento",
+    "categoria": "interazione"
+   }
+  },
+  {
+   "id": "ev_prevenzione",
+   "gruppo": "E",
+   "titolo": "Prevenzione",
+   "tipo": "eventi",
+   "categoria": "prevenzione",
+   "fonti": [],
+   "stato": "vari",
+   "periodo": "2012–2026",
+   "visibile": true,
+   "interattivo": true,
+   "sub": "recinzioni, cani da guardiania, progetti",
+   "legenda": {
+    "forma": "evento",
+    "categoria": "prevenzione"
+   }
+  },
+  {
+   "id": "ev_decisione",
+   "gruppo": "E",
+   "titolo": "Decisioni istituzionali",
+   "tipo": "eventi",
+   "categoria": "decisione",
+   "fonti": [],
+   "stato": "vari",
+   "periodo": "2012–2026",
+   "visibile": true,
+   "interattivo": true,
+   "sub": "provvedimenti, sentenze, tavoli, finanziamenti",
+   "legenda": {
+    "forma": "evento",
+    "categoria": "decisione"
+   }
+  },
+  {
+   "id": "amb_osservazione",
+   "gruppo": "D",
+   "titolo": "Osservazione",
+   "tipo": "ambiti",
+   "fonti": [],
+   "stato": "ipotesi",
+   "periodo": "ipotesi",
+   "visibile": false,
+   "interattivo": true,
+   "sub": "territori con evidenze di presenza e monitoraggio",
+   "legenda": {
+    "forma": "ambito",
+    "tipo": "osservazione"
+   }
+  },
+  {
+   "id": "amb_rappresentanza",
+   "gruppo": "D",
+   "titolo": "Rappresentanza",
+   "tipo": "ambiti",
+   "fonti": [],
+   "stato": "ipotesi",
+   "periodo": "ipotesi",
+   "visibile": false,
+   "interattivo": true,
+   "sub": "tutela e vulnerabilità della specie",
+   "legenda": {
+    "forma": "ambito",
+    "tipo": "rappresentanza"
+   }
+  },
+  {
+   "id": "amb_mediazione",
+   "gruppo": "D",
+   "titolo": "Mediazione",
+   "tipo": "ambiti",
+   "fonti": [],
+   "stato": "ipotesi",
+   "periodo": "ipotesi",
+   "visibile": false,
+   "interattivo": true,
+   "sub": "conflitti tra esigenze umane e fauna",
+   "legenda": {
+    "forma": "ambito",
+    "tipo": "mediazione"
+   }
+  },
+  {
+   "id": "amb_negoziazione",
+   "gruppo": "D",
+   "titolo": "Negoziazione",
+   "tipo": "ambiti",
+   "fonti": [],
+   "stato": "ipotesi",
+   "periodo": "ipotesi",
+   "visibile": false,
+   "interattivo": true,
+   "sub": "decisioni e condizioni di coesistenza discutibili",
+   "legenda": {
+    "forma": "ambito",
+    "tipo": "negoziazione"
    }
   }
  ]

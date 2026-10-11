@@ -1,0 +1,74 @@
+REPORT: scientific and technical literature cluster, wolves in Lessinia 2012–2026
+
+## Sources consulted (opened)
+- Tabarelli de Fatis K., "Malghe e lupi in Lessinia…" (UniPD triennale, relatore A.A. Pilastro, a.a. 2024/25, made available 22 Jul 2025). The full text is open access and I read it via https://thesis.unipd.it/retrieve/8bf7f324-0b63-4dc1-bb0d-ab26d47a21aa/TabarellideFatis_Karol.pdf.
+- Stagnoli G., "Predazione del lupo nelle aree alpine del Veneto" (UniPD magistrale, relatore M. Scotton, made available 17 Jul 2025). It covers 2021–23 at regional and provincial level and has almost no Lessinia-specific numbers.
+- Menini G., "Il ripopolamento naturale del lupo in Lessinia" (UniPD, a.a. 2014/15).
+- Vareschi A., "Tecniche di monitoraggio del lupo… Branco dei Monti Lessini" (UniPD, a.a. 2015/16).
+- Selva P., "Ecologia alimentare del lupo in Lessinia" (UniPD magistrale, a.a. 2017/18).
+- Calabrese M.S. (UniTN 2014/15). It is historical and of marginal use.
+- Sartor P. (UniPD 2023/24). It covers Friuli Venezia Giulia only and has nothing on Lessinia.
+- MUSE-PAT technical report "Predazioni da lupo sul bestiame domestico in provincia di Trento" (Bombieri et al., Aug 2023).
+- Regione Veneto DGR 1080/2017, Allegato A, the wolf management plan and derogation request (copy hosted on cristinaguarda.it).
+- DGR 348/2025.
+- LIFE WolfAlps EU reports:
+  - "Genotipi documentati e branchi identificati nel PN Dolomiti Bellunesi 2021-2023" (Oct 2024)
+  - "La distribuzione del lupo nelle regioni alpine 2021-2023" and "…2020-2024"
+  - "La popolazione di lupo nelle regioni alpine italiane 2023/2024" (Nov 2025)
+- ISPRA news on the 2020–21 national monitoring.
+- Ražen et al. 2016 (EJWR 62:137–142, Springer abstract page).
+- Faccioni et al. 2015 (Poljoprivreda 21(1) suppl.).
+- Franchini et al. 2025 (IJAS). It has no Lessinia specifics.
+- Damiani et al. 2026 (JWM). It has no Lessinia specifics.
+- PAT Rapporto Grandi Carnivori 2025, German edition (TED).
+- PAT press releases 6720 (20 Sep 2025), 6748, 6792 and 6796.
+- Press used for dates and context: ilDolomiti (3 May 2026, 5 Sep 2025, 25 Sep 2025, 10 Nov 2025, 7 Sep 2023, 15 Dec 2023, 13 May 2023), L'Adige (6 Jan 2017, 8 Sep 2017, 26 Jan 2023, 13 Dec 2024), Open (26 Jul 2023), greenMe (12 Aug 2023, 15 Mar 2023, 4 Feb 2024), montagna.tv (29 Nov 2012, 17 Jun 2017, PAT 2025 report), ALPARC (30 Aug 2013), vol.at (4 May 2026), cacciapassione (16 Sep 2021).
+
+## Sources inaccessible or not found
+- **The master's thesis cited in the PAT Rapporto 2025 (2012–2024, 711 events, 952 animals, 99 alpeggi): author and title NOT identified.**
+  - ilDolomiti, vol.at and the PAT press releases do not name it.
+  - The German edition of the Rapporto does not mention it either. I could not locate the Italian edition PDF.
+  - It is NOT the Tabarelli thesis. Tabarelli is a triennale with 94 malghe, and its abstract does not give these figures.
+  - It is NOT Stagnoli, whose data are 2021–23 and Veneto-wide.
+  - It is plausibly built on the same MUSE/PAT/Parco/Veneto dataset that Tabarelli used (p. 20), but that is unverified.
+- Tabarelli's per-malga and per-year counts exist only as charts: Figs. 9–11, pp. 24–25, and appendix graphs A1–A13, pp. 34–40. The text extractor could not read them. **The top-5 malghe are not named in the text except Malga Boldera.** Someone needs to read Figs. 9–10 by eye.
+- Blocked by robots or proxy:
+  - PAT Rapporto Grandi Carnivori 2024 PDF
+  - ufficiostampa.provincia.tn.it pages (2023 decree, TAR Oct 2025)
+  - grandicarnivori "Rapporti" index
+  - ResearchGate 396386598 (client error)
+  - direct curl downloads (proxy 403)
+- lessiniapark.it has no wolf monitoring reports reachable from its homepage.
+- Not found:
+  - the ISPRA technical opinions themselves (only reported through the press and the PAT)
+  - the LIFE WolfAlps Veneto report 2020–21 with Lessinia pack detail
+  - the IDs WVR-F013 and WVR-F014
+  - Lessinia wolf-howling or hybrid analyses
+
+## Per-malga predation counts found
+| Malga | Comune/Prov. | Count | Period | Source / page |
+|---|---|---|---|---|
+| Scortigara di Fondo | Lessinia trentina, TN (comune not stated) | 39 events, no prevention | 2013–2022 | MUSE-PAT 2023 report, chronic-impact table (page not extracted) |
+| Scortigara di Mezzo | same | 20 events (2013–22); 14 events in 2020–22 (2 / 6 / 6) | 2013–2022 | MUSE-PAT 2023 |
+| Scortigara di Cima | same | 18 events (2013–22); 14 events in 2020–22 (1 / 9 / 4) | 2013–2022 | MUSE-PAT 2023. The report also uses "di Sotto" and "di Sopra", so the names are inconsistent. |
+| Malga Boldera | Ala, TN | 11 events, all cattle; electric fence installed 2018 after its first 4 predations | 2013–2022 | MUSE-PAT 2023 |
+| Malga Boldera | Ala, TN | 16 cattle + 2 donkeys (2023); 1 head of cattle (2024) | 2023–2024 | Tabarelli pp. 26–27. Open (26 Jul 2023) gives 15 cattle + 2 donkeys. |
+| Malga Boldera | Ala, TN | 21 events, 27 dead, 10 injured | 2015–2025 | ISPRA/PAT data as reported by ilDolomiti, 5 Sep 2025 |
+| Malga Boldera | Ala, TN | 1 heifer (18 Jun); 3 heifers (11 Aug); 5 animals (13 Aug) | 2025 | ilDolomiti, 5 Sep 2025. The PAT Rapporto 2025 (TED) p. 35 gives 8 calves on 11 and 13 Aug. |
+| Malga Valbella e Volpina | Erbezzo, VR | calves attacked on 10 and 15 May (number per site not stated) | 2012 | Menini p. 38 |
+| Val Sguerza (pasture, not a malga) | Velo Veronese, VR | 7 sheep | 14–25 Jul 2012 | Menini p. 38 |
+| Malga Rambalda | Erbezzo, VR | several predations, no count (named by L'Arena via ilDolomiti) | 2025 | ilDolomiti, 25 Sep 2025 |
+
+Aggregates from the same sources:
+- Lessinia trentina 2013–2025: 136 events, 143 dead (132 cattle), 31 injured (ilDolomiti, 5 Sep 2025).
+- PAT-cited thesis 2012–2024: 711 events, 952 animals, 499 attacks on alpeggi involving 574 cattle, 99 alpeggi with at least one predation, 13 alpeggi with 10 or more events (about half of pasture cattle predations), 4 clusters in 2022–24 (ilDolomiti, 3 May 2026).
+- Tabarelli: 94 malghe mapped (82 VR, 12 TN), p. 22.
+
+Main contradictions (also in the notes field):
+- Pair confirmation: Menini dates it to paired tracks on 12 Apr 2012. Tabarelli dates it to genetic samples at Malga Revoltel on 30 Oct 2012.
+- Veronese predations 2012–15: DGR 1080 and Vareschi give different figures. DGR 1080 counts wolf and dog together.
+- 2024 pack status: Tabarelli/Parricelli and the association "Io non ho paura del lupo" disagree on which pack bred and with how many pups.
+- 2025 removal date: the PAT press release puts it on the night before 20 Sep; the TED report gives 19 Sep.
+
+The JSON below has 48 events.
+

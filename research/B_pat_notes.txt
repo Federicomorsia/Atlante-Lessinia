@@ -1,0 +1,64 @@
+## Report: Trentino side (PAT, Ala, Avio, Vallarsa, Rovereto, Lessinia trentina), 2012–2026
+
+**Sources I consulted and could open:**
+- grandicarnivori.provincia.tn.it, through the `content/view/pdf/NNNN` pages. These carry the full text of the PAT Ufficio Stampa press releases. I read about 35 of them, covering 2012–2026.
+- provincia.tn.it "Aggiornamento grandi carnivori" monthly pages: Jul, Aug, Sep, Oct, Nov and Dec 2025; Jan, Feb and Mar 2026.
+- MUSE report `lupo_danni_09_08_2023-1.pdf`.
+- Rapporto Grandi Carnivori 2023, through the animalisti.it mirror.
+- Newspapers: L'Adige (about 20 articles), il Dolomiti (about 12), montagna.tv, greenMe, L'Indipendente, and the LAV press release PDF of 15 Oct 2025.
+
+**Sources I could not reach:**
+- www.ufficiostampa.provincia.tn.it: blocked by robots.txt and by the proxy. I cite the grandicarnivori mirrors of the same releases instead.
+- grandicarnivori `content/download/...` files, including the annual-report PDFs (Rapporto 2024, lupo_2023corretto): blocked by robots.txt.
+- provincia.tn.it monthly pages for Apr, May and Jun 2025 and Apr 2026: client error.
+- Bash/curl: no outbound access.
+- Comunicato 4065 of 30 Dec 2022 (Malga Perobia): I saw only its title in search results.
+
+**Answers to your specific checks:**
+- **Avio, March 2025:**
+  - The PAT March 2025 monthly release says a wolf carcass was found in Avio on 4 March after a road collision.
+  - The same day, three wolves attacked a pet dog at Vo' Sinistro (Comunicato 500 of 5 March 2025).
+  - On 28 March there was an attempted attack on two hunting dogs in training on the Avio mountain, Lessinia side.
+  - The province links these episodes and a January attack to the same pack. The January attack was at Borghetto: four wolves and a French bulldog, evening of about 14 January 2025.
+- **Avio, 2026: there were two separate train deaths.**
+  - 16 January 2026, Masi d'Avio: an adult female.
+  - 4 February 2026, Avio: a young female.
+- **Malga Boldera 2025:**
+  - The decree was signed on 4 September. TAR and Consiglio di Stato refused urgent suspension (CdS release no. 2485, 12 September).
+  - The cull was carried out on the night of 19–20 September (release no. 2579). The release says it was an adult male, and gives no source for the sex.
+  - TAR upheld the decree on the merits (release no. 2985, 13 October). The CdS then suspended the second removal on 14 October, according to LAV.
+  - The CdS upheld the decree on the merits on 31 July 2026 (release no. 2259).
+  - **Contradiction on the cull date:** the 2026 CdS release and L'Adige say the cull was on 29 September 2025, and il Dolomiti reads that as a second cull. Several things point to a typo:
+    - The PAT release of 18 October 2025 says only one wolf was removed and that the second removal was suspended.
+    - L'Adige of 1 November 2025 says "August".
+- **2023 decree:** Decree no. 41 of 24 July 2023. The legal sequence was:
+  - TAR: decree left in force on about 1 August, then urgent suspension rejected on 8 August.
+  - CdS presidential decree of 11 August: suspension.
+  - 14 September: appeal declared improcedibile, but the wolves stayed protected until 28 September.
+  - L'Adige of 28 September reports a TAR go-ahead.
+  - CdS presidential decree of about 30 September: new suspension.
+  - CdS order of 10 November: suspension confirmed.
+  - February 2024: TAR declared the appeal improcedibile because the pasture was empty, so the decree lapsed.
+  - No wolf was killed in 2023.
+- **Malga Posta is in the comune of Ala**, in the Piccole Dolomiti/Carega group. It is not on the Lessinia plateau.
+  - MUSE records 15 events there (2015–2022, mostly sheep and goats).
+  - A shepherds' shelter was started there in 2020.
+- **No wolf-howling survey in the Lessinia trentina was found.** The only howling record is a hiker's recording in the Carega–Piccole Dolomiti on 28 December 2016.
+- **Prevention funding for the Ala malghe:**
+  - Experimental fixed fences were installed in 2018 at Boldera, and also at Campobrun.
+  - In 2025 the province lent a high-power energizer, a tester and three acoustic deterrents.
+  - No figure specific to Ala was found. The only amount is province-wide: about 1 million euro over six years (2024 release).
+
+**Events added that were not already known to you:**
+- First pack footage: camera trap at Ala, night of 30–31 December 2013 (montagna.tv; PAT 2013 report).
+- 2012 events: Slavc in the valle dei Ronchi (April 2012), and ISPRA genetics confirming the pair at Sega di Ala (November 2012).
+- Boldera 2025, six figures that do not fully agree:
+  - 18 June: one bovine damaged outside the enclosure (il Dolomiti, from the decree).
+  - 11 August: 3 heifers attacked.
+  - 13 August: 5 heifers dead.
+  - The farmers say 9 animals were killed over the season.
+  - The ISPRA/decree data give Boldera 21 events from 2015 to 2025.
+- Mortality on the Vallagarina valley floor (Ala and Avio) and in Vallarsa. These are not necessarily wolves of the Lessinia pack; the notes say so for each event.
+
+Events on Monte Baldo (Malga Lavacchio in Avio, and Brentonico) are outside the Lessinia. I included only Lavacchio, flagged as such, because the PAT says it was a different pack.
+
