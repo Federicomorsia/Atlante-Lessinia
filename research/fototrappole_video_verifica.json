@@ -1,0 +1,119 @@
+{
+  "consultato": "2026-10-17",
+  "metodo": "YouTube oEmbed ufficiale e lettura della pagina incorporante. Risposta oEmbed positiva verifica titolo e autore, non garantisce riproduzione. Risposta negativa non prova rimozione definitiva.",
+  "video": [
+    {
+      "id": "-gTn-v2rTXQ",
+      "title": "I due capostipite",
+      "author": "Il Dolomiti",
+      "sources": [
+        "https://www.ildolomiti.it/ambiente/2019/dopo-sei-anni-slavc-e-giulietta-ancora-insieme-ecco-la-storia-dei-lupi-che-hanno-ripopolato-il-trentino-alla-faccia-di-chi-crede-che-siano-stati-reintrodotti"
+      ],
+      "status": "metadata disponibili"
+    },
+    {
+      "id": "3MCWJsP2XlE",
+      "title": "Slavc e Giulietta",
+      "author": "Il Dolomiti",
+      "sources": [
+        "https://www.ildolomiti.it/ambiente/2019/dopo-sei-anni-slavc-e-giulietta-ancora-insieme-ecco-la-storia-dei-lupi-che-hanno-ripopolato-il-trentino-alla-faccia-di-chi-crede-che-siano-stati-reintrodotti"
+      ],
+      "status": "metadata disponibili"
+    },
+    {
+      "id": "ppQ4hfdlj5U",
+      "sources": [
+        "https://grandicarnivori.provincia.tn.it/Video/Lupo/Lupi-nel-gruppo-del-Carega-Piccole-Dolomiti"
+      ],
+      "status": "metadati non accessibili"
+    },
+    {
+      "id": "vey1RjtmDTc",
+      "title": "La coppia di lupi della Lessinia, maggio 2017",
+      "author": "Provincia autonoma di Trento",
+      "sources": [
+        "https://grandicarnivori.provincia.tn.it/Video/Lupo/La-coppia-di-lupi-della-Lessinia-maggio-2017"
+      ],
+      "status": "metadata disponibili"
+    },
+    {
+      "id": "BCTdEsYamjE",
+      "title": "I primi cuccioli di lupo nati in Lessinia",
+      "author": "Provincia autonoma di Trento",
+      "sources": [
+        "https://grandicarnivori.provincia.tn.it/Video/Lupo/I-primi-cuccioli-di-lupo-nati-in-Lessinia"
+      ],
+      "status": "metadata disponibili"
+    },
+    {
+      "id": "i87mk4DOiNQ",
+      "sources": [
+        "https://grandicarnivori.provincia.tn.it/Video/Lupo/Lupo-sui-monti-Lessini4"
+      ],
+      "status": "metadati non accessibili"
+    },
+    {
+      "id": "Hn6u0SOPGTo",
+      "sources": [
+        "https://grandicarnivori.provincia.tn.it/Video/Lupo/Sette-lupi-sui-monti-Lessini"
+      ],
+      "status": "metadati non accessibili"
+    },
+    {
+      "id": "Wyeeg_q-viQ",
+      "sources": [
+        "https://grandicarnivori.provincia.tn.it/Video/Lupo/Lupo-sui-monti-Lessini3"
+      ],
+      "status": "metadati non accessibili"
+    },
+    {
+      "id": "nwHmnwMEToc",
+      "sources": [
+        "https://grandicarnivori.provincia.tn.it/Video/Lupo/Lupo-sui-monti-Lessini2"
+      ],
+      "status": "metadati non accessibili"
+    },
+    {
+      "id": "ftvy8U2MEbM",
+      "sources": [
+        "https://grandicarnivori.provincia.tn.it/Video/Lupo/Lupi-sui-monti-lessini",
+        "https://grandicarnivori.provincia.tn.it/Video/Lupo/Lupi-sui-monti-lessini"
+      ],
+      "status": "metadati non accessibili"
+    },
+    {
+      "id": "bgMrb-aWqkU",
+      "sources": [
+        "https://grandicarnivori.provincia.tn.it/Video/Lupo/Lupo-sui-monti-Lessini"
+      ],
+      "status": "metadati non accessibili"
+    },
+    {
+      "id": "CaT8KT2Zxgo",
+      "title": "Lupi sui monti Lessini",
+      "author": "Provincia autonoma di Trento",
+      "sources": [
+        "https://grandicarnivori.provincia.tn.it/Video/Lupo/Lupi-sui-monti-Lessini2"
+      ],
+      "status": "metadata disponibili"
+    },
+    {
+      "id": "vLVGw0skYt0",
+      "title": "Lupo in Lessinia - immagini Corpo Forestale",
+      "author": "Gruppo Verona Network",
+      "sources": [
+        "https://www.lessiniabolf.it/duemilatredici/"
+      ],
+      "status": "metadata disponibili"
+    },
+    {
+      "id": "svUJ-m_5ZDY",
+      "title": "Cucciolo Lessinia 2016",
+      "author": "LIFE WOLFALPS EU",
+      "sources": [
+        "https://www.lessiniabolf.it/duemilasedici/"
+      ],
+      "status": "metadata disponibili"
+    }
+  ]
+}

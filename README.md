@@ -38,6 +38,10 @@ I dati non sono mai scritti dentro l'interfaccia: coordinate e numeri stanno sol
 
 ## Novità della versione 0.2
 
+Aggiornamento del 17 ottobre 2026: **Fototrappole del lupo**, nel gruppo F dei Livelli. 13 schede di località e reti della Lessinia veronese, trentina e vicentina, con 16 link video e 24 fonti. Ricerca per luogo, provincia o autore; filtro per anno delle evidenze; collegamenti tra località e reti. Tutte le posizioni sono dichiaratamente indicative. Le schede non corrispondono a 13 dispositivi distinti e non costituiscono un censimento esaustivo. Le disponibilità video non confermate sono indicate, con rinvio alla pagina fonte. Metodo e limiti in `research/fototrappole_lupo.md`.
+
+Per ricostruire la pagina dopo modifiche a `src/`: `python3 build/make.py`. Lo script usa il CSS locale in `app/vendor/`, aggiorna `app/index.html` e conserva i dati esistenti; non richiede dipendenze Python o Node aggiuntive.
+
 - **Archivio eventi 2012–2026** (`app/data/tema_eventi_archivio.json`, `tema_eventi.geojson`): 186 eventi in sette categorie (osservazioni, riproduzione, mortalità, predazioni, interazioni, prevenzione, decisioni istituzionali), 93 localizzati in mappa al toponimo OSM o al comune. Ogni evento ha data del fatto, luogo, precisione, tipo di evidenza, stato di verifica e fonti con URL.
 - **Stati di verifica degli eventi**: accertato, documentato, segnalato, smentito.
 - **Predazioni per malga 2012–2024**: 12 malghe localizzate (più Castilverio, non localizzabile) dalla tesi Tabarelli de Fatis (2025), con la serie MUSE–PAT 2013–2022 come confronto per le malghe di Ala.

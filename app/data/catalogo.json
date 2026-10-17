@@ -30,6 +30,10 @@
    "titolo": "Presenza del lupo"
   },
   {
+   "id": "F",
+   "titolo": "Fototrappole del lupo"
+  },
+  {
    "id": "05",
    "titolo": "Conflitti documentati"
   },
@@ -794,6 +798,49 @@
    "legenda": {
     "forma": "ambito",
     "tipo": "negoziazione"
+   }
+  },
+  {
+   "id": "fototrappole",
+   "gruppo": "F",
+   "titolo": "Fototrappole del lupo",
+   "tipo": "fototrappole",
+   "file": "data/tema_fototrappole.geojson",
+   "fonti": [
+    "FT_VARESCHI",
+    "FT_WOLFALPS",
+    "FT_BOLF2012",
+    "FT_REVOLTEL",
+    "FT_PARCO2021",
+    "FT_PRIMA2021",
+    "FT_INHPDL2018",
+    "FT_VALCHIAMPO2020",
+    "FT_MANAR2026",
+    "FT_CAREGA2020",
+    "FT_PAT_bgMrb-aWqkU",
+    "FT_PAT_CaT8KT2Zxgo",
+    "FT_PAT_ftvy8U2MEbM",
+    "FT_PAT_nwHmnwMEToc",
+    "FT_PAT_Wyeeg_q-viQ",
+    "FT_PAT_Hn6u0SOPGTo",
+    "FT_PAT_i87mk4DOiNQ",
+    "FT_PAT_vey1RjtmDTc",
+    "FT_PAT_CAREGA",
+    "FT_PAT_CUCCIOLI",
+    "FT_BOLF2013",
+    "FT_BOLF2016",
+    "FT_BORGHETTI2019",
+    "FT_VALALA2017"
+   ],
+   "stato": "documentato",
+   "periodo": "2012–2026",
+   "visibile": true,
+   "interattivo": true,
+   "nota": "Località e reti documentate online. Posizioni indicative; attività attuale non verificata.",
+   "legenda": {
+    "forma": "camera",
+    "colore": "#166D78",
+    "testo": "Fotocamera vuota = località indicativa · anello tratteggiato = rete / area. I simboli non indicano coordinate esatte dei dispositivi."
    }
   }
  ]

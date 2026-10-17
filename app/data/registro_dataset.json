@@ -1,5 +1,12 @@
 [
  {
+  "dataset": "Fototrappole del lupo · Lessinia (VR, TN, VI)",
+  "stato": "parziale",
+  "formato": "Ricognizione documentale → GeoJSON",
+  "anno": "2012–2026; consultazione 17/10/2026",
+  "note": "13 schede di località e reti, 16 link video, 24 fonti. Non è un censimento dei dispositivi: reti e località possono sovrapporsi. Tutti i punti sono indicativi; attività attuale non verificata. Video archiviati anche se la disponibilità non è confermata."
+ },
+ {
   "dataset": "Archivio eventi 2012–2026 (osservazioni, riproduzione, mortalità, predazioni, interazioni, prevenzione, decisioni)",
   "stato": "integrato",
   "formato": "Ricerca documentale → JSON/GeoJSON",

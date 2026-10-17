@@ -323,6 +323,27 @@ for (const t of Object.keys(AMBT)) {
   ORDER.push([id + '_f', id], [id + '_l', id], [id + '_lab', id]); inter(id, id + '_f');
 }
 
+// ---- fototrappole del lupo: punti rappresentativi, mai coordinate dei dispositivi
+const FT = await src(LYR.fototrappole.file);
+const FTID = Object.fromEntries(FT.features.map(f => [f.properties.id, f]));
+function ftVisible(f) { return f.properties.anni.some(inRange); }
+function ftData() { return { type: 'FeatureCollection', features: FT.features.filter(ftVisible) }; }
+for (const area of [false, true]) icon(area ? 'i-camera-area' : 'i-camera', 32, x => {
+  x.strokeStyle = '#166D78'; x.fillStyle = C.sheet; x.lineWidth = 1.6;
+  if (area) { x.setLineDash([3, 3]); x.beginPath(); x.arc(16, 16, 14, 0, Math.PI * 2); x.stroke(); x.setLineDash([]); }
+  x.beginPath(); x.moveTo(7, 11); x.lineTo(12, 11); x.lineTo(14, 8); x.lineTo(19, 8); x.lineTo(21, 11); x.lineTo(25, 11); x.lineTo(25, 23); x.lineTo(7, 23); x.closePath(); x.fill(); x.stroke();
+  x.beginPath(); x.arc(16, 17, 4, 0, Math.PI * 2); x.stroke();
+});
+addGeo('fototrappole', ftData());
+L('fototrappole', { id: 'fototrappole', type: 'symbol', source: 'fototrappole', layout: {
+  'icon-image': ['case', ['!=', ['get', 'precisione'], 'località indicativa'], 'i-camera-area', 'i-camera'],
+  'icon-allow-overlap': true, 'icon-ignore-placement': true
+} });
+L('fototrappole', { id: 'fototrappole_lab', type: 'symbol', source: 'fototrappole', minzoom: 12, layout: {
+  'text-field': ['get', 'nome'], 'text-font': F_MED, 'text-size': 10.5, 'text-anchor': 'top', 'text-offset': [0, 1.6], 'text-max-width': 15
+}, paint: { 'text-color': '#166D78', 'text-halo-color': C.sheet, 'text-halo-width': 2 } });
+inter('fototrappole', 'fototrappole');
+
 // ---- luoghi A–H
 const luoghi = await src('data/tema_luoghi_interesse.geojson');
 addGeo('luoghi', luoghi);
@@ -357,6 +378,9 @@ let refreshEvents = function () {
   renderEventList();
 }
 function applyTime() {
+  map.getSource('fototrappole').setData(ftData());
+  renderFototrappole();
+  if ($('#card').dataset.ft) showFototrappola($('#card').dataset.ft);
   map.getSource('conflitti').setData(confData());
   refreshEvents();
   for (const id of ['lupo_branchi', 'pred_comuni']) {
@@ -368,6 +392,7 @@ function applyTime() {
   cov.push(ce <= cs ? `Predazioni per malga: ${ce}–${cs} (serie 2012–2024).` : 'Predazioni per malga: nessun dato (serie 2012–2024).');
   const n = EVA.filter(r => r.anno <= b && r.anno_fine >= a).length, nm = EVG.features.filter(f => evVisible(f.properties)).length;
   cov.push(`Eventi nell'intervallo: ${n} in archivio, ${nm} visibili in mappa con i filtri attivi.`);
+  if (STATE.vis.fototrappole) cov.push(`Fototrappole: ${ftData().features.length} ${ftData().features.length === 1 ? 'scheda' : 'schede'} con evidenze nell'intervallo; non indica l'attività attuale.`);
   if (!inRange(2022)) cov.push('Livelli 2022 (branchi, predazioni per comune) nascosti.');
   $('#yrCov').textContent = cov.join(' ');
   $('#yrOut').textContent = STATE.mode === 'anno' ? `Solo ${b}` : STATE.mode === 'cumulativo' ? `2012 → ${b}` : (a === b ? String(a) : `${a} – ${b}`);
@@ -409,6 +434,7 @@ function swatch(lg) {
   if (lg.forma === 'ambito') return ambSvg(lg.tipo);
   const c = lg.colore || C.ink;
   const s = { linea: `<svg class="sw" viewBox="0 0 26 14"><line x1="1" y1="7" x2="25" y2="7" stroke="${c}" stroke-width="${lg.spessore || 1.2}" stroke-dasharray="${lg.tratteggio || ''}"/></svg>`,
+    camera: `<svg class="sw" viewBox="0 0 26 14"><path d="M5 4H10L12 1H16L18 4H23V13H5Z" fill="#FBFBF8" stroke="${c}" stroke-width="1.4"/><circle cx="14" cy="8" r="3" fill="none" stroke="${c}" stroke-width="1.4"/></svg>`,
     area: `<svg class="sw" viewBox="0 0 26 14"><rect x="1" y="2" width="24" height="10" fill="${c}" stroke="rgba(0,0,0,.12)"/></svg>`,
     bordo: `<svg class="sw" viewBox="0 0 26 14"><rect x="2" y="2" width="22" height="10" fill="${c}" fill-opacity=".08" stroke="${c}" stroke-width="1.6" stroke-dasharray="${lg.tratteggio || ''}"/></svg>`,
     tratteggio: `<svg class="sw" viewBox="0 0 26 14"><defs><pattern id="p1" width="5" height="5" patternUnits="userSpaceOnUse"><path d="M0 5L5 0" stroke="${c}"/></pattern></defs><rect x="1" y="2" width="24" height="10" fill="url(#p1)" stroke="${c}"/></svg>`,
@@ -435,7 +461,7 @@ function renderLayers() {
     for (const l of CAT.livelli.filter(l => l.gruppo === g.id)) {
       if (l.tipo === 'alias') { h += `<p class="note">${esc(l.titolo)}: ${esc(l.nota)}</p>`; continue; }
       const cnt = l.tipo === 'eventi' ? `${EVA.filter(r => r.categoria === l.categoria).length} · ${EVG.features.filter(f => f.properties.categoria === l.categoria).length} in mappa`
-        : l.tipo === 'ambiti' ? `${AMB.features.filter(f => f.properties.tipo === l.id.slice(4)).length} ambiti` : l.periodo;
+        : l.tipo === 'fototrappole' ? `${FT.features.length} schede` : l.tipo === 'ambiti' ? `${AMB.features.filter(f => f.properties.tipo === l.id.slice(4)).length} ambiti` : l.periodo;
       h += `<div class="lyr"><input type="checkbox" id="v-${l.id}" ${STATE.vis[l.id] ? 'checked' : ''}><span>${swatch(l.legenda)}</span><label for="v-${l.id}">${esc(l.titolo)}</label><span class="meta">${esc(cnt)}</span>`
         + (l.nota || l.sub ? `<span class="sub">${esc(l.nota || l.sub)}</span>` : '') + `</div>`;
     }
@@ -445,13 +471,34 @@ function renderLayers() {
       <div class="lyr"><input type="checkbox" id="evLim" ${STATE.limitrofi ? 'checked' : ''}><span>${evSvg('mortalita', false, 26).replace('class="sw"', 'class="sw" style="opacity:.6"')}</span><label for="evLim">Includi territori limitrofi</label><span class="meta">fondovalle, Vallarsa, Baldo</span></div></div>
       <p class="note">Simbolo pieno: località indicata dalla fonte e trovata su OpenStreetMap. Simbolo vuoto: solo il comune è noto (punto rappresentativo del comune). Simbolo piccolo e attenuato: territorio limitrofo. I cerchi numerati raggruppano eventi vicini: avvicinati per separarli. ${EVA.filter(r => !r.in_mappa).length} eventi senza luogo verificabile restano solo nel pannello Eventi.</p>`;
     if (g.id === 'D') h += `<p class="note"><b>Interpretazione progettuale, non dato territoriale.</b> Ogni ambito deriva da eventi documentati e usa geometrie reali (comuni ISTAT, perimetro del Parco, praterie OSM attorno alle malghe), ma la sua delimitazione è una scelta della Diplomazia, non un confine ecologico.</p>`;
+    if (g.id === 'F') h += `<p class="note">Solo lupo · Lessinia veronese, trentina e vicentina. ${FT.features.length} schede di località e reti, non altrettanti dispositivi. Tutte le posizioni sono indicative; reti e località possono sovrapporsi.</p>
+      <details class="ft-browser" open><summary>Esplora fototrappole e video</summary><label for="ftSearch">Cerca località, provincia o autore</label><input id="ftSearch" type="search" placeholder="Es. Scortigara, TN, Borghetti" autocomplete="off"><p class="note" id="ftCount" role="status"></p><ul id="ftList" class="ft-list"></ul></details>
+      <p class="note">Il filtro temporale seleziona gli anni delle evidenze, non gli anni di attività del dispositivo. Ricognizione delle fonti online al ${esc(FT.aggiornato)}: completezza non garantita.</p>`;
     h += `</div>`;
   }
   h += `<div class="sect"><h2><span class="n">L</span>Luoghi del progetto</h2><div class="lyr"><input type="checkbox" id="v-luoghi" ${STATE.vis.luoghi ? 'checked' : ''}><span>${swatch(LYR.luoghi.legenda)}</span><label for="v-luoghi">Luoghi di interesse A–H</label><span class="meta">vari</span></div></div>`;
   pane.innerHTML = h;
+  $('#ftSearch').addEventListener('input', renderFototrappole);
+  renderFototrappole();
   pane.querySelectorAll('input[type=checkbox]:not(#evLim)').forEach(cb => cb.addEventListener('change', e => setVis(e.target.id.slice(2), e.target.checked)));
   $('#evLim').addEventListener('change', e => { STATE.limitrofi = e.target.checked; applyTime(); });
   pane.querySelectorAll('[data-stato]').forEach(b => b.addEventListener('click', () => { STATE.evStati[b.dataset.stato] = !STATE.evStati[b.dataset.stato]; b.setAttribute('aria-pressed', String(STATE.evStati[b.dataset.stato])); applyTime(); }));
+}
+function renderFototrappole() {
+  const list = $('#ftList'); if (!list) return;
+  const q = norm($('#ftSearch').value.trim());
+  const rows = FT.features.filter(f => { const p = f.properties; return ftVisible(f) && norm([p.nome, p.localita, ...p.province, p.descrizione, ...p.video.map(v => v.autore), ...p.fonti.map(k => FON[k].autore)].join(' ')).includes(q); });
+  $('#ftCount').textContent = `${rows.length} di ${FT.features.length} schede · filtro temporale attivo${STATE.vis.fototrappole ? '' : ' · layer nascosto'}`;
+  list.innerHTML = rows.map(f => { const p = f.properties; return `<li><button type="button" data-ft="${p.id}"><strong>${esc(p.nome)}</strong><span>${esc(p.province.join(' / '))} · ${esc(p.precisione)} · ${p.video.length ? p.video.length + ' link video' : 'video non reperito'}</span><span>${esc(p.periodo)}${p.stato === 'segnalato' ? ' · segnalazione da confermare' : ''}</span></button></li>`; }).join('') || '<li class="note">Nessuna scheda per questa ricerca e questo intervallo.</li>';
+  wireFototrappole(list);
+}
+function wireFototrappole(root) {
+  root.querySelectorAll('[data-ft]').forEach(b => b.addEventListener('click', () => {
+    const f = FTID[b.dataset.ft];
+    if (!STATE.vis.fototrappole) { setVis('fototrappole', true); $('#v-fototrappole').checked = true; }
+    map.flyTo({ center: f.geometry.coordinates, zoom: f.properties.precisione === 'località indicativa' ? 13 : 11, duration: matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 800 });
+    showFototrappola(f.properties.id);
+  }));
 }
 function renderLegend() {
   let h = '';
@@ -554,7 +601,7 @@ function renderSources() {
     <div class="sect"><h2>Registro dei dataset</h2><div style="overflow-x:auto"><table class="t avail"><thead><tr><th>Dataset</th><th>Stato</th><th>Formato / anno</th></tr></thead><tbody>
     ${AVAIL.map(d => `<tr><td>${esc(d.dataset)}<div class="note" style="margin:2px 0 0">${esc(d.note)}</div></td><td><span class="${d.stato === 'integrato' ? 'st-ok' : d.stato === 'parziale' ? 'st-part' : 'st-no'}">${esc(d.stato.toUpperCase())}</span></td><td>${esc(d.formato)}<div class="note" style="margin:0">${esc(d.anno)}</div></td></tr>`).join('')}
     </tbody></table></div></div>
-    <div class="sect"><h2>Fonti dei livelli · consultazione 10/10/2026</h2>${FONTI.map(f => `<div class="src"><div class="id">${esc(f.id)}</div><b>${esc(f.titolo)}</b><div>${esc(f.autore)}${f.anno ? ', ' + f.anno : ''} · ${esc(f.tipo)}</div><div class="lic">Licenza: ${esc(f.licenza)} · <a href="${esc(f.url)}" target="_blank" rel="noopener">apri la fonte</a></div><div class="note" style="margin:3px 0 0">${esc(f.note)}</div></div>`).join('')}</div>`;
+    <div class="sect"><h2>Fonti dei livelli · base 10/10/2026, fototrappole 17/10/2026</h2>${FONTI.map(f => `<div class="src"><div class="id">${esc(f.id)}</div><b>${esc(f.titolo)}</b><div>${esc(f.autore)}${f.anno ? ', ' + f.anno : ''} · ${esc(f.tipo)}</div><div class="lic">Licenza: ${esc(f.licenza)} · <a href="${esc(f.url)}" target="_blank" rel="noopener">apri la fonte</a></div><div class="note" style="margin:3px 0 0">${esc(f.note)}</div></div>`).join('')}</div>`;
 }
 
 // ---------------------------------------------------------------- card
@@ -570,10 +617,11 @@ function evMini(list) { return `<ul class="evmini">${list.slice().sort((a, b) =>
 function wireMini(root) { root.querySelectorAll('[data-ev]').forEach(b => b.addEventListener('click', () => { const r = EVID[b.dataset.ev]; const g = EVG.features.find(x => x.properties.id === r.id); if (g) focus(g, 13.5); showEvent(r.id); })); }
 function openCard(kick, title, st, period, body, fonti) {
   const card = $('#card');
+  delete card.dataset.ft;
   card.innerHTML = `<header><div class="kicker">${kick}</div><h4>${esc(title)}</h4><button class="close" type="button" aria-label="Chiudi scheda">×</button></header>
     <div class="body"><div class="statusline">${st}<span class="badge" style="color:var(--ink-3)">${esc(period)}</span></div>${body}${fonti}</div>`;
   card.hidden = false; card.scrollTop = 0;
-  $('.close', card).addEventListener('click', () => { card.hidden = true; map.getSource('sel').setData({ type: 'FeatureCollection', features: [] }); });
+  $('.close', card).addEventListener('click', () => { card.hidden = true; delete card.dataset.ft; map.getSource('sel').setData({ type: 'FeatureCollection', features: [] }); });
   wireMini(card);
   card.querySelectorAll('[data-rel]').forEach(b => b.addEventListener('click', () => { showRelation(b.dataset.rel, true); }));
   card.querySelectorAll('[data-amb]').forEach(b => b.addEventListener('click', () => showAmbito(b.dataset.amb)));
@@ -610,7 +658,26 @@ function showAmbito(code) {
   if (a.geometry) { const bb = turfBBox(a.geometry); map.fitBounds(bb, { padding: 60, maxZoom: 13.5, duration: 800 }); }
 }
 function turfBBox(g) { let b = [180, 90, -180, -90]; const walk = c => { if (typeof c[0] === 'number') { b = [Math.min(b[0], c[0]), Math.min(b[1], c[1]), Math.max(b[2], c[0]), Math.max(b[3], c[1])]; } else c.forEach(walk); }; walk(g.coordinates); return b; }
+function showFototrappola(id) {
+  const f = FTID[id]; if (!f) return;
+  const p = f.properties;
+  const body = `<p class="ft-precision"><b>${esc(p.precisione)}.</b> ${esc(p.precisione_nota)}</p>`
+    + (!ftVisible(f) ? '<p class="note">Questa scheda è fuori dall’intervallo temporale selezionato e il simbolo è nascosto.</p>' : '')
+    + `<p>${esc(p.descrizione)}</p>` + dl([
+      ['Luogo', esc(p.localita)], ['Provincia', esc(p.province.join(' / '))], ['Tipo', esc(p.tipo)],
+      ['Postazioni', esc(p.numero_postazioni)], ['Attività attuale', esc(p.attivita_attuale)],
+      ['Cartografia', esc(p.riferimento_cartografico) + (p.osm ? ' ' + osmLink(p.osm) : '')], ['ID', esc(p.id)]])
+    + `<div class="h">Video · ${p.video.length} link</div><p class="note">${esc(p.video_nota)} I video restano consultabili anche fuori dall’intervallo selezionato. Disponibilità verificata il ${esc(p.consultato)} tramite pagina e metadati; riproduzione non garantita.</p>`
+    + (p.video.length ? `<ul class="ft-videos">${p.video.map(v => `<li><a href="${esc(v.url)}" target="_blank" rel="noopener">▶ ${esc(v.titolo)}</a><div class="note">${esc(fmtDate(v.data))} · ${esc(v.autore)}<br>${esc(v.verifica)}</div>${v.nota ? `<p class="note">${esc(v.nota)}</p>` : ''}<a class="ft-source" href="${esc(FON[v.fonte].url)}" target="_blank" rel="noopener">Pagina fonte / archivio</a></li>`).join('')}</ul>` : '<p>Nessun link a un video pubblico attribuibile a questa postazione è stato reperito.</p>')
+    + (p.schede_collegate.length ? `<div class="h">Reti e località collegate</div><p class="note">I filmati della rete non sono attribuiti automaticamente a una singola postazione.</p><div class="chips">${p.schede_collegate.map(k => `<button class="chip" type="button" data-ft="${k}">${esc(FTID[k].properties.nome)}</button>`).join('')}</div>` : '');
+  openCard('F · Fototrappole del lupo', p.nome, badge(p.stato), p.periodo, body, '<div class="h">Fonti</div>' + srcList(p.fonti));
+  $('#card').dataset.ft = id;
+  wireFototrappole($('#card'));
+  map.getSource('sel').setData({ type: 'FeatureCollection', features: STATE.vis.fototrappole && ftVisible(f) ? [f] : [] });
+}
 function showCard(cat, f) {
+  if (cat === 'fototrappole') return showFototrappola(f.properties.id);
+  delete $('#card').dataset.ft;
   const p = f.properties, l = LYR[cat] || {};
   let kick = `${l.gruppo && l.gruppo !== 'L' ? l.gruppo + ' · ' : ''}${esc(l.titolo || '')}`, title = p.nome || p.name || p.comune || p.SITENAME || '—', body = '', st = l.stato || 'verificato', fon = l.fonti || [];
   if (cat === 'luoghi') {
@@ -675,7 +742,7 @@ function showCard(cat, f) {
 function focus(f, z) { if (f.geometry.type === 'Point') map.flyTo({ center: f.geometry.coordinates, zoom: Math.max(map.getZoom(), z), duration: matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 900 }); }
 
 // click priority: point layers first
-const PRI = ['luoghi', 'eventi', 'conflitti', 'malghe', 'sorgenti', 'toponimi', 'sentieri', 'regioni', 'strade', 'piste', 'idro', 'idro_aree', 'pred_comuni', 'lupo_branchi', 'n2000_zps', 'n2000_zsc', 'parco', 'riserve', 'amb_negoziazione', 'amb_mediazione', 'amb_rappresentanza', 'amb_osservazione', 'aperto', 'comuni'];
+const PRI = ['fototrappole', 'luoghi', 'eventi', 'conflitti', 'malghe', 'sorgenti', 'toponimi', 'sentieri', 'regioni', 'strade', 'piste', 'idro', 'idro_aree', 'pred_comuni', 'lupo_branchi', 'n2000_zps', 'n2000_zsc', 'parco', 'riserve', 'amb_negoziazione', 'amb_mediazione', 'amb_rappresentanza', 'amb_osservazione', 'aperto', 'comuni'];
 function hit(pt) {
   for (const cat of PRI) {
     if (!STATE.vis[cat] || !INTER[cat]) continue;

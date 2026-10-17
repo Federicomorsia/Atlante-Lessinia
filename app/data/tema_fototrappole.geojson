@@ -1,0 +1,762 @@
+{
+  "type": "FeatureCollection",
+  "aggiornato": "2026-10-17",
+  "ambito": "Fototrappole dedicate al lupo o con rilevamenti di lupo nella Lessinia geografica (VR, TN, VI).",
+  "nota": "Ricognizione delle fonti pubbliche, non censimento esaustivo delle installazioni. Schede locali e reti possono sovrapporsi: non sommare le quantità. Nessuna coordinata esatta di dispositivo verificata; tutti i simboli sono indicativi. Nessuna attività attuale inferita dalle riprese storiche.",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          11.07019,
+          45.67905
+        ]
+      },
+      "properties": {
+        "id": "FT01",
+        "nome": "Branchetto · prime riprese",
+        "localita": "Branchetto, Bosco Chiesanuova",
+        "province": [
+          "VR"
+        ],
+        "specie": [
+          "lupo"
+        ],
+        "tipo": "località documentata",
+        "precisione": "località indicativa",
+        "anni": [
+          2012
+        ],
+        "periodo": "2012",
+        "descrizione": "Fototrappola del Parco e del Corpo Forestale dello Stato documentata nelle prime riprese del lupo del 2012.",
+        "fonti": [
+          "FT_BOLF2012"
+        ],
+        "stato": "documentato",
+        "numero_postazioni": "Almeno 1 documentata nel 2012",
+        "attivita_attuale": "Non verificata: le date riguardano le evidenze storiche, non la permanenza del dispositivo.",
+        "precisione_nota": "La fonte indica Branchetto. Il simbolo è sul toponimo del passo; posizione esatta del dispositivo non pubblicata.",
+        "riferimento_cartografico": "Toponimo OpenStreetMap; non è la posizione della fototrappola.",
+        "osm": "node/471966828",
+        "video": [],
+        "schede_collegate": [
+          "FT08"
+        ],
+        "consultato": "2026-10-17",
+        "video_nota": "I video della rete sono consultabili nelle schede collegate, ma non sono attribuiti a questa postazione."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.99711,
+          45.7115
+        ]
+      },
+      "properties": {
+        "id": "FT02",
+        "nome": "Malga Revoltel · coppia di lupi",
+        "localita": "Revoltel, Ala",
+        "province": [
+          "TN"
+        ],
+        "specie": [
+          "lupo"
+        ],
+        "tipo": "località documentata",
+        "precisione": "località indicativa",
+        "anni": [
+          2012
+        ],
+        "periodo": "2012",
+        "descrizione": "La coppia Slavc e Giulietta è ripresa il 4 dicembre 2012 da una fototrappola presso Revoltel.",
+        "fonti": [
+          "FT_REVOLTEL"
+        ],
+        "stato": "accertato",
+        "numero_postazioni": "Almeno 1 documentata nel 2012",
+        "attivita_attuale": "Non verificata: le date riguardano le evidenze storiche, non la permanenza del dispositivo.",
+        "precisione_nota": "La fonte identifica la località. Il simbolo rappresenta la malga, non il punto di installazione.",
+        "riferimento_cartografico": "Toponimo OpenStreetMap; non è la posizione della fototrappola.",
+        "osm": "node/6174925487",
+        "video": [],
+        "schede_collegate": [
+          "FT07"
+        ],
+        "consultato": "2026-10-17",
+        "video_nota": "I video della rete sono consultabili nelle schede collegate, ma non sono attribuiti a questa postazione."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          11.02534,
+          45.71246
+        ]
+      },
+      "properties": {
+        "id": "FT03",
+        "nome": "Scortigara di Fondo · monitoraggio",
+        "localita": "Scortigara di Fondo e zona delle Scorteghere, Ala",
+        "province": [
+          "TN"
+        ],
+        "specie": [
+          "lupo"
+        ],
+        "tipo": "località documentata",
+        "precisione": "località indicativa",
+        "anni": [
+          2015,
+          2016
+        ],
+        "periodo": "2015, 2016",
+        "descrizione": "La tesi documenta i controlli del 7 novembre 2015 e, il 27 gennaio 2016, una nuova installazione e la manutenzione di altri due apparecchi nelle vicinanze.",
+        "fonti": [
+          "FT_VARESCHI"
+        ],
+        "stato": "documentato",
+        "numero_postazioni": "3 apparecchi descritti il 27 gennaio 2016",
+        "attivita_attuale": "Non verificata: le date riguardano le evidenze storiche, non la permanenza del dispositivo.",
+        "precisione_nota": "Il punto rappresenta la malga. Non sono disponibili le coordinate dei tre apparecchi; le Scorteghere sono citate anche nella rete di sette dispositivi del 2015.",
+        "riferimento_cartografico": "Toponimo OpenStreetMap; non è la posizione della fototrappola.",
+        "osm": "way/121202994",
+        "video": [],
+        "schede_collegate": [
+          "FT07"
+        ],
+        "consultato": "2026-10-17",
+        "video_nota": "I video della rete sono consultabili nelle schede collegate, ma non sono attribuiti a questa postazione."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          11.01696,
+          45.71894
+        ]
+      },
+      "properties": {
+        "id": "FT04",
+        "nome": "Monte Castelberto · monitoraggio",
+        "localita": "Monte Castelberto e strada forestale, Ala",
+        "province": [
+          "TN"
+        ],
+        "specie": [
+          "lupo"
+        ],
+        "tipo": "località documentata",
+        "precisione": "località indicativa",
+        "anni": [
+          2015,
+          2016
+        ],
+        "periodo": "2015, 2016",
+        "descrizione": "Il diario di campo riporta controlli delle fototrappole nella zona di Castelberto il 7 novembre 2015 e l’11 febbraio 2016.",
+        "fonti": [
+          "FT_VARESCHI"
+        ],
+        "stato": "documentato",
+        "numero_postazioni": "Non determinabile dalle fonti",
+        "attivita_attuale": "Non verificata: le date riguardano le evidenze storiche, non la permanenza del dispositivo.",
+        "precisione_nota": "Punto indicativo sul monte. I tre apparecchi controllati nel febbraio 2016 sono riferiti congiuntamente a Foppiano, strada per Castelberto e Castelberto; non vanno contati tre volte.",
+        "riferimento_cartografico": "Toponimo OpenStreetMap; non è la posizione della fototrappola.",
+        "osm": "node/2411534673",
+        "video": [],
+        "schede_collegate": [
+          "FT07"
+        ],
+        "consultato": "2026-10-17",
+        "video_nota": "I video della rete sono consultabili nelle schede collegate, ma non sono attribuiti a questa postazione."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          11.01016,
+          45.73221
+        ]
+      },
+      "properties": {
+        "id": "FT05",
+        "nome": "Foppiano · monitoraggio",
+        "localita": "Foppiano e strada forestale, Ala",
+        "province": [
+          "TN"
+        ],
+        "specie": [
+          "lupo"
+        ],
+        "tipo": "località documentata",
+        "precisione": "località indicativa",
+        "anni": [
+          2015,
+          2016
+        ],
+        "periodo": "2015, 2016",
+        "descrizione": "Controlli delle fototrappole documentati nel novembre 2015 e nel gennaio e febbraio 2016. Il controllo del 14 gennaio 2016 non rileva immagini di lupo.",
+        "fonti": [
+          "FT_VARESCHI"
+        ],
+        "stato": "documentato",
+        "numero_postazioni": "Non determinabile dalle fonti",
+        "attivita_attuale": "Non verificata: le date riguardano le evidenze storiche, non la permanenza del dispositivo.",
+        "precisione_nota": "Il simbolo indica Foppiano, non il dispositivo. Fa parte della stessa rete descritta per Scortigara e Castelberto; numero locale non separabile.",
+        "riferimento_cartografico": "Toponimo OpenStreetMap; non è la posizione della fototrappola.",
+        "osm": "node/11062935758",
+        "video": [],
+        "schede_collegate": [
+          "FT07"
+        ],
+        "consultato": "2026-10-17",
+        "video_nota": "I video della rete sono consultabili nelle schede collegate, ma non sono attribuiti a questa postazione."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.97504,
+          45.69475
+        ]
+      },
+      "properties": {
+        "id": "FT06",
+        "nome": "Camporetratto · installazione",
+        "localita": "Vajo di Camporetratto, Sega di Ala",
+        "province": [
+          "TN"
+        ],
+        "specie": [
+          "lupo"
+        ],
+        "tipo": "località documentata",
+        "precisione": "zona indicativa",
+        "anni": [
+          2016
+        ],
+        "periodo": "2016",
+        "descrizione": "Installazione di una fototrappola per il monitoraggio del lupo documentata il 29 gennaio 2016.",
+        "fonti": [
+          "FT_VARESCHI"
+        ],
+        "stato": "documentato",
+        "numero_postazioni": "1 installazione documentata",
+        "attivita_attuale": "Non verificata: le date riguardano le evidenze storiche, non la permanenza del dispositivo.",
+        "precisione_nota": "Il toponimo del vajo non è localizzato nella base dati: il simbolo è riferito a Sega di Ala. Non indica il sito d’installazione.",
+        "riferimento_cartografico": "Toponimo OpenStreetMap; non è la posizione della fototrappola.",
+        "osm": "node/2477526670",
+        "video": [],
+        "schede_collegate": [
+          "FT07"
+        ],
+        "consultato": "2026-10-17",
+        "video_nota": "I video della rete sono consultabili nelle schede collegate, ma non sono attribuiti a questa postazione."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          11.024,
+          45.728
+        ]
+      },
+      "properties": {
+        "id": "FT07",
+        "nome": "Lessinia trentina · archivio PAT",
+        "localita": "Versante trentino della Lessinia, Ala",
+        "province": [
+          "TN"
+        ],
+        "specie": [
+          "lupo"
+        ],
+        "tipo": "rete / area di monitoraggio",
+        "precisione": "area indicativa",
+        "anni": [
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2019
+        ],
+        "periodo": "2013, 2014, 2015, 2016, 2017, 2019",
+        "descrizione": "Raccolta di riprese da fototrappole del Servizio Foreste e fauna PAT. Le fonti pubblicano i filmati con localizzazione regionale o di valle, senza identificativi univoci dei dispositivi.",
+        "fonti": [
+          "FT_WOLFALPS",
+          "FT_VARESCHI",
+          "FT_PAT_bgMrb-aWqkU",
+          "FT_PAT_CaT8KT2Zxgo",
+          "FT_PAT_ftvy8U2MEbM",
+          "FT_PAT_nwHmnwMEToc",
+          "FT_PAT_Wyeeg_q-viQ",
+          "FT_PAT_Hn6u0SOPGTo",
+          "FT_PAT_i87mk4DOiNQ",
+          "FT_PAT_vey1RjtmDTc",
+          "FT_BORGHETTI2019",
+          "FT_VALALA2017"
+        ],
+        "stato": "documentato",
+        "numero_postazioni": "8 nella tabella LIFE WOLFALPS 2014–2016; 7 nel controllo del 7 novembre 2015",
+        "attivita_attuale": "Non verificata: le date riguardano le evidenze storiche, non la permanenza del dispositivo.",
+        "precisione_nota": "Scheda collettiva, potenzialmente sovrapposta alle località FT02–FT06. I filmati non possono essere assegnati a una singola fototrappola. Non è un punto aggiuntivo da sommare ai dispositivi locali.",
+        "riferimento_cartografico": "Punto rappresentativo dell’area, scelto per consultare la scheda; non è una postazione.",
+        "osm": null,
+        "video": [
+          {
+            "titolo": "Giovane lupo sui monti Lessini",
+            "url": "https://www.youtube.com/watch?v=bgMrb-aWqkU",
+            "data": "2014-07",
+            "fonte": "FT_PAT_bgMrb-aWqkU",
+            "autore": "Archivio PAT",
+            "verifica": "disponibilità non confermata",
+            "nota": "Postazione non identificata. Mese/anno della ripresa quando dichiarato, altrimenti dell’archivio.",
+            "consultato": "2026-10-17"
+          },
+          {
+            "titolo": "Lupi sui monti Lessini · archivio febbraio 2015",
+            "url": "https://www.youtube.com/watch?v=CaT8KT2Zxgo",
+            "data": "2015",
+            "fonte": "FT_PAT_CaT8KT2Zxgo",
+            "autore": "Provincia autonoma di Trento",
+            "verifica": "metadati disponibili",
+            "nota": "Postazione non identificata. Mese/anno della ripresa quando dichiarato, altrimenti dell’archivio.",
+            "consultato": "2026-10-17"
+          },
+          {
+            "titolo": "Slavc e Giulietta · 12 marzo 2015",
+            "url": "https://www.youtube.com/watch?v=ftvy8U2MEbM",
+            "data": "2015-03-12",
+            "fonte": "FT_PAT_ftvy8U2MEbM",
+            "autore": "Archivio PAT",
+            "verifica": "disponibilità non confermata",
+            "nota": "Postazione non identificata. Mese/anno della ripresa quando dichiarato, altrimenti dell’archivio.",
+            "consultato": "2026-10-17"
+          },
+          {
+            "titolo": "Giovane lupo · settembre 2015",
+            "url": "https://www.youtube.com/watch?v=nwHmnwMEToc",
+            "data": "2015-09",
+            "fonte": "FT_PAT_nwHmnwMEToc",
+            "autore": "Archivio PAT",
+            "verifica": "disponibilità non confermata",
+            "nota": "Postazione non identificata. Mese/anno della ripresa quando dichiarato, altrimenti dell’archivio.",
+            "consultato": "2026-10-17"
+          },
+          {
+            "titolo": "Lupo · novembre 2015",
+            "url": "https://www.youtube.com/watch?v=Wyeeg_q-viQ",
+            "data": "2015-11",
+            "fonte": "FT_PAT_Wyeeg_q-viQ",
+            "autore": "Archivio PAT",
+            "verifica": "disponibilità non confermata",
+            "nota": "Postazione non identificata. Mese/anno della ripresa quando dichiarato, altrimenti dell’archivio.",
+            "consultato": "2026-10-17"
+          },
+          {
+            "titolo": "Sette lupi · dicembre 2015",
+            "url": "https://www.youtube.com/watch?v=Hn6u0SOPGTo",
+            "data": "2015-12",
+            "fonte": "FT_PAT_Hn6u0SOPGTo",
+            "autore": "Archivio PAT",
+            "verifica": "disponibilità non confermata",
+            "nota": "Postazione non identificata. Mese/anno della ripresa quando dichiarato, altrimenti dell’archivio.",
+            "consultato": "2026-10-17"
+          },
+          {
+            "titolo": "Lupo · dicembre 2015",
+            "url": "https://www.youtube.com/watch?v=i87mk4DOiNQ",
+            "data": "2015-12",
+            "fonte": "FT_PAT_i87mk4DOiNQ",
+            "autore": "Archivio PAT",
+            "verifica": "disponibilità non confermata",
+            "nota": "Postazione non identificata. Mese/anno della ripresa quando dichiarato, altrimenti dell’archivio.",
+            "consultato": "2026-10-17"
+          },
+          {
+            "titolo": "La coppia di lupi · maggio 2017",
+            "url": "https://www.youtube.com/watch?v=vey1RjtmDTc",
+            "data": "2017-05",
+            "fonte": "FT_PAT_vey1RjtmDTc",
+            "autore": "Provincia autonoma di Trento",
+            "verifica": "metadati disponibili",
+            "nota": "Postazione non identificata. Mese/anno della ripresa quando dichiarato, altrimenti dell’archivio.",
+            "consultato": "2026-10-17"
+          },
+          {
+            "titolo": "I due capostipiti",
+            "url": "https://www.youtube.com/watch?v=-gTn-v2rTXQ",
+            "data": "2019",
+            "fonte": "FT_BORGHETTI2019",
+            "autore": "Il Dolomiti",
+            "verifica": "metadati disponibili",
+            "nota": "Filmati incorporati nell’articolo del 20 ottobre 2019; località e giorno esatto non pubblicati.",
+            "consultato": "2026-10-17"
+          },
+          {
+            "titolo": "Slavc e Giulietta",
+            "url": "https://www.youtube.com/watch?v=3MCWJsP2XlE",
+            "data": "2019",
+            "fonte": "FT_BORGHETTI2019",
+            "autore": "Il Dolomiti",
+            "verifica": "metadati disponibili",
+            "nota": "Filmati incorporati nell’articolo del 20 ottobre 2019; località e giorno esatto non pubblicati.",
+            "consultato": "2026-10-17"
+          },
+          {
+            "titolo": "Lupi in Val d’Ala · archivio febbraio 2017",
+            "url": "https://corrieredelveneto.corriere.it/veneto/notizie/cronaca/2017/15-febbraio-2017/i-lupi-lessinia--ecco-nuovo-video-2401290647741.shtml",
+            "data": "2017",
+            "fonte": "FT_VALALA2017",
+            "autore": "LIFE WOLFALPS · PAT",
+            "verifica": "pagina con video",
+            "nota": "La fonte indica la valle e incorpora un lettore video. Postazione non identificata.",
+            "consultato": "2026-10-17"
+          }
+        ],
+        "schede_collegate": [
+          "FT02",
+          "FT03",
+          "FT04",
+          "FT05",
+          "FT06"
+        ],
+        "consultato": "2026-10-17",
+        "video_nota": "Nessun collegamento video attribuibile alla postazione reperito nelle fonti consultate."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          11.045,
+          45.665
+        ]
+      },
+      "properties": {
+        "id": "FT08",
+        "nome": "Lessinia veronese · Parco e Forestali",
+        "localita": "Settore veronese della Lessinia",
+        "province": [
+          "VR"
+        ],
+        "specie": [
+          "lupo"
+        ],
+        "tipo": "rete / area di monitoraggio",
+        "precisione": "area indicativa",
+        "anni": [
+          2013,
+          2014,
+          2015,
+          2016,
+          2021
+        ],
+        "periodo": "2013, 2014, 2015, 2016, 2021",
+        "descrizione": "Rete istituzionale di fototrappolaggio del lupo. Il rapporto LIFE WOLFALPS riporta dieci fototrappole per il settore veronese nel monitoraggio 2014–2016.",
+        "fonti": [
+          "FT_WOLFALPS",
+          "FT_PARCO2021",
+          "FT_PRIMA2021",
+          "FT_PAT_CUCCIOLI",
+          "FT_BOLF2013",
+          "FT_BOLF2016"
+        ],
+        "stato": "documentato",
+        "numero_postazioni": "10 nel rapporto LIFE WOLFALPS 2014–2016",
+        "attivita_attuale": "Non verificata: le date riguardano le evidenze storiche, non la permanenza del dispositivo.",
+        "precisione_nota": "Simbolo convenzionale nell’area. Le postazioni non sono pubblicate individualmente: i dieci dispositivi non sono dieci punti localizzabili. Il numero non va sommato alle località della stessa rete.",
+        "riferimento_cartografico": "Punto rappresentativo dell’area, scelto per consultare la scheda; non è una postazione.",
+        "osm": null,
+        "video": [
+          {
+            "titolo": "I primi cuccioli · riprese del 7 agosto 2013",
+            "url": "https://www.youtube.com/watch?v=BCTdEsYamjE",
+            "data": "2013-08-07",
+            "fonte": "FT_PAT_CUCCIOLI",
+            "autore": "Provincia autonoma di Trento",
+            "verifica": "metadati disponibili",
+            "nota": "Pubblicato nell’archivio PAT nel 2016; la ripresa è del 2013. Localizzazione solo alla Lessinia.",
+            "consultato": "2026-10-17"
+          },
+          {
+            "titolo": "Lupo in Lessinia · immagini Corpo Forestale",
+            "url": "https://www.youtube.com/watch?v=vLVGw0skYt0",
+            "data": "2013",
+            "fonte": "FT_BOLF2013",
+            "autore": "Gruppo Verona Network",
+            "verifica": "metadati disponibili",
+            "nota": "Riprese diffuse anche da Gruppo Verona Network. Può riproporre materiale dello stesso evento del video PAT; non costituisce un’ulteriore postazione.",
+            "consultato": "2026-10-17"
+          },
+          {
+            "titolo": "Cucciolo Lessinia 2016",
+            "url": "https://www.youtube.com/watch?v=svUJ-m_5ZDY",
+            "data": "2016",
+            "fonte": "FT_BOLF2016",
+            "autore": "LIFE WOLFALPS EU",
+            "verifica": "metadati disponibili",
+            "nota": "",
+            "consultato": "2026-10-17"
+          },
+          {
+            "titolo": "Fototrappola e appostamento · raccolta del Parco 2021",
+            "url": "https://primadituttoverona.it/attualita/lessinia-veronese-video-e-foto-dellattivita-dei-lupi-nel-2021/",
+            "data": "2021",
+            "fonte": "FT_PRIMA2021",
+            "autore": "Guardiaparco · Prima Verona",
+            "verifica": "pagina con video",
+            "nota": "La pagina contiene due riprese, una da fototrappola e una da appostamento; non assegna una località a ciascuna.",
+            "consultato": "2026-10-17"
+          }
+        ],
+        "schede_collegate": [
+          "FT01",
+          "FT12"
+        ],
+        "consultato": "2026-10-17",
+        "video_nota": "Nessun collegamento video attribuibile alla postazione reperito nelle fonti consultate."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          11.115,
+          45.726
+        ]
+      },
+      "properties": {
+        "id": "FT09",
+        "nome": "Carega e Val dei Ronchi · fototrappolaggio",
+        "localita": "Gruppo del Carega e Val dei Ronchi",
+        "province": [
+          "TN",
+          "VR",
+          "VI"
+        ],
+        "specie": [
+          "lupo"
+        ],
+        "tipo": "rete / area di monitoraggio",
+        "precisione": "area indicativa",
+        "anni": [
+          2017,
+          2020
+        ],
+        "periodo": "2017, 2020",
+        "descrizione": "Filmato PAT del gruppo del Carega e documentazione di una videotrappola che il 25 ottobre 2020 riprende il branco. Postazioni non pubblicate.",
+        "fonti": [
+          "FT_CAREGA2020",
+          "FT_PAT_CAREGA"
+        ],
+        "stato": "documentato",
+        "numero_postazioni": "Non determinabile dalle fonti",
+        "attivita_attuale": "Non verificata: le date riguardano le evidenze storiche, non la permanenza del dispositivo.",
+        "precisione_nota": "Il simbolo rappresenta il massiccio e il settore della Val dei Ronchi: non è la posizione della camera né il territorio del branco. I due anni non implicano lo stesso apparecchio.",
+        "riferimento_cartografico": "Punto rappresentativo dell’area, scelto per consultare la scheda; non è una postazione.",
+        "osm": null,
+        "video": [
+          {
+            "titolo": "Lupi nel gruppo del Carega",
+            "url": "https://www.youtube.com/watch?v=ppQ4hfdlj5U",
+            "data": "2017",
+            "fonte": "FT_PAT_CAREGA",
+            "autore": "Archivio PAT",
+            "verifica": "disponibilità non confermata",
+            "nota": "",
+            "consultato": "2026-10-17"
+          }
+        ],
+        "schede_collegate": [],
+        "consultato": "2026-10-17",
+        "video_nota": "Nessun collegamento video attribuibile alla postazione reperito nelle fonti consultate."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          11.013,
+          45.667
+        ]
+      },
+      "properties": {
+        "id": "FT10",
+        "nome": "Lessinia · videotrappole dei volontari",
+        "localita": "Altopiano della Lessinia",
+        "province": [
+          "VR",
+          "TN"
+        ],
+        "specie": [
+          "lupo"
+        ],
+        "tipo": "rete / area di monitoraggio",
+        "precisione": "area indicativa",
+        "anni": [
+          2018
+        ],
+        "periodo": "2018",
+        "descrizione": "La stampa documenta nel giugno 2018 una videotrappola di Io non ho paura del lupo che riprende un giovane lupo nella neve.",
+        "fonti": [
+          "FT_INHPDL2018"
+        ],
+        "stato": "documentato",
+        "numero_postazioni": "Non determinabile dalle fonti",
+        "attivita_attuale": "Non verificata: le date riguardano le evidenze storiche, non la permanenza del dispositivo.",
+        "precisione_nota": "Luogo e numero dei dispositivi non pubblicati. Il filmato descritto nel 2018 non è stato identificato con un collegamento diretto certo. I video da osservazione diretta non sono usati per inventare altre postazioni.",
+        "riferimento_cartografico": "Punto rappresentativo dell’area, scelto per consultare la scheda; non è una postazione.",
+        "osm": null,
+        "video": [],
+        "schede_collegate": [],
+        "consultato": "2026-10-17",
+        "video_nota": "Nessun collegamento video attribuibile alla postazione reperito nelle fonti consultate."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          11.182,
+          45.64
+        ]
+      },
+      "properties": {
+        "id": "FT11",
+        "nome": "Alta Valchiampo · fototrappola privata",
+        "localita": "Tra Crespadoro e Selva di Progno",
+        "province": [
+          "VI",
+          "VR"
+        ],
+        "specie": [
+          "lupo"
+        ],
+        "tipo": "località documentata",
+        "precisione": "area indicativa",
+        "anni": [
+          2020
+        ],
+        "periodo": "2020",
+        "descrizione": "Una notizia TViWeb del 15 maggio 2020 riferisce una fotografia di lupo ottenuta da Damiano Raniero il giorno precedente.",
+        "fonti": [
+          "FT_VALCHIAMPO2020"
+        ],
+        "stato": "segnalato",
+        "numero_postazioni": "Non determinabile dalle fonti",
+        "attivita_attuale": "Non verificata: le date riguardano le evidenze storiche, non la permanenza del dispositivo.",
+        "precisione_nota": "Localizzazione limitata all’area tra i due comuni. Notizia reperita nell’estratto indicizzato dell’aggregatore; articolo originale e post Facebook non verificati direttamente. La fonte documenta una foto, non un video.",
+        "riferimento_cartografico": "Punto rappresentativo dell’area, scelto per consultare la scheda; non è una postazione.",
+        "osm": null,
+        "video": [],
+        "schede_collegate": [],
+        "consultato": "2026-10-17",
+        "video_nota": "Nessun collegamento video attribuibile alla postazione reperito nelle fonti consultate."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          11.066,
+          45.514
+        ]
+      },
+      "properties": {
+        "id": "FT12",
+        "nome": "Basso Vajo di Squaranto",
+        "localita": "Basso Vajo di Squaranto, comune di Verona",
+        "province": [
+          "VR"
+        ],
+        "specie": [
+          "lupo"
+        ],
+        "tipo": "località documentata",
+        "precisione": "area indicativa",
+        "anni": [
+          2021
+        ],
+        "periodo": "2021",
+        "descrizione": "Il comunicato del Parco riferisce due lupi ripresi con fototrappola nel basso Vajo di Squaranto nel 2021.",
+        "fonti": [
+          "FT_PARCO2021",
+          "FT_PRIMA2021"
+        ],
+        "stato": "accertato",
+        "numero_postazioni": "Non determinabile dalle fonti",
+        "attivita_attuale": "Non verificata: le date riguardano le evidenze storiche, non la permanenza del dispositivo.",
+        "precisione_nota": "Punto rappresentativo del tratto inferiore della valle. Il video regionale pubblicato da Prima Verona non è attribuibile a questa postazione; è raggiungibile nella scheda della rete veronese.",
+        "riferimento_cartografico": "Punto rappresentativo dell’area, scelto per consultare la scheda; non è una postazione.",
+        "osm": null,
+        "video": [],
+        "schede_collegate": [
+          "FT08"
+        ],
+        "consultato": "2026-10-17",
+        "video_nota": "I video della rete sono consultabili nelle schede collegate, ma non sono attribuiti a questa postazione."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          11.00153,
+          45.62476
+        ]
+      },
+      "properties": {
+        "id": "FT13",
+        "nome": "Manar · segnalazione di un allevatore",
+        "localita": "Manar, Erbezzo",
+        "province": [
+          "VR"
+        ],
+        "specie": [
+          "lupo"
+        ],
+        "tipo": "località documentata",
+        "precisione": "località indicativa",
+        "anni": [
+          2026
+        ],
+        "periodo": "2026",
+        "descrizione": "Un allevatore intervistato nel 2026 dichiara di aver installato da alcune settimane una fototrappola che registra passaggi di lupi.",
+        "fonti": [
+          "FT_MANAR2026"
+        ],
+        "stato": "segnalato",
+        "numero_postazioni": "1 dichiarata dall’intervistato",
+        "attivita_attuale": "Non verificata: le date riguardano le evidenze storiche, non la permanenza del dispositivo.",
+        "precisione_nota": "Testimonianza riportata dalla stampa, senza filmati pubblicati né posizione del dispositivo. Il simbolo rappresenta la contrada; non una proprietà privata.",
+        "riferimento_cartografico": "Toponimo OpenStreetMap; non è la posizione della fototrappola.",
+        "osm": "node/2388972296",
+        "video": [],
+        "schede_collegate": [],
+        "consultato": "2026-10-17",
+        "video_nota": "Nessun collegamento video attribuibile alla postazione reperito nelle fonti consultate."
+      }
+    }
+  ]
+}
